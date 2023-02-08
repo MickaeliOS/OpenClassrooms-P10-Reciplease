@@ -36,8 +36,8 @@ class RecipeDetailViewController: UIViewController {
         recipeTitle.text = recipe.label
         recipeIngredients.text = ingredientConfiguration.formatDetailedIngredients(ingredients: recipe.ingredients)
         
-        guard let imageData = recipe.imageData else { return }
-        recipeImage.image = UIImage(data: imageData)
+        /*guard let imageData = recipe.imageData else { return }
+        recipeImage.image = UIImage(data: imageData)*/
     }
     
     private func addRecipe() {

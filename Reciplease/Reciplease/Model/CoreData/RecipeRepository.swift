@@ -33,8 +33,9 @@ class RecipeRepository {
     // MARK: - FUNCTIONS
     func addToRecipe(recipe: RecipeInfos) throws {
         let recipeToSave = Recipe(context: coreDataStack.viewContext)
+        
         recipeToSave.title = recipe.label
-        recipeToSave.image = recipe.imageData
+        recipeToSave.image = recipe.image
         recipeToSave.time = recipe.totalTime
         recipeToSave.score = recipe.yield
     

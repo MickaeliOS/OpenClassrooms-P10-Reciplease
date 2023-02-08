@@ -30,9 +30,9 @@ class RecipesViewController: UIViewController {
         apiCallCenter.getRecipes(ingredients: ingredients, nbIngredients: String(ingredientConfiguration.ingredients.count))
     }
     
-    private func getImages() {
+    /*private func getImages() {
         apiCallCenter.getImages(recipes: recipes)
-    }
+    }*/
 }
 
 // MARK: - EXTENSIONS
@@ -50,7 +50,7 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.configure(title: recipe.label,
                        ingredients: recipe.ingredients,
-                       image: recipe.imageData,
+                       image: recipe.image,
                        preparationTime: recipe.totalTime,
                        score: recipe.yield)
         return cell
@@ -76,7 +76,7 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    func getImagesDidFinish(_ result: [RecipeInfos]) {
+    /*func getImagesDidFinish(_ result: [RecipeInfos]) {
         self.recipes = result
         self.recipeList.reloadData()
     }
@@ -85,7 +85,7 @@ extension RecipesViewController: APICallCenterDelegate {
         //presentAlert(with: "Something went wrong while retrieving the image, please try again.")
         // Si on doit afficher 300 images et qu'il y en a 50 qui ne sont pas là, on va déclencher 50 fois le presentAlert()
         print("Something went wrong while retrieving the image.")
-    }
+    }*/
     
     func getRecipesDidFinish(_ result: [RecipeInfos]) {
         if result.isEmpty {
@@ -95,7 +95,7 @@ extension RecipesViewController: APICallCenterDelegate {
         self.recipeList.reloadData()
         
         // Now we need the images
-        getImages()
+        //getImages()
     }
     
     func getRecipesDidFail() {

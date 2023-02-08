@@ -9,7 +9,6 @@ import Foundation
 
 class APICallCenter {
     var delegate: APICallCenterDelegate?
-
     let recipeService = RecipeService()
 
     func getRecipes(ingredients: String, nbIngredients: String) {
@@ -30,7 +29,7 @@ class APICallCenter {
         }
     }
     
-    func getImages(recipes: [RecipeInfos]) {
+    /*func getImages(recipes: [RecipeInfos]) {
         recipeService.getImages(recipes: recipes) { recipesWithImages, apiCase in
             switch apiCase {
             case .error, .incorrectResponse:
@@ -44,7 +43,7 @@ class APICallCenter {
                 self.delegate?.getImagesDidFinish(recipesWithImages)
             }
         }
-    }
+    }*/
     
     /*func getImage(recipe: RecipeInfos) {
         recipeService.getImage(recipe: recipe) { imageData, apiCase in
@@ -68,6 +67,6 @@ class APICallCenter {
 protocol APICallCenterDelegate {
     func getRecipesDidFinish(_ result: [RecipeInfos])
     func getRecipesDidFail()
-    func getImagesDidFinish(_ result: [RecipeInfos])
-    func getImagesDidFail()
+    /*func getImagesDidFinish(_ result: [RecipeInfos])
+    func getImagesDidFail()*/
 }

@@ -18,10 +18,11 @@ class IngredientRepository {
     
     // MARK: - FUNCTIONS
     func addIngredients(recipe: RecipeInfos, completion: (NSSet) -> Void) {
-        var ingredients = NSSet()
+        let ingredients = NSSet()
         
         recipe.ingredients.forEach { ingredient in
             let ingredientToSave = Ingredient(context: coreDataStack.viewContext)
+            
             ingredientToSave.food = ingredient.food
             ingredientToSave.detail = ingredient.text
             ingredients.adding(ingredient)

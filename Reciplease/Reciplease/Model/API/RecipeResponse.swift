@@ -18,13 +18,12 @@ struct Hit: Decodable {
 struct RecipeInfos: Decodable {
     let label: String
     let image: String
-    var imageData: Data?
     let ingredients: [IngredientInfos]
     let yield: Double
     let totalTime: Double
 }
 
 struct IngredientInfos: Decodable {
-    var text: String
-    var food: String
+    let text: String
+    let food: String
 }

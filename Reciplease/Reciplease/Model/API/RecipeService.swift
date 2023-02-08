@@ -79,7 +79,7 @@ class RecipeService {
     }*/
     
     // Fonction implémentant le champ imageData de la structure
-    func getImages(recipes: [RecipeInfos], callback: @escaping ([RecipeInfos]?, ImagesAPICases) -> Void) {
+    /*func getImages(recipes: [RecipeInfos], callback: @escaping ([RecipeInfos]?, ImagesAPICases) -> Void) {
         //TODO: Gérer les autres cas (error, incorrectResponse, emptyImage)
         var count = 0
         
@@ -101,7 +101,7 @@ class RecipeService {
                 }
             }
         }
-    }
+    }*/
     
     // Fonction retournant un tableau de Data
     /*func getImages(recipes: [RecipeInfos], callback: @escaping ([Data]?, ImagesAPICases) -> Void) {

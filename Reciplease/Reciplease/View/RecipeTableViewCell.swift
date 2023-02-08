@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RecipeTableViewCell: UITableViewCell {
     // MARK: - VIEW LIFE CYCLE
@@ -24,17 +25,18 @@ class RecipeTableViewCell: UITableViewCell {
     let ingredientConfiguration = IngredientConfiguration()
     
     // MARK: - FUNCTIONS
-    func configure(title: String, ingredients: [IngredientInfos], image: Data?, preparationTime: Double, score: Double) {
+    func configure(title: String, ingredients: [IngredientInfos], image: String, preparationTime: Double, score: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatMainIngredientsInOneLine(ingredientsFood: ingredients)
         recipeScore.titleLabel?.text = String(score)
         recipeTime.titleLabel?.text = String(preparationTime)
         
-        // At first, we only loads the recipes, so the image will be nil
+        recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        /*// At first, we only loads the recipes, so the image will be nil
         guard let image = image else { return }
         
         // But right after, the image data is here, so we present it
         recipeImage.image = UIImage(data: image)
-        activityIndicator.isHidden = true
+        activityIndicator.isHidden = true*/
     }
 }

@@ -7,5 +7,6 @@ target 'Reciplease' do
 
   # Pods for Reciplease
   pod 'Alamofire'
+  pod 'SDWebImage'
 
 end
