@@ -11,22 +11,8 @@ class IngredientConfiguration {
     // MARK: - VARIABLES & ENUM
     var ingredients: [String] = []
     
-    enum IngredientError: Error {
-        case noIngredient
-        
-        var localizedDescription: String {
-            switch self {
-            case .noIngredient:
-                return "Please fill an ingredient."
-            }
-        }
-    }
-    
-    // MARK: - FUNCTIONS
-    func addIngredient(ingredient: String?) throws {
-        guard let ingredient = ingredient else {
-            throw IngredientError.noIngredient
-        }
+    // MARK: - FUNCTIONS FOR RESEARCH
+    func addIngredient(ingredient: String) {
         ingredients.append(ingredient)
     }
     
@@ -67,6 +53,18 @@ class IngredientConfiguration {
 
         ingredients.forEach { ingredient in
             ingredientsString += "- \(ingredient.text)\n"
+        }
+        
+        return ingredientsString
+    }
+    
+    // MARK: - FUNCTIONS FOR FAVORITES
+    func formatFavoriteMainIngredientsInOneLine(ingredientsFood: NSSet) -> String {
+        // We want to display the main ingredients in a single line
+        var ingredientsString = ""
+
+        ingredientsFood.forEach { ingredientInfo in
+            ingredientsString += "\((ingredientInfo as AnyObject).value(forKey: "food") as? String ?? ""), "
         }
         
         return ingredientsString

@@ -45,16 +45,16 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let recipe = recipes[indexPath.row]
         
-        guard let title = recipe.title, let ingredients = recipe.ingredients, let image = recipe.image else {
+        guard let title = recipe.label, let ingredients = recipe.ingredients, let image = recipe.image else {
             return UITableViewCell()
         }
         
         //TODO : Changer ingredients
-        cell.configure(title: title,
-                       ingredients: [IngredientInfos](),
+        cell.configureFavorite(title: title,
+                       ingredients: ingredients,
                        image: image,
-                       preparationTime: recipe.time,
-                       score: recipe.score)
+                       preparationTime: recipe.totalTime,
+                       score: recipe.yield)
         return cell
     }
     
@@ -64,6 +64,24 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "segueToRecipeDetail", sender: recipes[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Always remove the data first
+            do {
+                try recipeRepository.deleteRecipe(recipe: recipes[indexPath.row])
+                recipes.remove(at: indexPath.row)
+                
+                // Then, the cell
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            } catch let error as RecipeRepository.RecipeError {
+                presentAlert(with: error.localizedDescription)
+            } catch {
+                presentAlert(with: "An error occurred.")
+            }
+        }
     }
 }
 

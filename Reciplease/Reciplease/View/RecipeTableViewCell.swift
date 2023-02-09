@@ -31,12 +31,42 @@ class RecipeTableViewCell: UITableViewCell {
         recipeScore.titleLabel?.text = String(score)
         recipeTime.titleLabel?.text = String(preparationTime)
         
-        recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        //recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        
+        recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
+            if cacheType == .none {
+                print("PAS EN CACHE")
+                // L'image n'est pas en cache, elle a été téléchargée à partir du réseau
+            } else {
+                print("EN CACHE")
+                // L'image est en cache
+            }
+        })
+
         /*// At first, we only loads the recipes, so the image will be nil
         guard let image = image else { return }
         
         // But right after, the image data is here, so we present it
         recipeImage.image = UIImage(data: image)
         activityIndicator.isHidden = true*/
+    }
+    
+    func configureFavorite(title: String, ingredients: NSSet, image: String, preparationTime: Double, score: Double) {
+        recipeTitle.text = title
+        recipeFood.text = ingredientConfiguration.formatFavoriteMainIngredientsInOneLine(ingredientsFood: ingredients)
+        recipeScore.titleLabel?.text = String(score)
+        recipeTime.titleLabel?.text = String(preparationTime)
+        
+        //recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        
+        recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
+            if cacheType == .none {
+                print("PAS EN CACHE")
+                // L'image n'est pas en cache, elle a été téléchargée à partir du réseau
+            } else {
+                print("EN CACHE")
+                // L'image est en cache
+            }
+        })
     }
 }

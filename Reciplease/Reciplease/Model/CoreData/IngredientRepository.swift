@@ -17,20 +17,22 @@ class IngredientRepository {
     }
     
     // MARK: - FUNCTIONS
-    func addIngredients(recipe: RecipeInfos, completion: (NSSet) -> Void) {
-        let ingredients = NSSet()
+    func addIngredients(ingredients: [IngredientInfos], recipe: Recipe, completion: (NSSet) -> Void) {
+        let ingredientsSet = NSSet()
         
-        recipe.ingredients.forEach { ingredient in
+        ingredients.forEach { ingredient in
             let ingredientToSave = Ingredient(context: coreDataStack.viewContext)
             
             ingredientToSave.food = ingredient.food
-            ingredientToSave.detail = ingredient.text
-            ingredients.adding(ingredient)
+            ingredientToSave.text = ingredient.text
+            ingredientToSave.recipe = recipe
+            
+            ingredientsSet.adding(ingredientToSave)
         }
-        
+                
         do {
             try coreDataStack.viewContext.save()
-            completion(ingredients)
+            completion(ingredientsSet)
         } catch {
             print("We were unable to save the ingredients.")
         }

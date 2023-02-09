@@ -16,11 +16,14 @@ class RecipeRepository {
     // MARK: - ENUMS
     enum RecipeError: Error {
         case savingError
+        case deletionError
         
         var localizedDescription: String {
             switch self {
             case .savingError:
                 return "We were unable to save your recipe."
+            case .deletionError:
+                return "We were unable to delete your recipe."
             }
         }
     }
@@ -34,14 +37,14 @@ class RecipeRepository {
     func addToRecipe(recipe: RecipeInfos) throws {
         let recipeToSave = Recipe(context: coreDataStack.viewContext)
         
-        recipeToSave.title = recipe.label
+        recipeToSave.label = recipe.label
         recipeToSave.image = recipe.image
-        recipeToSave.time = recipe.totalTime
-        recipeToSave.score = recipe.yield
+        recipeToSave.totalTime = recipe.totalTime
+        recipeToSave.yield = recipe.yield
     
         // A Recipe can have multiples ingredients, so we need to save them
-        ingredientRepository.addIngredients(recipe: recipe, completion: { ingredients in
-            recipeToSave.ingredients = ingredients
+        ingredientRepository.addIngredients(ingredients: recipe.ingredients, recipe: recipeToSave, completion: { ingredients in
+            recipeToSave.addToIngredients(ingredients)
         })
                 
         do {
@@ -61,5 +64,24 @@ class RecipeRepository {
         } catch {
             completion([])
         }
+    }
+    
+    func deleteRecipe(recipe: Recipe) throws {
+        coreDataStack.viewContext.delete(recipe)
+        
+        do {
+            try coreDataStack.viewContext.save()
+        } catch {
+            print("We were unable to delete \(recipe)")
+            throw RecipeError.deletionError
+        }
+    }
+    
+    func isFavorite(recipe: Recipe) {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+
+        request.sortDescriptors = [
+            NSSortDescriptor(,
+        ]
     }
 }

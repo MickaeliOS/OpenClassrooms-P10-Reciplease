@@ -36,8 +36,18 @@ class RecipeDetailViewController: UIViewController {
         recipeTitle.text = recipe.label
         recipeIngredients.text = ingredientConfiguration.formatDetailedIngredients(ingredients: recipe.ingredients)
         
-        /*guard let imageData = recipe.imageData else { return }
-        recipeImage.image = UIImage(data: imageData)*/
+        // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
+        recipeImage.sd_setImage(with: URL(string: recipe.image), completed: { (image, error, cacheType, url) in
+            if cacheType == .none {
+                print("PAS EN CACHE")
+                // L'image n'est pas en cache, elle a été téléchargée à partir du réseau
+            } else {
+                print("EN CACHE")
+                // L'image est en cache
+            }
+        })
+        
+        
     }
     
     private func addRecipe() {
@@ -47,7 +57,7 @@ class RecipeDetailViewController: UIViewController {
         
         do {
             try recipeRepository.addToRecipe(recipe: recipe)
-            favoriteButton.image = UIImage(named: "star.fill")
+            favoriteButton.image = UIImage(systemName: "star.fill")
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {

@@ -39,11 +39,6 @@ class IngredientsViewController: UIViewController {
     }
     
     // MARK: - PRIVATE FUNCTIONS
-    private func deleteAllIngredients() {
-        ingredientConfiguration.removeAllIngredients()
-        ingredientList.reloadData()
-    }
-        
     private func setupInterface() {
         addIngredientButton.layer.cornerRadius = 10
         addIngredientView.layer.cornerRadius = 10
@@ -53,16 +48,17 @@ class IngredientsViewController: UIViewController {
         ingredientTextField.addBottomBorder()
     }
     
+    private func deleteAllIngredients() {
+        ingredientConfiguration.removeAllIngredients()
+        ingredientList.reloadData()
+    }
+    
     private func addIngredient() {
-        do {
-            try ingredientConfiguration.addIngredient(ingredient: ingredientTextField.text)
-            ingredientTextField.text = ""
-            ingredientList.reloadData()
-        } catch let error as IngredientConfiguration.IngredientError {
-            presentAlert(with: error.localizedDescription)
-        } catch {
-            presentAlert(with: "An error occurred.")
+        guard let ingredient = ingredientTextField.text else {
+            presentAlert(with: "You did not provide an ingredient.")
+            return
         }
+        ingredientConfiguration.addIngredient(ingredient: ingredient)
     }
     
     private func prepareSearchRecipes() {

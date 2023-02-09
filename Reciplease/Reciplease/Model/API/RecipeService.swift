@@ -29,7 +29,7 @@ class RecipeService {
     
     // MARK: - FUNCTIONS
     func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeInfos]?, SearchAPICases) -> Void) {
-        let parameters = ["q": ingredients, "ingr": nbIngredients, "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
+        let parameters = ["q": ingredients, "ingr": "10", "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
         
         AF.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponse.self) { [self] response in
             guard let data = response.value, response.error == nil else {
