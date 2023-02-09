@@ -24,15 +24,12 @@ class RecipesViewController: UIViewController {
     
     // MARK: - PRIVATE FUNCTIONS
     private func getRecipes() {
+        // To lighten the Controller, i'm using an API call file
         apiCallCenter.delegate = self
         
-        let ingredients = ingredientConfiguration.formatIngredientsForAPIRequest(ingredients: ingredientConfiguration.ingredients)
+        let ingredients = ingredientConfiguration.ingredients.joined(separator: " ")
         apiCallCenter.getRecipes(ingredients: ingredients, nbIngredients: String(ingredientConfiguration.ingredients.count))
     }
-    
-    /*private func getImages() {
-        apiCallCenter.getImages(recipes: recipes)
-    }*/
 }
 
 // MARK: - EXTENSIONS
@@ -76,26 +73,12 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    /*func getImagesDidFinish(_ result: [RecipeInfos]) {
-        self.recipes = result
-        self.recipeList.reloadData()
-    }
-    
-    func getImagesDidFail() {
-        //presentAlert(with: "Something went wrong while retrieving the image, please try again.")
-        // Si on doit afficher 300 images et qu'il y en a 50 qui ne sont pas là, on va déclencher 50 fois le presentAlert()
-        print("Something went wrong while retrieving the image.")
-    }*/
-    
     func getRecipesDidFinish(_ result: [RecipeInfos]) {
         if result.isEmpty {
             return
         }
         self.recipes = result
         self.recipeList.reloadData()
-        
-        // Now we need the images
-        //getImages()
     }
     
     func getRecipesDidFail() {

@@ -54,11 +54,14 @@ class IngredientsViewController: UIViewController {
     }
     
     private func addIngredient() {
-        guard let ingredient = ingredientTextField.text else {
-            presentAlert(with: "You did not provide an ingredient.")
+        guard let ingredient = ingredientTextField.text, !ingredient.isEmpty else {
+            presentAlert(with: "No ingredient to add, please provide one.")
             return
         }
+
         ingredientConfiguration.addIngredient(ingredient: ingredient)
+        ingredientTextField.text = nil
+        ingredientList.reloadData()
     }
     
     private func prepareSearchRecipes() {

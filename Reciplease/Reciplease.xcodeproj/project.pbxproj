@@ -182,8 +182,8 @@
 			children = (
 				83B351172994F24200157DCB /* Reciplease.xcdatamodeld */,
 				8362763E298BF3FC00C8B13F /* CoreDataStack.swift */,
-				8362764E298D345E00C8B13F /* IngredientRepository.swift */,
 				83627650298D346800C8B13F /* RecipeRepository.swift */,
+				8362764E298D345E00C8B13F /* IngredientRepository.swift */,
 				83B3511A2994F3AE00157DCB /* Recipe.swift */,
 				83B3511C2994F3C400157DCB /* Ingredient.swift */,
 			);

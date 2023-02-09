@@ -34,26 +34,20 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe else { return }
         
         recipeTitle.text = recipe.label
-        recipeIngredients.text = ingredientConfiguration.formatDetailedIngredients(ingredients: recipe.ingredients)
+        recipeIngredients.text = ingredientConfiguration.formatInstructions(ingredients: recipe.ingredients)
         
         // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         recipeImage.sd_setImage(with: URL(string: recipe.image), completed: { (image, error, cacheType, url) in
             if cacheType == .none {
                 print("PAS EN CACHE")
-                // L'image n'est pas en cache, elle a été téléchargée à partir du réseau
             } else {
                 print("EN CACHE")
-                // L'image est en cache
             }
         })
-        
-        
     }
     
     private func addRecipe() {
-        guard let recipe = recipe else {
-            return
-        }
+        guard let recipe = recipe else { return }
         
         do {
             try recipeRepository.addToRecipe(recipe: recipe)

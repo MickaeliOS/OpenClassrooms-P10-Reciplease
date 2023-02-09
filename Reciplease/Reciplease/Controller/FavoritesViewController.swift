@@ -49,7 +49,6 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        //TODO : Changer ingredients
         cell.configureFavorite(title: title,
                        ingredients: ingredients,
                        image: image,
@@ -68,14 +67,13 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Always remove the data first
             do {
+                // Always remove the data first
                 try recipeRepository.deleteRecipe(recipe: recipes[indexPath.row])
                 recipes.remove(at: indexPath.row)
                 
                 // Then, the cell
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-
             } catch let error as RecipeRepository.RecipeError {
                 presentAlert(with: error.localizedDescription)
             } catch {

@@ -80,8 +80,8 @@ class RecipeRepository {
     func isFavorite(recipe: Recipe) {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
 
-        request.sortDescriptors = [
+        /*request.sortDescriptors = [
             NSSortDescriptor(,
-        ]
+        ]*/
     }
 }
