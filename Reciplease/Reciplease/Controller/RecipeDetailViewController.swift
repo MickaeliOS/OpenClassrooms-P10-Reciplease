@@ -29,6 +29,16 @@ class RecipeDetailViewController: UIViewController {
         addRecipe()
     }
     
+    @IBAction func getDirections(_ sender: Any) {
+        guard let recipe = recipe else {
+            return
+        }
+        
+        if let url = URL(string: recipe.url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     // MARK: - PRIVATE FUNCTIONS
     private func setupInterface() {
         guard let recipe = recipe else { return }

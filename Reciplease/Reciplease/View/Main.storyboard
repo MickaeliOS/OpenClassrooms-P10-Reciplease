@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m5B-SK-eZf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m5B-SK-eZf">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,6 +23,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7r8-PI-yDg">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="100.66666666666667"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B07-H0-TxT">
+                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="370" height="29.333333333333329"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lemon, cheese, sausage..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fuD-5J-9dM">
                                                 <rect key="frame" x="10" y="49.333333333333343" width="259" height="41.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -43,12 +49,6 @@
                                                     <action selector="addIngredient:" destination="NZB-VP-ux4" eventType="touchUpInside" id="xnS-mS-C4N"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B07-H0-TxT">
-                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="370" height="29.333333333333329"/>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -88,6 +88,12 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asm-MK-IvO">
                                                 <rect key="frame" x="0.0" y="0.0" width="370" height="50"/>
                                                 <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients : " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bB5-08-XE5">
+                                                        <rect key="frame" x="10" y="10.000000000000028" width="259" height="30"/>
+                                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-q1-cvb">
                                                         <rect key="frame" x="279" y="4.3333333333333428" width="81" height="41"/>
                                                         <color key="backgroundColor" name="foreground"/>
@@ -100,12 +106,6 @@
                                                             <action selector="clearIngredients:" destination="NZB-VP-ux4" eventType="touchUpInside" id="bCT-m1-JmW"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients : " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bB5-08-XE5">
-                                                        <rect key="frame" x="10" y="10.000000000000028" width="259" height="30"/>
-                                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -200,10 +200,14 @@
                     <connections>
                         <outlet property="addIngredientButton" destination="fbc-lf-vKT" id="kIj-O7-QXa"/>
                         <outlet property="addIngredientView" destination="7r8-PI-yDg" id="JYj-fl-WJZ"/>
+                        <outlet property="applicationTitle" destination="Moi-aP-x0g" id="UcD-bg-F3a"/>
                         <outlet property="clearIngredientsButton" destination="CyG-q1-cvb" id="JyD-Zs-QRl"/>
+                        <outlet property="inYourFridgeLabel" destination="B07-H0-TxT" id="Sgt-bg-P8r"/>
                         <outlet property="ingredientList" destination="7cD-Kc-FSe" id="NY1-9j-czR"/>
                         <outlet property="ingredientTextField" destination="fuD-5J-9dM" id="4qw-JN-RvQ"/>
                         <outlet property="searchRecipesButton" destination="jqn-O7-7NG" id="4v9-nX-jet"/>
+                        <outlet property="searchTabBar" destination="WT8-LG-sh1" id="zmw-eT-TBU"/>
+                        <outlet property="yourIngredientsLabel" destination="bB5-08-XE5" id="NXy-bB-fAF"/>
                         <segue destination="I64-iF-2al" kind="show" identifier="segueToRecipes" id="7za-yH-6p1"/>
                     </connections>
                 </viewController>
@@ -239,6 +243,9 @@
                                                         </activityIndicatorView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VMQ-Rl-l5I">
                                                             <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="YES"/>
+                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="VMQ-Rl-l5I" secondAttribute="height" multiplier="1:1" id="5Pa-A6-hRm"/>
                                                             </constraints>
@@ -392,6 +399,9 @@
                                             <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="25"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="getDirections:" destination="hJt-gn-yfY" eventType="touchUpInside" id="4qd-Wg-Bfv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

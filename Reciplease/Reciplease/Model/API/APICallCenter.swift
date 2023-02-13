@@ -12,25 +12,43 @@ class APICallCenter {
     let recipeService = RecipeService()
 
     func getRecipes(ingredients: String, nbIngredients: String) {
-        recipeService.searchRecipes(with: ingredients, nbIngredients: nbIngredients) { recipes, apiCase in
+        recipeService.searchRecipes(with: ingredients, nbIngredients: nbIngredients) { recipes, nextPage, apiCase in
             switch apiCase {
             case .error, .incorrectResponse:
                 self.delegate?.getRecipesDidFail()
                 return
             case .emptyRecipes:
-                self.delegate?.getRecipesDidFinish([])
+                self.delegate?.getRecipesDidFinish(result: nil, nextPage: nil)
                 return
             case .success:
                 guard let recipes = recipes else {
                     return
                 }
-                self.delegate?.getRecipesDidFinish(recipes)
+                self.delegate?.getRecipesDidFinish(result: recipes, nextPage: nextPage)
+            }
+        }
+    }
+    
+    func getNextPage(nextPage: Next) {
+        recipeService.getNextPage(nextPage: nextPage) { recipes, nextPage, apiCase in
+            switch apiCase {
+            case .error, .incorrectResponse:
+                self.delegate?.getRecipesDidFail()
+                return
+            case .emptyRecipes:
+                self.delegate?.getRecipesDidFinish(result: nil, nextPage: nil)
+                return
+            case .success:
+                guard let recipes = recipes else {
+                    return
+                }
+                self.delegate?.getRecipesDidFinish(result: recipes, nextPage: nextPage)
             }
         }
     }
 }
 
 protocol APICallCenterDelegate {
-    func getRecipesDidFinish(_ result: [RecipeInfos])
+    func getRecipesDidFinish(result: [RecipeInfos]?, nextPage: Next?)
     func getRecipesDidFail()
 }

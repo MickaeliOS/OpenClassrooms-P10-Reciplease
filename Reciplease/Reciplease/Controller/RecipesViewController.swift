@@ -21,6 +21,7 @@ class RecipesViewController: UIViewController {
     let apiCallCenter = APICallCenter()
     var ingredientConfiguration = IngredientConfiguration()
     var recipes = [RecipeInfos]()
+    var nextPage: Next?
     
     // MARK: - PRIVATE FUNCTIONS
     private func getRecipes() {
@@ -29,6 +30,10 @@ class RecipesViewController: UIViewController {
         
         let ingredients = ingredientConfiguration.ingredients.joined(separator: " ")
         apiCallCenter.getRecipes(ingredients: ingredients, nbIngredients: String(ingredientConfiguration.ingredients.count))
+    }
+    
+    private func getNextPage(nextPage: Next) {
+        apiCallCenter.getNextPage(nextPage: nextPage)
     }
 }
 
@@ -50,6 +55,14 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
                        image: recipe.image,
                        preparationTime: recipe.totalTime,
                        score: recipe.yield)
+        
+        print("MKA - Recette n° \(indexPath.row) : \(recipe.label)")
+        
+        if indexPath.row == 19 {
+            guard let nextPage = nextPage else { return UITableViewCell() }
+            getNextPage(nextPage: nextPage)
+        }
+        
         return cell
     }
     
@@ -73,12 +86,20 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    func getRecipesDidFinish(_ result: [RecipeInfos]) {
-        if result.isEmpty {
+    func getRecipesDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
+        guard let result = result else {
+            noRecipesLabel.isHidden = false
             return
         }
-        self.recipes = result
-        self.recipeList.reloadData()
+
+        if let nextPage = nextPage {
+            self.nextPage = nextPage
+        }
+        
+        recipes = result
+        recipeList.reloadData()
+                
+        //print("MKA - Next page's link : \(self.nextPage.href)")
     }
     
     func getRecipesDidFail() {

@@ -24,7 +24,7 @@ class IngredientConfiguration {
         ingredients.removeAll()
     }
     
-    func formatMainIngredientsInOneLine(ingredientsFood: [IngredientInfos]) -> String {
+    func formatIngredientsInOneLine(ingredientsFood: [IngredientInfos]) -> String {
         // We want to display the main ingredients in a single line
         return ingredientsFood.map { $0.food }.joined(separator: ", ")
     }
@@ -37,7 +37,7 @@ class IngredientConfiguration {
 
     
     // MARK: - FUNCTIONS FOR FAVORITES
-    func formatFavoriteMainIngredientsInOneLine(ingredientsFood: NSSet) -> String {
+    func formatFavoriteIngredientsInOneLine(ingredientsFood: NSSet) -> String {
         let ingredients = ingredientsFood.map { ($0 as AnyObject).value(forKey: "food") as? String }.compactMap { $0 }
         return ingredients.joined(separator: ", ")
     }

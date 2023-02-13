@@ -9,6 +9,13 @@ import Foundation
 
 struct RecipeResponse: Decodable {
     let hits: [Hit]
+    let links: Links
+    
+    private enum CodingKeys: String, CodingKey {
+        // Even if i'm renaming 1 JSON key, i have to be exhaustive
+        case links = "_links"
+        case hits = "hits"
+    }
 }
 
 struct Hit: Decodable {
@@ -20,10 +27,19 @@ struct RecipeInfos: Decodable {
     let image: String
     let ingredients: [IngredientInfos]
     let yield: Double
+    let url: String
     let totalTime: Double
 }
 
 struct IngredientInfos: Decodable {
     let text: String
     let food: String
+}
+
+struct Links: Decodable {
+    let next: Next?
+}
+
+struct Next: Decodable {
+    let href: String?
 }

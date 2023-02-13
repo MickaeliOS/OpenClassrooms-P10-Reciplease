@@ -9,9 +9,16 @@ import UIKit
 import SDWebImage
 
 class RecipeTableViewCell: UITableViewCell {
+    
     // MARK: - VIEW LIFE CYCLE
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Not allowing accessibility for the cell itself
+        self.isAccessibilityElement = false
+        
+        // But we enable it for every items in the cell
+        self.accessibilityElements = [recipeTitle!, recipeFood!, recipeImage!, recipeScore!, recipeTime!]
     }
     
     // MARK: - OUTLETS & VARIABLES
@@ -27,7 +34,7 @@ class RecipeTableViewCell: UITableViewCell {
     // MARK: - FUNCTIONS
     func configure(title: String, ingredients: [IngredientInfos], image: String, preparationTime: Double, score: Double) {
         recipeTitle.text = title
-        recipeFood.text = ingredientConfiguration.formatMainIngredientsInOneLine(ingredientsFood: ingredients)
+        recipeFood.text = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: ingredients)
         recipeScore.titleLabel?.text = String(score)
         recipeTime.titleLabel?.text = String(preparationTime)
         
@@ -45,7 +52,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     func configureFavorite(title: String, ingredients: NSSet, image: String, preparationTime: Double, score: Double) {
         recipeTitle.text = title
-        recipeFood.text = ingredientConfiguration.formatFavoriteMainIngredientsInOneLine(ingredientsFood: ingredients)
+        recipeFood.text = ingredientConfiguration.formatFavoriteIngredientsInOneLine(ingredientsFood: ingredients)
         recipeScore.titleLabel?.text = String(score)
         recipeTime.titleLabel?.text = String(preparationTime)
         

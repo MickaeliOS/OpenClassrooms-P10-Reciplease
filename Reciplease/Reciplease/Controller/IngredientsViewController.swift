@@ -13,15 +13,20 @@ class IngredientsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
+        setupVoiceOver()
     }
 
     // MARK: - OUTLETS & VARIABLES
+    @IBOutlet weak var applicationTitle: UINavigationItem!
+    @IBOutlet weak var addIngredientView: UIView!
+    @IBOutlet weak var inYourFridgeLabel: UILabel!
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
+    @IBOutlet weak var yourIngredientsLabel: UILabel!
+    @IBOutlet weak var clearIngredientsButton: UIButton!
     @IBOutlet weak var ingredientList: UITableView!
     @IBOutlet weak var searchRecipesButton: UIButton!
-    @IBOutlet weak var addIngredientView: UIView!
-    @IBOutlet weak var clearIngredientsButton: UIButton!
+    @IBOutlet weak var searchTabBar: UITabBarItem!
     
     let ingredientConfiguration = IngredientConfiguration()
     
@@ -46,6 +51,16 @@ class IngredientsViewController: UIViewController {
         clearIngredientsButton.layer.cornerRadius = 10
         
         ingredientTextField.addBottomBorder()
+    }
+    
+    private func setupVoiceOver() {
+        applicationTitle.accessibilityLabel = "Application's name, Reciplease."
+        ingredientTextField.accessibilityLabel = "A TextField to put your ingredients."
+        ingredientTextField.accessibilityValue = "Example : lemon, cheese, sausage."
+        addIngredientButton.accessibilityLabel = "The button to add your ingredient."
+        addIngredientButton.accessibilityHint = "Your ingredient will be displayed on the list."
+        clearIngredientsButton.accessibilityLabel = "The button to clean your ingredient list."
+        ingredientList.accessibilityLabel = "Your ingredient list."
     }
     
     private func deleteAllIngredients() {
