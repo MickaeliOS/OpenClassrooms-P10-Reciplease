@@ -25,10 +25,10 @@ class IngredientTableViewCell: UITableViewCell {
     
     // MARK: - PRIVATE FUNCTIONS
     private func addShadow() {
-        cellView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
-        cellView.layer.shadowRadius = 2.0
-        cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        cellView.layer.shadowOpacity = 2.0
+        //cellView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
+        //cellView.layer.shadowRadius = 2.0
+        //cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        //cellView.layer.shadowOpacity = 2.0
         cellView.layer.cornerRadius = 10
     }
 }

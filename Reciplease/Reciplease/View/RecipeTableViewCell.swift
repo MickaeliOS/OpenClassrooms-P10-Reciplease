@@ -39,6 +39,7 @@ class RecipeTableViewCell: UITableViewCell {
         recipeTime.titleLabel?.text = String(preparationTime)
         
         //recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        
         recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
             if cacheType == .none {
                 print("PAS EN CACHE")
@@ -56,15 +57,6 @@ class RecipeTableViewCell: UITableViewCell {
         recipeScore.titleLabel?.text = String(score)
         recipeTime.titleLabel?.text = String(preparationTime)
         
-        //recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
-        recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
-            if cacheType == .none {
-                print("PAS EN CACHE")
-                // L'image n'est pas en cache, elle a été téléchargée à partir du réseau
-            } else {
-                print("EN CACHE")
-                // L'image est en cache
-            }
-        })
+        recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
     }
 }

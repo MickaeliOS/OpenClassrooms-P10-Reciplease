@@ -13,6 +13,7 @@
 		8322CF03298923B100937BBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8322CF02298923B100937BBF /* Assets.xcassets */; };
 		8322CF06298923B100937BBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8322CF04298923B100937BBF /* LaunchScreen.storyboard */; };
 		8322CF122989419800937BBF /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8322CF112989419800937BBF /* APIConfiguration.swift */; };
+		834554F8299B93AA00F6025A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834554F7299B93AA00F6025A /* SettingsViewController.swift */; };
 		83627622298A5BE900C8B13F /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83627621298A5BE900C8B13F /* RecipeService.swift */; };
 		83627624298A5E7A00C8B13F /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83627623298A5E7A00C8B13F /* RecipeResponse.swift */; };
 		83627626298A7A3F00C8B13F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83627625298A7A3F00C8B13F /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		8322CF05298923B100937BBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8322CF07298923B100937BBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8322CF112989419800937BBF /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		834554F7299B93AA00F6025A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		83627621298A5BE900C8B13F /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		83627623298A5E7A00C8B13F /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 		83627625298A7A3F00C8B13F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				83627638298BE8CB00C8B13F /* RecipeDetailViewController.swift */,
 				836276522991002600C8B13F /* FavoritesViewController.swift */,
 				83627630298A965100C8B13F /* Extension.swift */,
+				834554F7299B93AA00F6025A /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			files = (
 				8362763F298BF3FC00C8B13F /* CoreDataStack.swift in Sources */,
 				8389F6D6299134B900539C51 /* APICallCenter.swift in Sources */,
+				834554F8299B93AA00F6025A /* SettingsViewController.swift in Sources */,
 				83627633298A96DE00C8B13F /* IngredientTableViewCell.swift in Sources */,
 				83627622298A5BE900C8B13F /* RecipeService.swift in Sources */,
 				8362762F298A953300C8B13F /* IngredientConfiguration.swift in Sources */,

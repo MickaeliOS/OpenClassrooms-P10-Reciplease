@@ -14,6 +14,8 @@ class IngredientsViewController: UIViewController {
         super.viewDidLoad()
         setupInterface()
         setupVoiceOver()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ingredientListControl), name: .ingredientsListModified, object: nil)
     }
 
     // MARK: - OUTLETS & VARIABLES
@@ -27,6 +29,9 @@ class IngredientsViewController: UIViewController {
     @IBOutlet weak var ingredientList: UITableView!
     @IBOutlet weak var searchRecipesButton: UIButton!
     @IBOutlet weak var searchTabBar: UITabBarItem!
+    @IBOutlet weak var ingredientsStackView: UIStackView!
+    @IBOutlet weak var ingredientListView: UIView!
+    @IBOutlet weak var noIngredientsLabel: UILabel!
     
     let ingredientConfiguration = IngredientConfiguration()
     
@@ -44,11 +49,13 @@ class IngredientsViewController: UIViewController {
     }
     
     // MARK: - PRIVATE FUNCTIONS
-    private func setupInterface() {
+    private func setupInterface() {        
         addIngredientButton.layer.cornerRadius = 10
         addIngredientView.layer.cornerRadius = 10
         searchRecipesButton.layer.cornerRadius = 10
         clearIngredientsButton.layer.cornerRadius = 10
+        ingredientsStackView.layer.cornerRadius = 10
+        ingredientListView.layer.cornerRadius = 10
         
         ingredientTextField.addBottomBorder()
     }
@@ -86,6 +93,14 @@ class IngredientsViewController: UIViewController {
         }
                 
         performSegue(withIdentifier: "segueToRecipes", sender: ingredientConfiguration)
+    }
+    
+    @objc private func ingredientListControl() {
+        if ingredientConfiguration.ingredients.isEmpty {
+            noIngredientsLabel.isHidden = false
+        } else {
+            noIngredientsLabel.isHidden = true
+        }
     }
 }
 

@@ -14,7 +14,7 @@ struct RecipeResponse: Decodable {
     private enum CodingKeys: String, CodingKey {
         // Even if i'm renaming 1 JSON key, i have to be exhaustive
         case links = "_links"
-        case hits = "hits"
+        case hits
     }
 }
 

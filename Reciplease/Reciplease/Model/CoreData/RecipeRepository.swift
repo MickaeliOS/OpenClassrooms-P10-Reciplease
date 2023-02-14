@@ -76,12 +76,4 @@ class RecipeRepository {
             throw RecipeError.deletionError
         }
     }
-    
-    func isFavorite(recipe: Recipe) {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-
-        /*request.sortDescriptors = [
-            NSSortDescriptor(,
-        ]*/
-    }
 }

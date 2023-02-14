@@ -14,14 +14,17 @@ class IngredientConfiguration {
     // MARK: - FUNCTIONS FOR RESEARCH
     func addIngredient(ingredient: String) {
         ingredients.append(ingredient)
+        NotificationCenter.default.post(name: .ingredientsListModified, object: nil)
     }
     
     func removeIngredients(at index: Int) {
         ingredients.remove(at: index)
+        NotificationCenter.default.post(name: .ingredientsListModified, object: nil)
     }
     
     func removeAllIngredients() {
         ingredients.removeAll()
+        NotificationCenter.default.post(name: .ingredientsListModified, object: nil)
     }
     
     func formatIngredientsInOneLine(ingredientsFood: [IngredientInfos]) -> String {

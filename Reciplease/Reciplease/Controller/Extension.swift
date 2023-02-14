@@ -30,7 +30,7 @@ extension UITextField
                                   width: frame.size.width,
                                   height: 1)
         
-        bottomLine.backgroundColor = UIColor(named: "background")?.cgColor
+        bottomLine.backgroundColor = UIColor.placeholderText.cgColor
         
         borderStyle = .none
         
@@ -40,4 +40,8 @@ extension UITextField
         // bounds of the text field
         layer.masksToBounds = true
     }
+}
+
+extension Notification.Name {
+    static let ingredientsListModified = Notification.Name("ingredientsListModified")
 }
