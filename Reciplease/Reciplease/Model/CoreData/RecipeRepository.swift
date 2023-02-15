@@ -17,6 +17,7 @@ class RecipeRepository {
     enum RecipeError: Error {
         case savingError
         case deletionError
+        case getError
         
         var localizedDescription: String {
             switch self {
@@ -24,6 +25,8 @@ class RecipeRepository {
                 return "We were unable to save your recipe."
             case .deletionError:
                 return "We were unable to delete your recipe."
+            case .getError:
+                return ""
             }
         }
     }
@@ -36,7 +39,7 @@ class RecipeRepository {
     // MARK: - FUNCTIONS
     func addToRecipe(recipe: RecipeInfos) throws {
         let recipeToSave = Recipe(context: coreDataStack.viewContext)
-        
+
         recipeToSave.label = recipe.label
         recipeToSave.image = recipe.image
         recipeToSave.totalTime = recipe.totalTime
@@ -50,12 +53,11 @@ class RecipeRepository {
         do {
             try coreDataStack.viewContext.save()
         } catch {
-            print("We were unable to save \(recipeToSave)")
             throw RecipeError.savingError
         }
     }
     
-    func getRecipe(completion: ([Recipe]) -> Void) {
+    func getRecipes(completion: ([Recipe]) -> Void) {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         
         do {
@@ -76,4 +78,26 @@ class RecipeRepository {
             throw RecipeError.deletionError
         }
     }
+    
+    /*func deleteRecipe(recipeInfos: RecipeInfos) throws {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        request.predicate = NSPredicate(format: "image == %@", recipeInfos.image)
+        request.predicate = NSPredicate(format: "label == %@", recipeInfos.label)
+        request.predicate = NSPredicate(format: "totalTime == %@", recipeInfos.totalTime)
+        request.predicate = NSPredicate(format: "url == %@", recipeInfos.url)
+        request.predicate = NSPredicate(format: "yield == %@", recipeInfos.yield)
+
+        let ingredients = ingredientRepository.getIngredientsFromRecipe(recipe: <#T##Recipe#>, completion: <#T##([Ingredient]) -> Void#>)
+        
+
+
+        coreDataStack.viewContext.delete(recipeInfos)
+        
+        do {
+            try coreDataStack.viewContext.save()
+        } catch {
+            print("We were unable to delete \(recipe)")
+            throw RecipeError.deletionError
+        }
+    }*/
 }

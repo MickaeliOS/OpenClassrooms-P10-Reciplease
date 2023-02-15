@@ -25,7 +25,7 @@ class FavoritesViewController: UIViewController {
 
     // MARK: - PRIVATE FUNCTIONS
     private func getRecipes() {
-        recipeRepository.getRecipe { recipes in
+        recipeRepository.getRecipes { recipes in
             self.recipes = recipes
             favoritesList.reloadData()
         }

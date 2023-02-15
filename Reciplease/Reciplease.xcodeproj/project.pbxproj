@@ -32,6 +32,7 @@
 		83B35120299651AC00157DCB /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83B3511E299651AC00157DCB /* Reciplease.xcdatamodeld */; };
 		83B351222996533500157DCB /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B351212996533500157DCB /* Recipe.swift */; };
 		83B351242996534700157DCB /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B351232996534700157DCB /* Ingredient.swift */; };
+		83C28F5F299D0DBE00F8BEE7 /* FavoritesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28F5E299D0DBE00F8BEE7 /* FavoritesDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		83B3511F299651AC00157DCB /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		83B351212996533500157DCB /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		83B351232996534700157DCB /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		83C28F5E299D0DBE00F8BEE7 /* FavoritesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDetailsViewController.swift; sourceTree = "<group>"; };
 		C38A2AEFC2DEA6536096A3AB /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +167,7 @@
 				836276522991002600C8B13F /* FavoritesViewController.swift */,
 				83627630298A965100C8B13F /* Extension.swift */,
 				834554F7299B93AA00F6025A /* SettingsViewController.swift */,
+				83C28F5E299D0DBE00F8BEE7 /* FavoritesDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				834554F8299B93AA00F6025A /* SettingsViewController.swift in Sources */,
 				83627633298A96DE00C8B13F /* IngredientTableViewCell.swift in Sources */,
 				83627622298A5BE900C8B13F /* RecipeService.swift in Sources */,
+				83C28F5F299D0DBE00F8BEE7 /* FavoritesDetailsViewController.swift in Sources */,
 				8362762F298A953300C8B13F /* IngredientConfiguration.swift in Sources */,
 				83627635298AB3F900C8B13F /* RecipesViewController.swift in Sources */,
 				8322CEFA298923B000937BBF /* AppDelegate.swift in Sources */,

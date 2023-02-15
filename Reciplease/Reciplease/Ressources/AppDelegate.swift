@@ -10,18 +10,8 @@ import SDWebImage
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    private let darkmode = UserDefaults.standard.object(forKey: "darkmode") as? Bool
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        guard let darkmode = darkmode else { return true }
-        
-        if darkmode == true {
-            SettingsViewController().changeMode(mode: .dark)
-        } else {
-            SettingsViewController().changeMode(mode: .light)
-        }
-        
         // Override point for customization after application launch.
         return true
     }

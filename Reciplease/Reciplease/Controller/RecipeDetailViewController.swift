@@ -17,16 +17,20 @@ class RecipeDetailViewController: UIViewController {
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipeIngredients: UITextView!
-    @IBOutlet weak var recipeDetailsButton: UIButton!
+    @IBOutlet weak var recipeDetails: UITextView!
+    @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     var recipe: RecipeInfos?
     let recipeRepository = RecipeRepository()
     let ingredientConfiguration = IngredientConfiguration()
 
     // MARK: - ACTIONS
-    @IBAction func addToFavorites(_ sender: Any) {
-        addRecipe()
+    @IBAction func favoritesAddOrRemove(_ sender: Any) {
+        if favoriteButton.image?.accessibilityIdentifier == "star" {
+            addRecipe()
+        } else {
+            //removeRecipe()
+        }
     }
     
     @IBAction func getDirections(_ sender: Any) {
@@ -44,7 +48,7 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe else { return }
         
         recipeTitle.text = recipe.label
-        recipeIngredients.text = ingredientConfiguration.formatInstructions(ingredients: recipe.ingredients)
+        recipeDetails.text = ingredientConfiguration.formatInstructions(ingredients: recipe.ingredients)
         
         // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         recipeImage.sd_setImage(with: URL(string: recipe.image), completed: { (image, error, cacheType, url) in
@@ -68,4 +72,19 @@ class RecipeDetailViewController: UIViewController {
             presentAlert(with: "An error occurred.")
         }
     }
+    
+    /*private func removeRecipe() {
+        guard let recipe = recipe else { return }
+
+        do {
+            // Always remove the data first
+            try recipeRepository.deleteRecipe(recipe: recipe)
+    
+
+        } catch let error as RecipeRepository.RecipeError {
+            presentAlert(with: error.localizedDescription)
+        } catch {
+            presentAlert(with: "An error occurred.")
+        }
+    }*/
 }
