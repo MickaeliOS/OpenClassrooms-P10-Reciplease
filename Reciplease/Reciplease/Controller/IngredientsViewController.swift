@@ -17,6 +17,11 @@ class IngredientsViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(ingredientListControl), name: .ingredientsListModified, object: nil)
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        ingredientTextField.addBottomBorder()
+    }
 
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var applicationTitle: UINavigationItem!

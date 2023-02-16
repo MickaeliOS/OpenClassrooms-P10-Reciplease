@@ -17,8 +17,7 @@ extension UIViewController {
     }
 }
 
-extension UITextField
-{
+extension UITextField {
     func addBottomBorder() {
         let bottomLine = CALayer()
         

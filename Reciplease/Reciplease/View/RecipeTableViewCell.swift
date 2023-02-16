@@ -60,5 +60,6 @@ class RecipeTableViewCell: UITableViewCell {
         recipeTime.titleLabel?.text = String(preparationTime)
         
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        recipeImage.layer.cornerRadius = 10
     }
 }

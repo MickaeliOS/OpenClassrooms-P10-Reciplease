@@ -11,7 +11,12 @@ class IngredientTableViewCell: UITableViewCell {
     // MARK: - VIEW LIFE CYCLE
     override func awakeFromNib() {
         super.awakeFromNib()
-        addShadow()
+        customTableViewCell()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        customTableViewCell()
     }
     
     // MARK: - OUTLETS & VARIABLES
@@ -24,7 +29,7 @@ class IngredientTableViewCell: UITableViewCell {
     }
     
     // MARK: - PRIVATE FUNCTIONS
-    private func addShadow() {
+    private func customTableViewCell() {
         //cellView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
         //cellView.layer.shadowRadius = 2.0
         //cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
@@ -36,7 +41,7 @@ class IngredientTableViewCell: UITableViewCell {
         cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         cellView.layer.shadowOpacity = 1*/
 
-        cellView.layer.borderColor = UIColor.white.cgColor
+        cellView.layer.borderColor = UIColor(named: "IngredientTableViewCell")?.cgColor
         cellView.layer.borderWidth = 1.0
         cellView.layer.cornerRadius = 10
     }

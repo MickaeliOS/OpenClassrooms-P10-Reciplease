@@ -59,8 +59,8 @@ class RecipeDetailViewController: UIViewController {
             }
         })
         
-        recipeImage.layer.cornerRadius = 10
         getDirectionsButton.layer.cornerRadius = 10
+        recipeImage.layer.cornerRadius = 30
     }
     
     private func addRecipe() {
