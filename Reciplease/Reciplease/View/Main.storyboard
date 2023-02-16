@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reciplease-->
+        <!--RECIPLEASE-->
         <scene sceneID="Ybh-Ey-WXh">
             <objects>
                 <viewController id="NZB-VP-ux4" customClass="IngredientsViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,6 +32,11 @@
                                                 <rect key="frame" x="10" y="43.333333333333343" width="252" height="47.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                        <color key="value" name="placeHolder"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="delegate" destination="NZB-VP-ux4" id="g8X-SX-QfV"/>
                                                 </connections>
@@ -40,8 +45,8 @@
                                                 <rect key="frame" x="272" y="43.333333333333343" width="78" height="47.333333333333343"/>
                                                 <color key="backgroundColor" name="buttons"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Add">
-                                                    <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="+">
+                                                    <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="25"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -49,7 +54,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" name="primaryForeground"/>
                                         <constraints>
                                             <constraint firstItem="fuD-5J-9dM" firstAttribute="width" secondItem="7r8-PI-yDg" secondAttribute="width" multiplier="0.7" id="BcJ-qE-Pjv"/>
                                             <constraint firstAttribute="trailing" secondItem="fbc-lf-vKT" secondAttribute="trailing" constant="10" id="CW7-cZ-ZnI"/>
@@ -67,7 +71,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="k7o-N2-cN0">
-                                <rect key="frame" x="10" y="211.66666666666666" width="370" height="462.33333333333337"/>
+                                <rect key="frame" x="10" y="201.66666666666666" width="370" height="472.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Z1-Rn-ear">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="63.333333333333336"/>
@@ -113,10 +117,10 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2P0-iS-T7G">
-                                        <rect key="frame" x="0.0" y="63.333333333333371" width="370" height="399"/>
+                                        <rect key="frame" x="0.0" y="63.333333333333371" width="370" height="409"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-Kc-FSe">
-                                                <rect key="frame" x="0.0" y="10" width="370" height="379"/>
+                                                <rect key="frame" x="0.0" y="10" width="370" height="389"/>
                                                 <color key="backgroundColor" name="background"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" rowHeight="70" id="EHd-Km-gev" customClass="IngredientTableViewCell" customModule="Reciplease" customModuleProvider="target">
@@ -127,29 +131,38 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FzJ-RF-Jip">
-                                                                    <rect key="frame" x="5" y="0.0" width="360" height="60"/>
+                                                                    <rect key="frame" x="15" y="0.0" width="340" height="60"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-yK-rcW">
-                                                                            <rect key="frame" x="10" y="21.333333333333329" width="340" height="17.666666666666671"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-yK-rcW">
+                                                                            <rect key="frame" x="40" y="21.333333333333329" width="290" height="17.666666666666671"/>
                                                                             <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete.left.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pIW-y2-bhq">
+                                                                            <rect key="frame" x="291" y="14.666666666666663" width="34" height="31.000000000000007"/>
+                                                                            <color key="tintColor" name="deleteButtons"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="pIW-y2-bhq" secondAttribute="height" multiplier="1:1" id="ad3-KK-0vr"/>
+                                                                            </constraints>
+                                                                        </imageView>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" name="primaryForeground"/>
                                                                     <constraints>
-                                                                        <constraint firstItem="zl1-yK-rcW" firstAttribute="leading" secondItem="FzJ-RF-Jip" secondAttribute="leading" constant="10" id="EmK-R1-I8i"/>
+                                                                        <constraint firstItem="zl1-yK-rcW" firstAttribute="leading" secondItem="FzJ-RF-Jip" secondAttribute="leading" constant="40" id="EmK-R1-I8i"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="pIW-y2-bhq" secondAttribute="trailing" constant="15" id="WcR-fY-OsJ"/>
+                                                                        <constraint firstItem="pIW-y2-bhq" firstAttribute="width" secondItem="FzJ-RF-Jip" secondAttribute="width" multiplier="0.1" id="awe-BH-rZ3"/>
                                                                         <constraint firstAttribute="trailing" secondItem="zl1-yK-rcW" secondAttribute="trailing" constant="10" id="flR-eT-cpJ"/>
                                                                         <constraint firstItem="zl1-yK-rcW" firstAttribute="centerY" secondItem="FzJ-RF-Jip" secondAttribute="centerY" id="hif-3B-ec0"/>
+                                                                        <constraint firstItem="pIW-y2-bhq" firstAttribute="centerY" secondItem="FzJ-RF-Jip" secondAttribute="centerY" id="xZG-Iu-inC"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
                                                             <color key="backgroundColor" name="background"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="FzJ-RF-Jip" secondAttribute="bottom" constant="10" id="0jh-ka-O6w"/>
-                                                                <constraint firstItem="FzJ-RF-Jip" firstAttribute="leading" secondItem="Ess-ci-Wd4" secondAttribute="leading" constant="5" id="Wxm-Xo-bQq"/>
+                                                                <constraint firstItem="FzJ-RF-Jip" firstAttribute="leading" secondItem="Ess-ci-Wd4" secondAttribute="leading" constant="15" id="Wxm-Xo-bQq"/>
                                                                 <constraint firstItem="FzJ-RF-Jip" firstAttribute="top" secondItem="Ess-ci-Wd4" secondAttribute="top" id="lvN-9V-FKh"/>
-                                                                <constraint firstAttribute="trailing" secondItem="FzJ-RF-Jip" secondAttribute="trailing" constant="5" id="zHS-5K-XWi"/>
+                                                                <constraint firstAttribute="trailing" secondItem="FzJ-RF-Jip" secondAttribute="trailing" constant="15" id="zHS-5K-XWi"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
@@ -164,7 +177,7 @@
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No ingredients added yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSm-wk-vLx">
-                                                <rect key="frame" x="97.666666666666671" y="190.66666666666669" width="174.66666666666663" height="17.666666666666657"/>
+                                                <rect key="frame" x="97.666666666666671" y="195.66666666666669" width="174.66666666666663" height="17.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -184,7 +197,7 @@
                                 <color key="backgroundColor" name="background"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqn-O7-7NG">
-                                <rect key="frame" x="10" y="684" width="370" height="67"/>
+                                <rect key="frame" x="25" y="684" width="340" height="67"/>
                                 <color key="backgroundColor" name="buttons"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Search for recipes">
@@ -202,25 +215,25 @@
                             <constraint firstItem="PX7-y4-itG" firstAttribute="bottom" secondItem="jqn-O7-7NG" secondAttribute="bottom" constant="10" id="17f-H7-mjP"/>
                             <constraint firstItem="PX7-y4-itG" firstAttribute="trailing" secondItem="k7o-N2-cN0" secondAttribute="trailing" constant="10" id="1UO-at-7rg"/>
                             <constraint firstItem="jqn-O7-7NG" firstAttribute="top" secondItem="k7o-N2-cN0" secondAttribute="bottom" constant="10" id="5bx-iw-Ii2"/>
-                            <constraint firstItem="jqn-O7-7NG" firstAttribute="leading" secondItem="PX7-y4-itG" secondAttribute="leading" constant="10" id="7VB-4b-a2h"/>
+                            <constraint firstItem="jqn-O7-7NG" firstAttribute="leading" secondItem="PX7-y4-itG" secondAttribute="leading" constant="25" id="7VB-4b-a2h"/>
                             <constraint firstItem="CyG-q1-cvb" firstAttribute="height" secondItem="fbc-lf-vKT" secondAttribute="height" id="9GA-Qu-NpE"/>
                             <constraint firstItem="7r8-PI-yDg" firstAttribute="height" secondItem="PX7-y4-itG" secondAttribute="height" multiplier="0.15" id="GWv-LD-UfJ"/>
                             <constraint firstItem="CyG-q1-cvb" firstAttribute="width" secondItem="fbc-lf-vKT" secondAttribute="width" id="JQN-IC-VRD"/>
                             <constraint firstItem="k7o-N2-cN0" firstAttribute="leading" secondItem="PX7-y4-itG" secondAttribute="leading" constant="10" id="Qli-WZ-ECZ"/>
                             <constraint firstItem="6GJ-hf-r8Z" firstAttribute="leading" secondItem="PX7-y4-itG" secondAttribute="leading" constant="15" id="SUL-No-kjH"/>
                             <constraint firstItem="6GJ-hf-r8Z" firstAttribute="top" secondItem="PX7-y4-itG" secondAttribute="top" constant="10" id="axA-ld-AE1"/>
-                            <constraint firstItem="k7o-N2-cN0" firstAttribute="top" secondItem="6GJ-hf-r8Z" secondAttribute="bottom" constant="10" id="c22-cf-YcX"/>
+                            <constraint firstItem="k7o-N2-cN0" firstAttribute="top" secondItem="6GJ-hf-r8Z" secondAttribute="bottom" id="c22-cf-YcX"/>
                             <constraint firstItem="PX7-y4-itG" firstAttribute="trailing" secondItem="6GJ-hf-r8Z" secondAttribute="trailing" constant="15" id="s4t-k0-3Tx"/>
-                            <constraint firstItem="PX7-y4-itG" firstAttribute="trailing" secondItem="jqn-O7-7NG" secondAttribute="trailing" constant="10" id="wiH-Ji-7zF"/>
+                            <constraint firstItem="PX7-y4-itG" firstAttribute="trailing" secondItem="jqn-O7-7NG" secondAttribute="trailing" constant="25" id="wiH-Ji-7zF"/>
                             <constraint firstItem="jqn-O7-7NG" firstAttribute="height" secondItem="PX7-y4-itG" secondAttribute="height" multiplier="0.1" id="ywD-jk-BJ1"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="WT8-LG-sh1"/>
-                    <navigationItem key="navigationItem" title="Reciplease" id="Moi-aP-x0g"/>
+                    <navigationItem key="navigationItem" title="RECIPLEASE" id="NJf-C3-ztE"/>
                     <connections>
                         <outlet property="addIngredientButton" destination="fbc-lf-vKT" id="kIj-O7-QXa"/>
                         <outlet property="addIngredientView" destination="7r8-PI-yDg" id="JYj-fl-WJZ"/>
-                        <outlet property="applicationTitle" destination="Moi-aP-x0g" id="UcD-bg-F3a"/>
+                        <outlet property="applicationTitle" destination="NJf-C3-ztE" id="bRF-i0-Iog"/>
                         <outlet property="clearIngredientsButton" destination="CyG-q1-cvb" id="JyD-Zs-QRl"/>
                         <outlet property="inYourFridgeLabel" destination="B07-H0-TxT" id="Sgt-bg-P8r"/>
                         <outlet property="ingredientList" destination="7cD-Kc-FSe" id="NY1-9j-czR"/>
@@ -294,7 +307,7 @@
                                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSf-A2-OrQ">
                                                                             <rect key="frame" x="0.0" y="0.0" width="105" height="50"/>
                                                                             <state key="normal" title="Button"/>
-                                                                            <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup" catalog="system" title="Score">
+                                                                            <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup.fill" catalog="system" title="Score">
                                                                                 <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="10"/>
                                                                                 <color key="baseForegroundColor" name="buttons"/>
                                                                             </buttonConfiguration>
@@ -302,7 +315,7 @@
                                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eT1-px-g5a">
                                                                             <rect key="frame" x="105" y="0.0" width="105" height="50"/>
                                                                             <state key="normal" title="Button"/>
-                                                                            <buttonConfiguration key="configuration" style="plain" image="clock" catalog="system" title="Time">
+                                                                            <buttonConfiguration key="configuration" style="plain" image="clock.fill" catalog="system" title="Time">
                                                                                 <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="10"/>
                                                                                 <color key="baseForegroundColor" name="buttons"/>
                                                                             </buttonConfiguration>
@@ -471,8 +484,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N11-1A-uid">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="primaryForeground"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="30"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="40"/>
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="35"/>
                             <color key="textColor" systemColor="labelColor"/>
                         </textAttributes>
                     </navigationBar>
@@ -548,7 +566,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZG-4x-g5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="583"/>
+            <point key="canvasLocation" x="991" y="530"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="ulB-ci-fNc">
@@ -675,7 +693,7 @@
                     <navigationItem key="navigationItem" id="NMS-Ai-jqL"/>
                     <connections>
                         <outlet property="favoritesList" destination="E7y-mQ-YTw" id="bws-ik-VTf"/>
-                        <segue destination="9js-2c-KDO" kind="show" id="mge-gR-r9E"/>
+                        <segue destination="9js-2c-KDO" kind="show" identifier="segueToFavoritesDetails" id="mge-gR-r9E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maw-Z0-UMO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -690,7 +708,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HVR-W4-MBO">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HVR-W4-MBO">
                                 <rect key="frame" x="10" y="101" width="370" height="650"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZi-Li-btw">
@@ -700,13 +718,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f7u-7J-FId">
-                                        <rect key="frame" x="0.0" y="29.333333333333343" width="370" height="370"/>
+                                        <rect key="frame" x="0.0" y="39.333333333333343" width="370" height="370"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="f7u-7J-FId" secondAttribute="height" multiplier="1:1" id="WWk-tF-IKV"/>
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rbx-s6-wep">
-                                        <rect key="frame" x="0.0" y="399.33333333333331" width="370" height="183.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="419.33333333333337" width="370" height="153.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
@@ -776,15 +794,20 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tg0-vW-iY4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Item" image="square.and.arrow.up.trianglebadge.exclamationmark" catalog="system" id="LrL-PQ-9nx"/>
             </objects>
             <point key="canvasLocation" x="992" y="-520"/>
         </scene>
     </scenes>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="clock.fill" catalog="system" width="128" height="123"/>
+        <image name="delete.left.fill" catalog="system" width="128" height="102"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="hand.thumbsup" catalog="system" width="123" height="128"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="square.and.arrow.up.trianglebadge.exclamationmark" catalog="system" width="128" height="128"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="background">
@@ -795,6 +818,9 @@
         </namedColor>
         <namedColor name="deleteButtons">
             <color red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="placeHolder">
+            <color red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="primaryForeground">
             <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

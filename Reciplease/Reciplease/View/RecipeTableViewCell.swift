@@ -49,6 +49,8 @@ class RecipeTableViewCell: UITableViewCell {
                 // L'image est en cache
             }
         })
+        
+        recipeImage.layer.cornerRadius = 10
     }
     
     func configureFavorite(title: String, ingredients: NSSet, image: String, preparationTime: Double, score: Double) {

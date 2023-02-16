@@ -31,10 +31,13 @@ class IngredientTableViewCell: UITableViewCell {
         //cellView.layer.shadowOpacity = 2.0
         
         //TODO: Quand on change de thème, il faudrait redéclencher ce code parce que sinon, la bordure va se fondre dans le nouveau background
-        cellView.layer.shadowColor = UIColor(named: "IngredientShadowTableViewCell")?.cgColor
+        /*cellView.layer.shadowColor = UIColor(named: "IngredientShadowTableViewCell")?.cgColor
         cellView.layer.cornerRadius = 10
         cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        cellView.layer.shadowOpacity = 1
+        cellView.layer.shadowOpacity = 1*/
 
+        cellView.layer.borderColor = UIColor.white.cgColor
+        cellView.layer.borderWidth = 1.0
+        cellView.layer.cornerRadius = 10
     }
 }

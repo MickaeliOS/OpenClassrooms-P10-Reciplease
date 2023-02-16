@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let darkMode = UserDefaults.standard.integer(forKey: "darkmode")
-        
+
         switch darkMode {
         case 0:
             window?.overrideUserInterfaceStyle = .unspecified

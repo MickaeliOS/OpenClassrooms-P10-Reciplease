@@ -44,6 +44,7 @@ class RecipeRepository {
         recipeToSave.image = recipe.image
         recipeToSave.totalTime = recipe.totalTime
         recipeToSave.yield = recipe.yield
+        recipeToSave.url = recipe.url
     
         // A Recipe can have multiples ingredients, so we need to save them
         ingredientRepository.addIngredients(ingredients: recipe.ingredients, recipe: recipeToSave, completion: { ingredients in

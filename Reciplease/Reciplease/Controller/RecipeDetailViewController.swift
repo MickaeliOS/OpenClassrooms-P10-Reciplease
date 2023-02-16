@@ -58,6 +58,9 @@ class RecipeDetailViewController: UIViewController {
                 print("EN CACHE")
             }
         })
+        
+        recipeImage.layer.cornerRadius = 10
+        getDirectionsButton.layer.cornerRadius = 10
     }
     
     private func addRecipe() {

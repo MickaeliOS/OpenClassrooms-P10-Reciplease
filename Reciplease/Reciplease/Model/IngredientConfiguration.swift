@@ -44,4 +44,14 @@ class IngredientConfiguration {
         let ingredients = ingredientsFood.map { ($0 as AnyObject).value(forKey: "food") as? String }.compactMap { $0 }
         return ingredients.joined(separator: ", ")
     }
+    
+    func formatFavoritesInstructions(ingredients: NSSet) -> String {
+        let ingredients = ingredients.map { ($0 as AnyObject).value(forKey: "food") as? String }.compactMap { $0 }
+        var formattedIngredients = ""
+        for ingredient in ingredients {
+            formattedIngredients += "- \(ingredient)\n"
+        }
+        return formattedIngredients
+    }
+
 }

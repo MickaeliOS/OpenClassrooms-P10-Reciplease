@@ -62,7 +62,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "segueToRecipeDetail", sender: recipes[indexPath.row])
+        performSegue(withIdentifier: "segueToFavoritesDetails", sender: recipes[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -83,12 +83,12 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-/*extension RecipesViewController {
+extension FavoritesViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToRecipeDetail" {
-            let recipesVC = segue.destination as? RecipeDetailViewController
-            let recipe = sender as? RecipeAPI
-            recipesVC?.recipe = recipe
+        if segue.identifier == "segueToFavoritesDetails" {
+            let favoritesDetails = segue.destination as? FavoritesDetailsViewController
+            let recipe = sender as? Recipe
+            favoritesDetails?.recipe = recipe
         }
     }
-}*/
+}

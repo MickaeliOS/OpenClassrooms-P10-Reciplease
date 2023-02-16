@@ -30,7 +30,16 @@ extension UITextField
                                   width: frame.size.width,
                                   height: 1)
         
-        bottomLine.backgroundColor = UIColor.placeholderText.cgColor
+        // I use the placeHolder's color, because the bottom border both of placeHolder and bottom border are related
+        bottomLine.backgroundColor = UIColor(named: "placeHolder")?.cgColor
+        
+        //bottomLine.backgroundColor = UIColor(named: "placeHolder")?.cgColor
+        /*let attributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolder"),
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)
+        ]
+        self.attributedPlaceholder = NSAttributedString(string: "Nom d'utilisateur", attributes: attributes as [NSAttributedString.Key : Any])*/
+        
         
         borderStyle = .none
         
