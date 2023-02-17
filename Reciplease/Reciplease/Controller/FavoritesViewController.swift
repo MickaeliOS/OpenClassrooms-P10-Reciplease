@@ -11,6 +11,7 @@ class FavoritesViewController: UIViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupVoiceOver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,6 +21,8 @@ class FavoritesViewController: UIViewController {
 
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var favoritesList: UITableView!
+    @IBOutlet weak var noFavoritesLabel: UILabel!
+    
     let recipeRepository = RecipeRepository()
     var recipes = [Recipe]()
 
@@ -27,8 +30,22 @@ class FavoritesViewController: UIViewController {
     private func getRecipes() {
         recipeRepository.getRecipes { recipes in
             self.recipes = recipes
+            
+            displayNoFavoritesLabelIfEmptyRecipes()
             favoritesList.reloadData()
         }
+    }
+    
+    private func setupVoiceOver() {
+        favoritesList.accessibilityLabel = "Recipe's list."
+    }
+    
+    private func displayNoFavoritesLabelIfEmptyRecipes() {
+        guard !recipes.isEmpty else {
+            noFavoritesLabel.isHidden = false
+            return
+        }
+        noFavoritesLabel.isHidden = true
     }
 }
 
@@ -74,6 +91,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 // Then, the cell
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                displayNoFavoritesLabelIfEmptyRecipes()
             } catch let error as RecipeRepository.RecipeError {
                 presentAlert(with: error.localizedDescription)
             } catch {

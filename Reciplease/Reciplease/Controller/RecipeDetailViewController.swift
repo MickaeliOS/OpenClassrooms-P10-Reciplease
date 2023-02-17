@@ -12,6 +12,7 @@ class RecipeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
+        setupVoiceOver()
     }
 
     // MARK: - OUTLETS & VARIABLES
@@ -74,6 +75,21 @@ class RecipeDetailViewController: UIViewController {
         } catch {
             presentAlert(with: "An error occurred.")
         }
+    }
+    
+    private func setupVoiceOver() {
+        // accessibilityLabel
+        recipeTitle.accessibilityLabel = "Recipe's title."
+        recipeImage.accessibilityLabel = "Recipe's picture."
+        recipeDetails.accessibilityLabel = "Recipe's instructions."
+        favoriteButton.accessibilityLabel = "Favorites."
+        
+        // accessibilityValue
+        recipeTitle.accessibilityValue = recipeTitle.text ?? ""
+        
+        // accessibilityHint
+        getDirectionsButton.accessibilityHint = "Recipe's instructions web page."
+        favoriteButton.accessibilityHint = "Add the recipe to your favorites."
     }
     
     /*private func removeRecipe() {

@@ -27,16 +27,6 @@ class SettingsViewController: UIViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        switch darkmode {
-        case .unspecified:
-            themeSegmentedControl.selectedSegmentIndex = 0
-        case .light:
-            themeSegmentedControl.selectedSegmentIndex = 1
-        case .dark:
-            themeSegmentedControl.selectedSegmentIndex = 2
-        }
-        changeMode(mode: darkmode.interfaceStyle)
     }
     
     // MARK: - OUTLETS & VARIABLES

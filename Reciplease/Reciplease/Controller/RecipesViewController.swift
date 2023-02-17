@@ -12,11 +12,13 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getRecipes()
+        setupVoiceOver()
     }
     
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var recipeList: UITableView!
     @IBOutlet weak var noRecipesLabel: UILabel!
+    @IBOutlet weak var backButton: UINavigationItem!
     
     let apiCallCenter = APICallCenter()
     var ingredientConfiguration = IngredientConfiguration()
@@ -34,6 +36,10 @@ class RecipesViewController: UIViewController {
     
     private func getNextPage(nextPage: Next) {
         apiCallCenter.getNextPage(nextPage: nextPage)
+    }
+    
+    private func setupVoiceOver() {
+        recipeList.accessibilityLabel = "Recipe's list."
     }
 }
 

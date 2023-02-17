@@ -22,27 +22,33 @@ class IngredientTableViewCell: UITableViewCell {
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var ingredientLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var swipeToDeleteImage: UIImageView!
     
     // MARK: - FUNCTIONS
     func configure(title: String) {
         ingredientLabel.text = title
+        setupVoiceOver(title: title)
     }
     
     // MARK: - PRIVATE FUNCTIONS
     private func customTableViewCell() {
-        //cellView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
-        //cellView.layer.shadowRadius = 2.0
-        //cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        //cellView.layer.shadowOpacity = 2.0
-        
-        //TODO: Quand on change de thème, il faudrait redéclencher ce code parce que sinon, la bordure va se fondre dans le nouveau background
-        /*cellView.layer.shadowColor = UIColor(named: "IngredientShadowTableViewCell")?.cgColor
-        cellView.layer.cornerRadius = 10
-        cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        cellView.layer.shadowOpacity = 1*/
-
         cellView.layer.borderColor = UIColor(named: "IngredientTableViewCell")?.cgColor
         cellView.layer.borderWidth = 1.0
         cellView.layer.cornerRadius = 10
+    }
+    
+    private func setupVoiceOver(title: String) {
+        // Not allowing accessibility for the cell itself
+        self.isAccessibilityElement = false
+        
+        // But we enable it for every items in the cell
+        self.accessibilityElements = [ingredientLabel!, swipeToDeleteImage!]
+        
+        // accessibilityLabels
+        ingredientLabel.accessibilityLabel = "Ingredient."
+        swipeToDeleteImage.accessibilityLabel = "Swipe to delete."
+
+        // accessibilityValues
+        ingredientLabel.accessibilityValue = title
     }
 }

@@ -15,6 +15,9 @@ class IngredientsViewController: UIViewController {
         setupInterface()
         setupVoiceOver()
         
+        // Element's weren't in order, so I put the proper one
+        // self.accessibilityElements = [ingredientsListTitle!, inYourFridgeLabel!, ingredientTextField!, addIngredientButton!, yourIngredientsLabel!, clearIngredientsButton!]
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ingredientListControl), name: .ingredientsListModified, object: nil)
     }
     
@@ -24,7 +27,7 @@ class IngredientsViewController: UIViewController {
     }
 
     // MARK: - OUTLETS & VARIABLES
-    @IBOutlet weak var applicationTitle: UINavigationItem!
+    @IBOutlet weak var ingredientsListTitle: UINavigationItem!
     @IBOutlet weak var addIngredientView: UIView!
     @IBOutlet weak var inYourFridgeLabel: UILabel!
     @IBOutlet weak var ingredientTextField: UITextField!
@@ -37,6 +40,7 @@ class IngredientsViewController: UIViewController {
     @IBOutlet weak var ingredientsStackView: UIStackView!
     @IBOutlet weak var ingredientListView: UIView!
     @IBOutlet weak var noIngredientsLabel: UILabel!
+    @IBOutlet weak var searchTabBarItem: UITabBarItem!
     
     let ingredientConfiguration = IngredientConfiguration()
     
@@ -66,13 +70,18 @@ class IngredientsViewController: UIViewController {
     }
     
     private func setupVoiceOver() {
-        applicationTitle.accessibilityLabel = "Application's name, Reciplease."
-        ingredientTextField.accessibilityLabel = "A TextField to put your ingredients."
-        ingredientTextField.accessibilityValue = "Example : lemon, cheese, sausage."
-        addIngredientButton.accessibilityLabel = "The button to add your ingredient."
-        addIngredientButton.accessibilityHint = "Your ingredient will be displayed on the list."
-        clearIngredientsButton.accessibilityLabel = "The button to clean your ingredient list."
+        // accessibilityLabel
+        ingredientTextField.accessibilityLabel = "Put your ingredients here."
+        addIngredientButton.accessibilityLabel = "Add your ingredient."
+        clearIngredientsButton.accessibilityLabel = "Clear your ingredient list."
         ingredientList.accessibilityLabel = "Your ingredient list."
+
+        // accessibilityValue
+        ingredientTextField.accessibilityValue = "Example : lemon, cheese, sausage."
+
+        // accessibilityHint
+        addIngredientButton.accessibilityHint = "Your ingredient will be displayed on the list."
+        searchRecipesButton.accessibilityHint = "Available recipes will be displayed."
     }
     
     private func deleteAllIngredients() {
