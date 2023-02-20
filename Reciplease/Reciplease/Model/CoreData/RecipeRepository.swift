@@ -58,6 +58,18 @@ class RecipeRepository {
         }
     }
     
+    func addToRecipe(recipe: Recipe) throws {
+        var recipeToSave = Recipe(context: coreDataStack.viewContext)
+        recipeToSave = recipe
+
+        do {
+            try coreDataStack.viewContext.save()
+        } catch {
+            print("We were unable to save \(recipeToSave)")
+            throw RecipeError.savingError
+        }
+    }
+    
     func getRecipes(completion: ([Recipe]) -> Void) {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         
@@ -80,24 +92,55 @@ class RecipeRepository {
         }
     }
     
+    func isFavorite(url: String, completion: (Bool?) -> Void) {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        request.predicate = NSPredicate(format: "url == %@", url)
+
+        do {
+            guard let _ = try coreDataStack.viewContext.fetch(request).first else {
+                completion(false)
+                return
+            }
+            completion(true)
+        } catch {
+            print("An error occured.")
+        }
+    }
+    
+    func isFavorite(recipe: RecipeInfos, completion : (Bool?) -> Void) {
+        let request : NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        request.predicate = NSPredicate(format: "url == %@", recipe.url)
+
+        do {            
+            guard let _ = try coreDataStack.viewContext.fetch(request).first else {
+                completion(false)
+                return
+            }
+            completion(true)
+        } catch {
+            print("An error occured.")
+        }
+    }
+    
     /*func deleteRecipe(recipeInfos: RecipeInfos) throws {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        request.predicate = NSPredicate(format: "image == %@", recipeInfos.image)
-        request.predicate = NSPredicate(format: "label == %@", recipeInfos.label)
-        request.predicate = NSPredicate(format: "totalTime == %@", recipeInfos.totalTime)
-        request.predicate = NSPredicate(format: "url == %@", recipeInfos.url)
-        request.predicate = NSPredicate(format: "yield == %@", recipeInfos.yield)
-
-        let ingredients = ingredientRepository.getIngredientsFromRecipe(recipe: <#T##Recipe#>, completion: <#T##([Ingredient]) -> Void#>)
         
-
-
-        coreDataStack.viewContext.delete(recipeInfos)
-        
+        let ingredientsSet = NSSet(array: recipeInfos.ingredients)
+        request.predicate = NSPredicate(format: "ingredients == %@", ingredientsSet)
+   
         do {
-            try coreDataStack.viewContext.save()
+            //TODO: Mettre la contrainte sur les ingrédients et afficher en commentaire : Since "ingredients" is a unique contraint, i'm sure the result will only have 1 result
+            let recipe = try coreDataStack.viewContext.fetch(request).first
+            
+            guard let recipe = recipe else {
+                print("Unable to delete the recipe")
+                throw RecipeError.deletionError
+            }
+            
+            try deleteRecipe(recipe: recipe)
+
         } catch {
-            print("We were unable to delete \(recipe)")
+            print("Unable to delete \(recipeInfos)")
             throw RecipeError.deletionError
         }
     }*/

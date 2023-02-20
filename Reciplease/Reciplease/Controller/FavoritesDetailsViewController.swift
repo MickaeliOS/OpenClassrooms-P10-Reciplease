@@ -14,6 +14,31 @@ class FavoritesDetailsViewController: UIViewController {
         setupInterface()
         setupVoiceOver()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //TODO: Gérer les étoiles lors du passage d'un contrôleur à l'autre
+        
+        guard let recipe = recipe else {
+            guard let url = url else { return }
+
+            recipeRepository.isFavorite(url: url) { favorite in
+                guard let favorite = favorite else {
+                    return
+                }
+                
+                if favorite {
+                    favoriteButton.image = UIImage(systemName: "star.fill")
+                } else {
+                    favoriteButton.image = UIImage(systemName: "star")
+                }
+            }
+
+            
+            return
+        }
+    }
 
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
@@ -21,6 +46,7 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     var recipe: Recipe?
+    var url: String?
     let ingredientConfiguration = IngredientConfiguration()
     let recipeRepository = RecipeRepository()
     
@@ -34,23 +60,19 @@ class FavoritesDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func favoritesAddOrRemove(_ sender: UIBarButtonItem) {
+    @IBAction func removeFromFavorites(_ sender: UIBarButtonItem) {
         guard let recipe = recipe else { return }
-        
-        if favoriteButton.image?.accessibilityIdentifier == "star" {
-            //TODO: Ajouter aux favoris
-        } else {
-            removeFavorite(recipe: recipe)
-            favoriteButton.image = UIImage(systemName: "star")
-        }
+        removeFavorite(recipe: recipe)
     }
     
     private func setupInterface() {
         guard let recipe = recipe,
               let ingredients = recipe.ingredients,
-              let image = recipe.image
+              let image = recipe.image,
+              let url = recipe.url
         else { return }
         
+        self.url = url
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatFavoritesInstructions(ingredients: ingredients)
         
@@ -67,11 +89,23 @@ class FavoritesDetailsViewController: UIViewController {
         getDirectionsButton.layer.cornerRadius = 10
     }
     
+    /*private func addToFavorites(recipe: Recipe) {
+        do {
+            try recipeRepository.addToRecipe(recipe: recipe)
+
+        } catch let error as RecipeRepository.RecipeError {
+            presentAlert(with: error.localizedDescription)
+        } catch {
+            presentAlert(with: "An error occurred.")
+        }
+    }*/
+    
     private func removeFavorite(recipe: Recipe) {
         do {
-            // Always remove the data first
             try recipeRepository.deleteRecipe(recipe: recipe)
-
+            favoriteButton.image = UIImage(systemName: "star")
+            self.recipe = nil
+            
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {

@@ -35,19 +35,7 @@ class IngredientRepository {
             try coreDataStack.viewContext.save()
             completion(ingredientsSet)
         } catch {
-            print("We were unable to save the ingredients.")
+            print("Unable to save the ingredients.")
         }
     }
-    
-    /*func getIngredientsFromRecipe(recipe: Recipe, completion: ([Ingredient]) -> Void) {
-        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        request.predicate = NSPredicate(format: "recipe == %@", recipe)
-
-        do {
-            let ingredients = try coreDataStack.viewContext.fetch(request)
-            completion(ingredients)
-        } catch {
-            print("Cannot retrieve the ingredients.")
-        }
-    }*/
 }

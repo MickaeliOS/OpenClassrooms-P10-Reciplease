@@ -14,6 +14,24 @@ class RecipeDetailViewController: UIViewController {
         setupInterface()
         setupVoiceOver()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let recipe = recipe else { return }
+
+        recipeRepository.isFavorite(recipe: recipe) { favorite in
+            guard let favorite = favorite else {
+                return
+            }
+            
+            if favorite {
+                favoriteButton.image = UIImage(systemName: "star.fill")
+            } else {
+                favoriteButton.image = UIImage(systemName: "star")
+            }
+        }
+    }
 
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var recipeTitle: UILabel!
@@ -26,12 +44,8 @@ class RecipeDetailViewController: UIViewController {
     let ingredientConfiguration = IngredientConfiguration()
 
     // MARK: - ACTIONS
-    @IBAction func favoritesAddOrRemove(_ sender: Any) {
-        if favoriteButton.image?.accessibilityIdentifier == "star" {
-            addRecipe()
-        } else {
-            //removeRecipe()
-        }
+    @IBAction func addToFavorites(_ sender: Any) {
+        addRecipe()
     }
     
     @IBAction func getDirections(_ sender: Any) {
@@ -61,7 +75,7 @@ class RecipeDetailViewController: UIViewController {
         })
         
         getDirectionsButton.layer.cornerRadius = 10
-        recipeImage.layer.cornerRadius = 30
+        recipeImage.layer.cornerRadius = 10
     }
     
     private func addRecipe() {
@@ -96,9 +110,8 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe else { return }
 
         do {
-            // Always remove the data first
-            try recipeRepository.deleteRecipe(recipe: recipe)
-    
+            try recipeRepository.deleteRecipe(recipeInfos: recipe)
+            favoriteButton.image = UIImage(systemName: "star")
 
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)

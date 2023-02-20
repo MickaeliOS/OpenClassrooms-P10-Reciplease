@@ -445,7 +445,7 @@
                                         <rect key="frame" x="0.0" y="39.333333333333343" width="340" height="301.66666666666663"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qei-6f-Ze7">
-                                                <rect key="frame" x="25" y="0.0" width="290" height="290.33333333333331"/>
+                                                <rect key="frame" x="19.333333333333343" y="0.0" width="301.33333333333326" height="301.66666666666669"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -457,7 +457,7 @@
                                         <color key="backgroundColor" name="background"/>
                                         <constraints>
                                             <constraint firstItem="Qei-6f-Ze7" firstAttribute="top" secondItem="Z3e-1f-aAc" secondAttribute="top" id="MCB-O2-dB7"/>
-                                            <constraint firstItem="Qei-6f-Ze7" firstAttribute="height" secondItem="Z3e-1f-aAc" secondAttribute="height" multiplier="0.962687" id="g1j-jN-fmy"/>
+                                            <constraint firstItem="Qei-6f-Ze7" firstAttribute="height" secondItem="Z3e-1f-aAc" secondAttribute="height" id="g1j-jN-fmy"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-pf-lUR">
@@ -498,8 +498,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="41D-fT-a7n">
                         <barButtonItem key="rightBarButtonItem" title="Favorite" image="star" catalog="system" id="kZo-ao-cMf">
+                            <color key="tintColor" name="navBarItems"/>
                             <connections>
-                                <action selector="favoritesAddOrRemove:" destination="hJt-gn-yfY" id="d98-Bc-fuf"/>
+                                <action selector="addToFavorites:" destination="hJt-gn-yfY" id="o8w-tA-opL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -795,10 +796,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Rg-TS-DcT">
-                                        <rect key="frame" x="0.0" y="39.333333333333343" width="340" height="292.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="39.333333333333343" width="340" height="301.66666666666663"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tTa-xT-toE">
-                                                <rect key="frame" x="23.666666666666657" y="0.0" width="292.66666666666674" height="292.66666666666669"/>
+                                                <rect key="frame" x="19.333333333333343" y="0.0" width="301.33333333333326" height="301.66666666666669"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -814,7 +815,7 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rbx-s6-wep">
-                                        <rect key="frame" x="0.0" y="342" width="340" height="231"/>
+                                        <rect key="frame" x="0.0" y="351" width="340" height="222"/>
                                         <color key="backgroundColor" name="background"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
@@ -835,7 +836,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tTa-xT-toE" firstAttribute="centerX" secondItem="HVR-W4-MBO" secondAttribute="centerX" id="YFz-2A-tPq"/>
-                                    <constraint firstItem="8Rg-TS-DcT" firstAttribute="height" secondItem="HVR-W4-MBO" secondAttribute="height" multiplier="0.45" id="dc0-E5-T32"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -847,12 +847,13 @@
                             <constraint firstItem="HVR-W4-MBO" firstAttribute="leading" secondItem="z0b-7y-qn8" secondAttribute="leading" constant="25" id="OG2-ky-OgY"/>
                             <constraint firstItem="VDV-nE-XVr" firstAttribute="height" secondItem="z0b-7y-qn8" secondAttribute="height" multiplier="0.1" id="fkQ-TS-upW"/>
                             <constraint firstItem="HVR-W4-MBO" firstAttribute="top" secondItem="z0b-7y-qn8" secondAttribute="top" constant="10" id="iKe-8T-IGg"/>
+                            <constraint firstItem="8Rg-TS-DcT" firstAttribute="height" secondItem="z0b-7y-qn8" secondAttribute="height" multiplier="0.45" id="xEg-W3-bVz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kUu-fd-8AX">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="star.fill" catalog="system" id="f5r-dr-ho7">
                             <connections>
-                                <action selector="favoritesAddOrRemove:" destination="9js-2c-KDO" id="CJd-t7-CnH"/>
+                                <action selector="removeFromFavorites:" destination="9js-2c-KDO" id="BLc-xB-SMU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
