@@ -17,27 +17,7 @@ class FavoritesDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //TODO: Gérer les étoiles lors du passage d'un contrôleur à l'autre
-        
-        guard let recipe = recipe else {
-            guard let url = url else { return }
-
-            recipeRepository.isFavorite(url: url) { favorite in
-                guard let favorite = favorite else {
-                    return
-                }
-                
-                if favorite {
-                    favoriteButton.image = UIImage(systemName: "star.fill")
-                } else {
-                    favoriteButton.image = UIImage(systemName: "star")
-                }
-            }
-
-            
-            return
-        }
+        recipeControl()
     }
 
     @IBOutlet weak var recipeTitle: UILabel!
@@ -46,7 +26,7 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     var recipe: Recipe?
-    var url: String?
+    var url = ""
     let ingredientConfiguration = IngredientConfiguration()
     let recipeRepository = RecipeRepository()
     
@@ -126,5 +106,30 @@ class FavoritesDetailsViewController: UIViewController {
         // accessibilityHint
         getDirectionsButton.accessibilityHint = "Recipe's instructions web page."
         favoriteButton.accessibilityHint = "Add the recipe to your favorites."
+    }
+    
+    private func recipeControl() {
+        recipeRepository.isFavorite(url: url) { favorite in
+            guard let favorite = favorite else {
+                return
+            }
+            
+            if favorite {
+                favoriteButton.image = UIImage(systemName: "star.fill")
+                
+                // If recipe is nil but exists in favorites, it means the recipe has been deleted previously but re-added after
+                // So we reload it
+                guard let _ = recipe else {
+                    recipeRepository.getRecipe(url: url, completion: { recipe in
+                        guard let recipe = recipe else { return }
+                        self.recipe = recipe
+                    })
+                    return
+                }
+                
+            } else {
+                favoriteButton.image = UIImage(systemName: "star")
+            }
+        }
     }
 }

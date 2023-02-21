@@ -57,7 +57,7 @@ class RecipeTableViewCell: UITableViewCell {
         setupVoiceOverIngredientsInfos(ingredients: ingredients)
     }
     
-    func configureFavorite(title: String, ingredients: NSSet, image: String, preparationTime: Double, score: Double) {
+    func configureFavorite(title: String, ingredients: NSOrderedSet, image: String, preparationTime: Double, score: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatFavoriteIngredientsInOneLine(ingredientsFood: ingredients)
         recipeScore.text = String(score)
@@ -94,7 +94,7 @@ class RecipeTableViewCell: UITableViewCell {
         recipeFood.accessibilityValue = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: ingredients)
     }
     
-    private func setupVoiceOverIngredientsSet(ingredients: NSSet) {
+    private func setupVoiceOverIngredientsSet(ingredients: NSOrderedSet) {
         recipeFood.accessibilityValue = ingredientConfiguration.formatFavoriteIngredientsInOneLine(ingredientsFood: ingredients)
     }
 }

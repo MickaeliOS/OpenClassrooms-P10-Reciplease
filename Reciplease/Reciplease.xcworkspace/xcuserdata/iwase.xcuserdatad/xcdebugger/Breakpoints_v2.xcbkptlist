@@ -3,4 +3,134 @@
    uuid = "9B3411E2-332B-4E37-AA2E-7D7FE88A7673"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B23BDAB-2F2E-4FD2-8FB6-291339594B60"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecipleaseTests/APITestCases.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "testGivenIngredients_WhenPerformingRequest_ThenRequestSuccess()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C48CFCF-35C9-463F-8EAC-C1F56FA2D86A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reciplease/Model/API/APICallCenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "getRecipes(ingredients:nbIngredients:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62ACA333-3653-4767-8525-7B4F49C06F05"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reciplease/Model/API/APICallCenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "getRecipes(ingredients:nbIngredients:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "62ACA333-3653-4767-8525-7B4F49C06F05 - dd4a86d01f15417e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reciplease.APICallCenter.getRecipes(ingredients: Swift.String, nbIngredients: Swift.String) -&gt; ()"
+                  moduleName = "Reciplease"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iwase/Desktop/OC/projet10/Reciplease/Reciplease/Model/API/APICallCenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "62ACA333-3653-4767-8525-7B4F49C06F05 - 5b79066feddd89ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;Reciplease.RecipeInfos&gt;&gt;, Swift.Optional&lt;Reciplease.Next&gt;, Reciplease.RecipeService.SearchAPICases) -&gt; () in Reciplease.APICallCenter.getRecipes(ingredients: Swift.String, nbIngredients: Swift.String) -&gt; ()"
+                  moduleName = "Reciplease"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iwase/Desktop/OC/projet10/Reciplease/Reciplease/Model/API/APICallCenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C3695B1-0E8F-4151-AB9F-7DCA2E086BAD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reciplease/Model/API/RecipeService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "searchRecipes(with:nbIngredients:callback:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3C3695B1-0E8F-4151-AB9F-7DCA2E086BAD - 55bc2b3ccfe64234"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Reciplease.RecipeResponse, Alamofire.AFError&gt;) -&gt; () in Reciplease.RecipeService.searchRecipes(with: Swift.String, nbIngredients: Swift.String, callback: (Swift.Optional&lt;Swift.Array&lt;Reciplease.RecipeInfos&gt;&gt;, Swift.Optional&lt;Reciplease.Next&gt;, Reciplease.RecipeService.SearchAPICases) -&gt; ()) -&gt; ()"
+                  moduleName = "Reciplease"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iwase/Desktop/OC/projet10/Reciplease/Reciplease/Model/API/RecipeService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "3C3695B1-0E8F-4151-AB9F-7DCA2E086BAD - 55bc2b3ccfe64234"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Reciplease.RecipeResponse, Alamofire.AFError&gt;) -&gt; () in Reciplease.RecipeService.searchRecipes(with: Swift.String, nbIngredients: Swift.String, callback: (Swift.Optional&lt;Swift.Array&lt;Reciplease.RecipeInfos&gt;&gt;, Swift.Optional&lt;Reciplease.Next&gt;, Reciplease.RecipeService.SearchAPICases) -&gt; ()) -&gt; ()"
+                  moduleName = "Reciplease"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iwase/Desktop/OC/projet10/Reciplease/Reciplease/Model/API/RecipeService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "440">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

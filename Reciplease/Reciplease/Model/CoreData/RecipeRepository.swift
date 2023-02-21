@@ -50,7 +50,7 @@ class RecipeRepository {
         ingredientRepository.addIngredients(ingredients: recipe.ingredients, recipe: recipeToSave, completion: { ingredients in
             recipeToSave.addToIngredients(ingredients)
         })
-                
+        
         do {
             try coreDataStack.viewContext.save()
         } catch {
@@ -67,6 +67,21 @@ class RecipeRepository {
         } catch {
             print("We were unable to save \(recipeToSave)")
             throw RecipeError.savingError
+        }
+    }
+    
+    func getRecipe(url: String, completion: (Recipe?) -> Void) {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        request.predicate = NSPredicate(format: "url == %@", url)
+
+        do {
+            guard let recipe = try coreDataStack.viewContext.fetch(request).first else {
+                completion(nil)
+                return
+            }
+            completion(recipe)
+        } catch {
+            print("An error occured.")
         }
     }
     

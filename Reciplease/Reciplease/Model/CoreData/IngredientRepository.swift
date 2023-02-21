@@ -18,8 +18,8 @@ class IngredientRepository {
     }
     
     // MARK: - FUNCTIONS
-    func addIngredients(ingredients: [IngredientInfos], recipe: Recipe, completion: (NSSet) -> Void) {
-        let ingredientsSet = NSSet()
+    func addIngredients(ingredients: [IngredientInfos], recipe: Recipe, completion: (NSOrderedSet) -> Void) {
+        let ingredientsSet = NSMutableOrderedSet()
         
         ingredients.forEach { ingredient in
             let ingredientToSave = Ingredient(context: coreDataStack.viewContext)
@@ -28,7 +28,7 @@ class IngredientRepository {
             ingredientToSave.text = ingredient.text
             ingredientToSave.recipe = recipe
             
-            ingredientsSet.adding(ingredientToSave)
+            ingredientsSet.add(ingredientToSave)
         }
                 
         do {

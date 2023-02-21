@@ -10,6 +10,11 @@ import Alamofire
 import CoreData
 
 class RecipeService {
+    private let manager: Session
+    init(manager: Session) {
+        self.manager = manager
+    }
+    
     // MARK: - VARIABLES
     var recipes = [RecipeInfos]()
     
@@ -22,9 +27,9 @@ class RecipeService {
     
     // MARK: - FUNCTIONS
     func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeInfos]?, Next?, SearchAPICases) -> Void) {
-        let parameters = ["q": ingredients, "ingr": nbIngredients, "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
+        let parameters = ["q": ingredients, "ingr": "10", "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
         
-        AF.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponse.self) { [self] response in
+        manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponse.self) { [self] response in
             guard let data = response.value, response.error == nil else {
                 callback(nil, nil, SearchAPICases.error)
                 return
@@ -57,7 +62,9 @@ class RecipeService {
     }
     
     func getNextPage(nextPage: Next, callback: @escaping ([RecipeInfos]?, Next?, SearchAPICases) -> Void) {
-        AF.request(URL(string: nextPage.href!)!, method: .get).responseDecodable(of: RecipeResponse.self) { [self] response in
+        guard let url = nextPage.href else { return }
+        
+        manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponse.self) { [self] response in
             guard let data = response.value, response.error == nil else {
                 callback(nil, nil, SearchAPICases.error)
                 return

@@ -64,7 +64,7 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
         
         print("MKA - Recette n° \(indexPath.row) : \(recipe.label)")
         
-        if indexPath.row == 19 {
+        if indexPath.row == recipes.count - 1 {
             guard let nextPage = nextPage else { return UITableViewCell() }
             getNextPage(nextPage: nextPage)
         }
@@ -92,6 +92,20 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
+    func getNextPageDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
+        guard let result = result else { return }
+        if let nextPage = nextPage {
+            self.nextPage = nextPage
+        }
+        
+        recipes = result
+        recipeList.reloadData()
+    }
+    
+    func getNextPageDidFail() {
+        presentAlert(with: "Something went wrong, please try again.")
+    }
+    
     func getRecipesDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
         guard let result = result else {
             noRecipesLabel.isHidden = false

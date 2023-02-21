@@ -40,17 +40,18 @@ class IngredientConfiguration {
 
     
     // MARK: - FUNCTIONS FOR FAVORITES
-    func formatFavoriteIngredientsInOneLine(ingredientsFood: NSSet) -> String {
+    func formatFavoriteIngredientsInOneLine(ingredientsFood: NSOrderedSet) -> String {
         let ingredients = ingredientsFood.map { ($0 as AnyObject).value(forKey: "food") as? String }.compactMap { $0 }
         return ingredients.joined(separator: ", ")
     }
     
-    func formatFavoritesInstructions(ingredients: NSSet) -> String {
-        let ingredients = ingredients.map { ($0 as AnyObject).value(forKey: "text") as? String }.compactMap { $0 }
+    func formatFavoritesInstructions(ingredients: NSOrderedSet) -> String {
+        print("FORMATFAVORITES - \(ingredients)")
+        let instructions = ingredients.map { ($0 as AnyObject).value(forKey: "text") as? String }.compactMap { $0 }
         var formattedIngredients = ""
         
-        for ingredient in ingredients {
-            formattedIngredients += "- \(ingredient)\n"
+        for instruction in instructions {
+            formattedIngredients += "- \(instruction)\n"
         }
         return formattedIngredients
     }

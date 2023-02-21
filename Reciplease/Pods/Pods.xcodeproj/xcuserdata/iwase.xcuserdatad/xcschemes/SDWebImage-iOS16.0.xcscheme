@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3847153A6E5EEFB86565BA840768F429"
+               BlueprintIdentifier = "01D9AB462A134CA4AAA308A968C0D54F"
                BuildableName = "SDWebImage.framework"
-               BlueprintName = "SDWebImage"
+               BlueprintName = "SDWebImage-iOS16.0"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
