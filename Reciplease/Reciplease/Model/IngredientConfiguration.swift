@@ -38,15 +38,13 @@ class IngredientConfiguration {
         return formattedIngredients.joined()
     }
 
-    
     // MARK: - FUNCTIONS FOR FAVORITES
-    func formatFavoriteIngredientsInOneLine(ingredientsFood: NSOrderedSet) -> String {
-        let ingredients = ingredientsFood.map { ($0 as AnyObject).value(forKey: "food") as? String }.compactMap { $0 }
+    func formatFavoriteIngredientsInOneLine(ingredients: NSOrderedSet) -> String {
+        let ingredients = ingredients.map { ($0 as AnyObject).value(forKey: "food") as? String }.compactMap { $0 }
         return ingredients.joined(separator: ", ")
     }
     
     func formatFavoritesInstructions(ingredients: NSOrderedSet) -> String {
-        print("FORMATFAVORITES - \(ingredients)")
         let instructions = ingredients.map { ($0 as AnyObject).value(forKey: "text") as? String }.compactMap { $0 }
         var formattedIngredients = ""
         

@@ -11,6 +11,7 @@ import CoreData
 
 class RecipeService {
     private let manager: Session
+    
     init(manager: Session) {
         self.manager = manager
     }
@@ -21,27 +22,21 @@ class RecipeService {
     enum SearchAPICases {
         case error
         case incorrectResponse
-        case emptyRecipes
         case success
     }
     
     // MARK: - FUNCTIONS
     func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeInfos]?, Next?, SearchAPICases) -> Void) {
-        let parameters = ["q": ingredients, "ingr": "10", "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
+        let parameters = ["q": ingredients, "ingr": nbIngredients, "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
         
         manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponse.self) { [self] response in
             guard let data = response.value, response.error == nil else {
-                callback(nil, nil, SearchAPICases.error)
+                callback(nil, nil, .error)
                 return
             }
             
             guard let urlResponse = response.response, urlResponse.statusCode == 200 else {
-                callback(nil, nil, SearchAPICases.incorrectResponse)
-                return
-            }
-            
-            if data.hits.count == 0 {
-                callback(nil, nil, SearchAPICases.emptyRecipes)
+                callback(nil, nil, .incorrectResponse)
                 return
             }
             
@@ -57,7 +52,7 @@ class RecipeService {
                 
             }
             print("MKA - Nombre de recettes : \(data.hits.count)")
-            callback(recipes, data.links.next, SearchAPICases.success)
+            callback(recipes, data.links.next, .success)
         }
     }
     
@@ -66,17 +61,12 @@ class RecipeService {
         
         manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponse.self) { [self] response in
             guard let data = response.value, response.error == nil else {
-                callback(nil, nil, SearchAPICases.error)
+                callback(nil, nil, .error)
                 return
             }
             
             guard let urlResponse = response.response, urlResponse.statusCode == 200 else {
-                callback(nil, nil, SearchAPICases.incorrectResponse)
-                return
-            }
-            
-            if data.hits.count == 0 {
-                callback(nil, nil, SearchAPICases.emptyRecipes)
+                callback(nil, nil, .incorrectResponse)
                 return
             }
             
@@ -92,7 +82,7 @@ class RecipeService {
             }
             
             print("MKA - Nombre de recettes : \(data.hits.count)")
-            callback(recipes, data.links.next, SearchAPICases.success)
+            callback(recipes, data.links.next, .success)
         }
     }
 }

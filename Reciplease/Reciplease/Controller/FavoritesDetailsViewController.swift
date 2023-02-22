@@ -26,6 +26,7 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     var recipe: Recipe?
+    var deletedRecipe: Recipe?
     var url = ""
     let ingredientConfiguration = IngredientConfiguration()
     let recipeRepository = RecipeRepository()
@@ -40,9 +41,14 @@ class FavoritesDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func removeFromFavorites(_ sender: UIBarButtonItem) {
-        guard let recipe = recipe else { return }
-        removeFavorite(recipe: recipe)
+    @IBAction func ManageFavorites(_ sender: UIBarButtonItem) {
+        let imageName = favoriteButton.image?.accessibilityIdentifier
+        
+        if imageName == "star" {
+            addRecipe()
+        } else if imageName == "star.fill" {
+            removeFromFavorite()
+        }
     }
     
     private func setupInterface() {
@@ -69,21 +75,27 @@ class FavoritesDetailsViewController: UIViewController {
         getDirectionsButton.layer.cornerRadius = 10
     }
     
-    /*private func addToFavorites(recipe: Recipe) {
+    private func addRecipe() {
+        guard let deletedRecipe = deletedRecipe else { return }
+        
         do {
-            try recipeRepository.addToRecipe(recipe: recipe)
-
+            try recipeRepository.addToRecipe(recipe: deletedRecipe)
+            favoriteButton.image = UIImage(systemName: "star.fill")
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {
             presentAlert(with: "An error occurred.")
         }
-    }*/
+    }
     
-    private func removeFavorite(recipe: Recipe) {
+    private func removeFromFavorite() {
+        guard let recipe = recipe else { return }
+        deletedRecipe = recipe
+        
         do {
             try recipeRepository.deleteRecipe(recipe: recipe)
             favoriteButton.image = UIImage(systemName: "star")
+            //deletedRecipe = self.recipe?.copy() as? Recipe
             self.recipe = nil
             
         } catch let error as RecipeRepository.RecipeError {

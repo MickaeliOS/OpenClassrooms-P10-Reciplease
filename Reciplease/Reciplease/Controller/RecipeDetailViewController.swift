@@ -44,8 +44,14 @@ class RecipeDetailViewController: UIViewController {
     let ingredientConfiguration = IngredientConfiguration()
 
     // MARK: - ACTIONS
-    @IBAction func addToFavorites(_ sender: Any) {
-        addRecipe()
+    @IBAction func ManageFavorites(_ sender: Any) {
+        let imageName = favoriteButton.image?.accessibilityIdentifier
+        
+        if imageName == "star" {
+            addRecipe()
+        } else if imageName == "star.fill" {
+            removeFromRecipes()
+        }
     }
     
     @IBAction func getDirections(_ sender: Any) {
@@ -88,6 +94,24 @@ class RecipeDetailViewController: UIViewController {
             presentAlert(with: error.localizedDescription)
         } catch {
             presentAlert(with: "An error occurred.")
+        }
+    }
+    
+    private func removeFromRecipes() {
+        guard let recipe = recipe else { return }
+
+        recipeRepository.getRecipe(url: recipe.url) { recipe in
+            guard let recipe = recipe else { return }
+            
+            do {
+                try recipeRepository.deleteRecipe(recipe: recipe)
+                favoriteButton.image = UIImage(systemName: "star")
+
+            } catch let error as RecipeRepository.RecipeError {
+                presentAlert(with: error.localizedDescription)
+            } catch {
+                presentAlert(with: "An error occurred.")
+            }
         }
     }
     

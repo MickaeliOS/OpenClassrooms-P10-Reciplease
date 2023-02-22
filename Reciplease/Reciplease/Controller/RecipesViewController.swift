@@ -92,25 +92,10 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    func getNextPageDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
-        guard let result = result else { return }
-        if let nextPage = nextPage {
-            self.nextPage = nextPage
-        }
-        
-        recipes = result
-        recipeList.reloadData()
-    }
-    
-    func getNextPageDidFail() {
-        presentAlert(with: "Something went wrong, please try again.")
-    }
-    
     func getRecipesDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
-        guard let result = result else {
-            noRecipesLabel.isHidden = false
-            return
-        }
+        guard let result = result else { return }
+        
+        noRecipesLabel.isHidden = true
 
         if let nextPage = nextPage {
             self.nextPage = nextPage
@@ -121,8 +106,31 @@ extension RecipesViewController: APICallCenterDelegate {
                 
         //print("MKA - Next page's link : \(self.nextPage.href)")
     }
+        
+    func getRecipesDidFailWithError() {
+        presentAlert(with: "Something went wrong, please try again.")
+    }
     
-    func getRecipesDidFail() {
+    func getRecipesDidFailWithIncorrectResponse() {
+        presentAlert(with: "Something went wrong, please try again.")
+    }
+    
+    func getNextPageDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
+        guard let result = result else { return }
+
+        if let nextPage = nextPage {
+            self.nextPage = nextPage
+        }
+        
+        recipes = result
+        recipeList.reloadData()
+    }
+    
+    func getNextPageDidFailWithError() {
+        presentAlert(with: "Something went wrong, please try again.")
+    }
+    
+    func getNextPageDidFailWithIncorrectResponse() {
         presentAlert(with: "Something went wrong, please try again.")
     }
 }

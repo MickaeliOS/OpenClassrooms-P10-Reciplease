@@ -500,7 +500,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Favorite" image="star" catalog="system" id="kZo-ao-cMf">
                             <color key="tintColor" name="navBarItems"/>
                             <connections>
-                                <action selector="addToFavorites:" destination="hJt-gn-yfY" id="o8w-tA-opL"/>
+                                <action selector="ManageFavorites:" destination="hJt-gn-yfY" id="pNa-Ra-Cen"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -853,7 +853,7 @@
                     <navigationItem key="navigationItem" id="kUu-fd-8AX">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="star.fill" catalog="system" id="f5r-dr-ho7">
                             <connections>
-                                <action selector="removeFromFavorites:" destination="9js-2c-KDO" id="BLc-xB-SMU"/>
+                                <action selector="ManageFavorites:" destination="9js-2c-KDO" id="0rc-KM-zXg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -916,7 +916,7 @@
             <color red="0.9020000696182251" green="0.059000000357627869" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="navBarItems">
-            <color red="0.0" green="0.44313725490196076" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.44299998879432678" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="placeHolder">
             <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -136,27 +136,4 @@ class RecipeRepository {
             print("An error occured.")
         }
     }
-    
-    /*func deleteRecipe(recipeInfos: RecipeInfos) throws {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        
-        let ingredientsSet = NSSet(array: recipeInfos.ingredients)
-        request.predicate = NSPredicate(format: "ingredients == %@", ingredientsSet)
-   
-        do {
-            //TODO: Mettre la contrainte sur les ingrédients et afficher en commentaire : Since "ingredients" is a unique contraint, i'm sure the result will only have 1 result
-            let recipe = try coreDataStack.viewContext.fetch(request).first
-            
-            guard let recipe = recipe else {
-                print("Unable to delete the recipe")
-                throw RecipeError.deletionError
-            }
-            
-            try deleteRecipe(recipe: recipe)
-
-        } catch {
-            print("Unable to delete \(recipeInfos)")
-            throw RecipeError.deletionError
-        }
-    }*/
 }
