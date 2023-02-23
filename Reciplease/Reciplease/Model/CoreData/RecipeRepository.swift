@@ -58,18 +58,6 @@ class RecipeRepository {
         }
     }
     
-    func addToRecipe(recipe: Recipe) throws {
-        var recipeToSave = Recipe(context: coreDataStack.viewContext)
-        recipeToSave = recipe
-
-        do {
-            try coreDataStack.viewContext.save()
-        } catch {
-            print("We were unable to save \(recipeToSave)")
-            throw RecipeError.savingError
-        }
-    }
-    
     func getRecipe(url: String, completion: (Recipe?) -> Void) {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         request.predicate = NSPredicate(format: "url == %@", url)
@@ -135,5 +123,24 @@ class RecipeRepository {
         } catch {
             print("An error occured.")
         }
+    }
+    
+    func copyRecipe(recipe: Recipe) -> RecipeInfos? {
+        guard let label = recipe.label,
+              let image = recipe.image,
+              let url = recipe.url,
+              let ingredientsOrderedSet = recipe.ingredients else {
+            return nil
+        }
+
+        var ingredients = [IngredientInfos]()
+        
+        ingredientsOrderedSet.forEach { element in
+            ingredients.append(IngredientInfos(text: (element as AnyObject).text ?? "", food: (element as AnyObject).food ?? ""))
+        }
+
+        let recipeInfos = RecipeInfos(label: label, image: image, ingredients: ingredients, yield: recipe.yield, url: url, totalTime: recipe.totalTime)
+        
+        return recipeInfos
     }
 }

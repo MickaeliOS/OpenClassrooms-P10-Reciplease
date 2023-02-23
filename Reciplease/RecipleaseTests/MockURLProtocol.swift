@@ -39,7 +39,7 @@ final class MockURLProtocol: URLProtocol {
         if let response = response {
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         }
-        
+
         client?.urlProtocolDidFinishLoading(self)
     }
     

@@ -26,8 +26,7 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     var recipe: Recipe?
-    var deletedRecipe: Recipe?
-    var url = ""
+    var copiedRecipe: RecipeInfos?
     let ingredientConfiguration = IngredientConfiguration()
     let recipeRepository = RecipeRepository()
     
@@ -54,11 +53,10 @@ class FavoritesDetailsViewController: UIViewController {
     private func setupInterface() {
         guard let recipe = recipe,
               let ingredients = recipe.ingredients,
-              let image = recipe.image,
-              let url = recipe.url
+              let image = recipe.image
         else { return }
         
-        self.url = url
+        copiedRecipe = recipeRepository.copyRecipe(recipe: recipe)
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatFavoritesInstructions(ingredients: ingredients)
         
@@ -76,10 +74,11 @@ class FavoritesDetailsViewController: UIViewController {
     }
     
     private func addRecipe() {
-        guard let deletedRecipe = deletedRecipe else { return }
+        guard let copiedRecipe = copiedRecipe else { return }
         
         do {
-            try recipeRepository.addToRecipe(recipe: deletedRecipe)
+            try recipeRepository.addToRecipe(recipe: copiedRecipe)
+            reloadRecipe(copiedRecipe: copiedRecipe)
             favoriteButton.image = UIImage(systemName: "star.fill")
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
@@ -90,12 +89,10 @@ class FavoritesDetailsViewController: UIViewController {
     
     private func removeFromFavorite() {
         guard let recipe = recipe else { return }
-        deletedRecipe = recipe
-        
+
         do {
             try recipeRepository.deleteRecipe(recipe: recipe)
             favoriteButton.image = UIImage(systemName: "star")
-            //deletedRecipe = self.recipe?.copy() as? Recipe
             self.recipe = nil
             
         } catch let error as RecipeRepository.RecipeError {
@@ -121,7 +118,9 @@ class FavoritesDetailsViewController: UIViewController {
     }
     
     private func recipeControl() {
-        recipeRepository.isFavorite(url: url) { favorite in
+        guard let copiedRecipe = copiedRecipe else { return }
+        
+        recipeRepository.isFavorite(url: copiedRecipe.url) { favorite in
             guard let favorite = favorite else {
                 return
             }
@@ -131,17 +130,21 @@ class FavoritesDetailsViewController: UIViewController {
                 
                 // If recipe is nil but exists in favorites, it means the recipe has been deleted previously but re-added after
                 // So we reload it
-                guard let _ = recipe else {
-                    recipeRepository.getRecipe(url: url, completion: { recipe in
-                        guard let recipe = recipe else { return }
-                        self.recipe = recipe
-                    })
-                    return
-                }
+                reloadRecipe(copiedRecipe: copiedRecipe)
                 
             } else {
                 favoriteButton.image = UIImage(systemName: "star")
             }
+        }
+    }
+    
+    private func reloadRecipe(copiedRecipe: RecipeInfos) {
+        guard let _ = recipe else {
+            recipeRepository.getRecipe(url: copiedRecipe.url, completion: { recipe in
+                guard let recipe = recipe else { return }
+                self.recipe = recipe
+            })
+            return
         }
     }
 }

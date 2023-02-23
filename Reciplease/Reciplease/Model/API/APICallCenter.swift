@@ -26,7 +26,7 @@ class APICallCenter {
                 self.delegate?.getRecipesDidFailWithIncorrectResponse()
                 return
             case .success:
-                self.delegate?.getRecipesDidFinish(result: recipes, nextPage: nextPage)
+                self.delegate?.getRecipesDidFinish(recipes: recipes, nextPage: nextPage)
             }
         }
     }
@@ -41,18 +41,18 @@ class APICallCenter {
                 self.delegate?.getNextPageDidFailWithIncorrectResponse()
                 return
             case .success:
-                self.delegate?.getNextPageDidFinish(result: recipes, nextPage: nextPage)
+                self.delegate?.getNextPageDidFinish(recipes: recipes, nextPage: nextPage)
             }
         }
     }
 }
 
 protocol APICallCenterDelegate {
-    func getRecipesDidFinish(result: [RecipeInfos]?, nextPage: Next?)
+    func getRecipesDidFinish(recipes: [RecipeInfos]?, nextPage: Next?)
     func getRecipesDidFailWithError()
     func getRecipesDidFailWithIncorrectResponse()
     
-    func getNextPageDidFinish(result: [RecipeInfos]?, nextPage: Next?)
+    func getNextPageDidFinish(recipes: [RecipeInfos]?, nextPage: Next?)
     func getNextPageDidFailWithError()
     func getNextPageDidFailWithIncorrectResponse()
 }

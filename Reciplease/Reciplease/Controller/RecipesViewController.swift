@@ -92,8 +92,8 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    func getRecipesDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
-        guard let result = result else { return }
+    func getRecipesDidFinish(recipes: [RecipeInfos]?, nextPage: Next?) {
+        guard let recipes = recipes else { return }
         
         noRecipesLabel.isHidden = true
 
@@ -101,7 +101,7 @@ extension RecipesViewController: APICallCenterDelegate {
             self.nextPage = nextPage
         }
         
-        recipes = result
+        self.recipes = recipes
         recipeList.reloadData()
                 
         //print("MKA - Next page's link : \(self.nextPage.href)")
@@ -115,14 +115,14 @@ extension RecipesViewController: APICallCenterDelegate {
         presentAlert(with: "Something went wrong, please try again.")
     }
     
-    func getNextPageDidFinish(result: [RecipeInfos]?, nextPage: Next?) {
-        guard let result = result else { return }
+    func getNextPageDidFinish(recipes: [RecipeInfos]?, nextPage: Next?) {
+        guard let recipes = recipes else { return }
 
         if let nextPage = nextPage {
             self.nextPage = nextPage
         }
         
-        recipes = result
+        self.recipes = recipes
         recipeList.reloadData()
     }
     

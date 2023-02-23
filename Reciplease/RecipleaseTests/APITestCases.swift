@@ -149,9 +149,9 @@ final class APITestCases: XCTestCase {
 
 // MARK: - APICALLCENTER DELEGATE
 extension APITestCases: APICallCenterDelegate {
-    func getRecipesDidFinish(result: [Reciplease.RecipeInfos]?, nextPage: Reciplease.Next?) {
+    func getRecipesDidFinish(recipes: [Reciplease.RecipeInfos]?, nextPage: Reciplease.Next?) {
         // Empty recipes
-        guard let result = result, !result.isEmpty else {
+        guard let result = recipes, !result.isEmpty else {
             expectedResponse = "getRecipesDidFinishWithEmptyRecipes"
             expectation.fulfill()
             return
@@ -178,8 +178,8 @@ extension APITestCases: APICallCenterDelegate {
         expectation.fulfill()
     }
     
-    func getNextPageDidFinish(result: [Reciplease.RecipeInfos]?, nextPage: Reciplease.Next?) {
-        guard let result = result, !result.isEmpty else {
+    func getNextPageDidFinish(recipes: [Reciplease.RecipeInfos]?, nextPage: Reciplease.Next?) {
+        guard let result = recipes, !result.isEmpty else {
             expectedResponse = "getNextPageDidFinishWithEmptyRecipes"
             expectation.fulfill()
             return
