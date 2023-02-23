@@ -58,7 +58,7 @@ class FavoritesDetailsViewController: UIViewController {
         
         copiedRecipe = recipeRepository.copyRecipe(recipe: recipe)
         recipeTitle.text = recipe.label
-        recipeDetails.text = ingredientConfiguration.formatFavoritesInstructions(ingredients: ingredients)
+        recipeDetails.text = ingredientConfiguration.formatFavoritesInstructionsInSeparateLines(ingredients: ingredients)
         
         // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in

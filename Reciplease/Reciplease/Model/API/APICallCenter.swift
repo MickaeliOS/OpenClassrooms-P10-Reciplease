@@ -19,14 +19,18 @@ class APICallCenter {
     func getRecipes(ingredients: String, nbIngredients: String) {
         recipeService.searchRecipes(with: ingredients, nbIngredients: nbIngredients) { recipes, nextPage, apiCase in
             switch apiCase {
+            case .success:
+                guard let recipes = recipes else { return }
+                self.delegate?.getRecipesDidFinish(recipes: recipes, nextPage: nextPage)
             case .error:
                 self.delegate?.getRecipesDidFailWithError()
                 return
             case .incorrectResponse:
                 self.delegate?.getRecipesDidFailWithIncorrectResponse()
                 return
-            case .success:
-                self.delegate?.getRecipesDidFinish(recipes: recipes, nextPage: nextPage)
+            case .empty:
+                self.delegate?.getRecipesDidFailWithEmptyRecipes()
+                return
             }
         }
     }
@@ -34,25 +38,31 @@ class APICallCenter {
     func getNextPage(nextPage: Next) {
         recipeService.getNextPage(nextPage: nextPage) { recipes, nextPage, apiCase in
             switch apiCase {
+            case .success:
+                guard let recipes = recipes else { return }
+                self.delegate?.getNextPageDidFinish(recipes: recipes, nextPage: nextPage)
             case .error:
                 self.delegate?.getNextPageDidFailWithError()
                 return
             case .incorrectResponse:
                 self.delegate?.getNextPageDidFailWithIncorrectResponse()
                 return
-            case .success:
-                self.delegate?.getNextPageDidFinish(recipes: recipes, nextPage: nextPage)
+            case .empty:
+                self.delegate?.getNextPageDidFailWithEmptyRecipes()
+                return
             }
         }
     }
 }
 
 protocol APICallCenterDelegate {
-    func getRecipesDidFinish(recipes: [RecipeInfos]?, nextPage: Next?)
+    func getRecipesDidFinish(recipes: [RecipeInfos], nextPage: Next?)
     func getRecipesDidFailWithError()
     func getRecipesDidFailWithIncorrectResponse()
+    func getRecipesDidFailWithEmptyRecipes()
     
-    func getNextPageDidFinish(recipes: [RecipeInfos]?, nextPage: Next?)
+    func getNextPageDidFinish(recipes: [RecipeInfos], nextPage: Next?)
     func getNextPageDidFailWithError()
     func getNextPageDidFailWithIncorrectResponse()
+    func getNextPageDidFailWithEmptyRecipes()
 }

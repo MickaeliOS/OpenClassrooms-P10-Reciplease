@@ -69,7 +69,7 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe else { return }
         
         recipeTitle.text = recipe.label
-        recipeDetails.text = ingredientConfiguration.formatInstructions(ingredients: recipe.ingredients)
+        recipeDetails.text = ingredientConfiguration.formatInstructionsInSeparateLines(ingredients: recipe.ingredients)
         
         // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         recipeImage.sd_setImage(with: URL(string: recipe.image), completed: { (image, error, cacheType, url) in

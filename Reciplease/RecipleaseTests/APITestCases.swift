@@ -49,7 +49,7 @@ final class APITestCases: XCTestCase {
         XCTAssertEqual(expectedResponse, "getRecipesDidFinish")
     }
     
-    func testSearchRequestSuccessWithEmptyRecipes() {
+    func testSearchRequestFailsWithEmptyRecipes() {
         let dataFake = FakeResponseDataError.emptyRecipesData
         let responseFake = FakeResponseDataError.responseOK
         
@@ -60,7 +60,7 @@ final class APITestCases: XCTestCase {
         client.getRecipes(ingredients: "ingredients", nbIngredients: "nbIngredients")
                 
         wait(for: [expectation], timeout: 0.02)
-        XCTAssertEqual(expectedResponse, "getRecipesDidFinishWithEmptyRecipes")
+        XCTAssertEqual(expectedResponse, "getRecipesDidFailWithEmptyRecipes")
     }
     
     func testSearchRequestFailsWithIncorrectResponse() {
@@ -105,7 +105,7 @@ final class APITestCases: XCTestCase {
         XCTAssertEqual(expectedResponse, "getNextPageDidFinish")
     }
     
-    func testNextPageRequestSuccessWithEmptyRecipes() {
+    func testNextPageRequestFailsWithEmptyRecipes() {
         let dataFake = FakeResponseDataError.emptyRecipesData
         let responseFake = FakeResponseDataError.responseOK
         
@@ -116,7 +116,7 @@ final class APITestCases: XCTestCase {
         client.getNextPage(nextPage: Next(href: "url"))
                 
         wait(for: [expectation], timeout: 0.02)
-        XCTAssertEqual(expectedResponse, "getNextPageDidFinishWithEmptyRecipes")
+        XCTAssertEqual(expectedResponse, "getNextPageDidFailWithEmptyRecipes")
     }
     
     func testNextPageRequestFailsWithIncorrectResponse() {
@@ -149,17 +149,10 @@ final class APITestCases: XCTestCase {
 
 // MARK: - APICALLCENTER DELEGATE
 extension APITestCases: APICallCenterDelegate {
-    func getRecipesDidFinish(recipes: [Reciplease.RecipeInfos]?, nextPage: Reciplease.Next?) {
-        // Empty recipes
-        guard let result = recipes, !result.isEmpty else {
-            expectedResponse = "getRecipesDidFinishWithEmptyRecipes"
-            expectation.fulfill()
-            return
-        }
-        
+    func getRecipesDidFinish(recipes: [Reciplease.RecipeInfos], nextPage: Reciplease.Next?) {
         // With recipes, but without nextPage
         guard let _ = nextPage else {
-            controlRecipes(result: result)
+            controlRecipes(result: recipes)
             expectedResponse = "getRecipesDidFinish"
             expectation.fulfill()
             return
@@ -178,13 +171,12 @@ extension APITestCases: APICallCenterDelegate {
         expectation.fulfill()
     }
     
-    func getNextPageDidFinish(recipes: [Reciplease.RecipeInfos]?, nextPage: Reciplease.Next?) {
-        guard let result = recipes, !result.isEmpty else {
-            expectedResponse = "getNextPageDidFinishWithEmptyRecipes"
-            expectation.fulfill()
-            return
-        }
-        
+    func getRecipesDidFailWithEmptyRecipes() {
+        expectedResponse = "getRecipesDidFailWithEmptyRecipes"
+        expectation.fulfill()
+    }
+    
+    func getNextPageDidFinish(recipes: [Reciplease.RecipeInfos], nextPage: Reciplease.Next?) {
         expectedResponse = "getNextPageDidFinish"
         expectation.fulfill()
     }
@@ -196,6 +188,11 @@ extension APITestCases: APICallCenterDelegate {
     
     func getNextPageDidFailWithIncorrectResponse() {
         expectedResponse = "getNextPageDidFailWithIncorrectResponse"
+        expectation.fulfill()
+    }
+    
+    func getNextPageDidFailWithEmptyRecipes() {
+        expectedResponse = "getNextPageDidFailWithEmptyRecipes"
         expectation.fulfill()
     }
 }

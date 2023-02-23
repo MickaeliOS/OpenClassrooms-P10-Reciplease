@@ -15,9 +15,6 @@ class IngredientsViewController: UIViewController {
         setupInterface()
         setupVoiceOver()
         
-        // Element's weren't in order, so I put the proper one
-        // self.accessibilityElements = [ingredientsListTitle!, inYourFridgeLabel!, ingredientTextField!, addIngredientButton!, yourIngredientsLabel!, clearIngredientsButton!]
-        
         NotificationCenter.default.addObserver(self, selector: #selector(ingredientListControl), name: .ingredientsListModified, object: nil)
     }
     
@@ -85,8 +82,14 @@ class IngredientsViewController: UIViewController {
     }
     
     private func deleteAllIngredients() {
-        ingredientConfiguration.removeAllIngredients()
-        ingredientList.reloadData()
+        do {
+            try ingredientConfiguration.removeAllIngredients()
+            ingredientList.reloadData()
+        } catch let error as IngredientConfiguration.IngredientsErrors {
+            presentAlert(with: error.localizedDescription)
+        } catch {
+            presentAlert(with: "An error occurred.")
+        }
     }
     
     private func addIngredient() {
@@ -158,10 +161,16 @@ extension IngredientsViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Always remove the data first
-            ingredientConfiguration.removeIngredients(at: indexPath.row)
-            
-            // Then, the cell
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            do {
+                try ingredientConfiguration.removeIngredients(at: indexPath.row)
+                
+                // Then, the cell
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } catch let error as IngredientConfiguration.IngredientsErrors {
+                presentAlert(with: error.localizedDescription)
+            } catch {
+                presentAlert(with: "An error occured.")
+            }
         }
     }
 }

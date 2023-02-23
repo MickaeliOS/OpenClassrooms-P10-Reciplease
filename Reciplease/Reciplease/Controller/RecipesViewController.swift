@@ -92,9 +92,7 @@ extension RecipesViewController {
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    func getRecipesDidFinish(recipes: [RecipeInfos]?, nextPage: Next?) {
-        guard let recipes = recipes else { return }
-        
+    func getRecipesDidFinish(recipes: [RecipeInfos], nextPage: Next?) {
         noRecipesLabel.isHidden = true
 
         if let nextPage = nextPage {
@@ -115,9 +113,9 @@ extension RecipesViewController: APICallCenterDelegate {
         presentAlert(with: "Something went wrong, please try again.")
     }
     
-    func getNextPageDidFinish(recipes: [RecipeInfos]?, nextPage: Next?) {
-        guard let recipes = recipes else { return }
-
+    func getRecipesDidFailWithEmptyRecipes() {}
+    
+    func getNextPageDidFinish(recipes: [RecipeInfos], nextPage: Next?) {
         if let nextPage = nextPage {
             self.nextPage = nextPage
         }
@@ -133,4 +131,6 @@ extension RecipesViewController: APICallCenterDelegate {
     func getNextPageDidFailWithIncorrectResponse() {
         presentAlert(with: "Something went wrong, please try again.")
     }
+    
+    func getNextPageDidFailWithEmptyRecipes() {}
 }

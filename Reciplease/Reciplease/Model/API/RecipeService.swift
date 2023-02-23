@@ -19,19 +19,25 @@ class RecipeService {
     // MARK: - VARIABLES
     var recipes = [RecipeInfos]()
     
-    enum SearchAPICases {
+    enum APICases {
         case error
         case incorrectResponse
         case success
+        case empty
     }
     
     // MARK: - FUNCTIONS
-    func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeInfos]?, Next?, SearchAPICases) -> Void) {
+    func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeInfos]?, Next?, APICases) -> Void) {
         let parameters = ["q": ingredients, "ingr": nbIngredients, "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
         
         manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponse.self) { [self] response in
-            guard let data = response.value, response.error == nil else {
+            guard response.error == nil else {
                 callback(nil, nil, .error)
+                return
+            }
+            
+            guard let data = response.value, !data.hits.isEmpty else {
+                callback(nil, nil, .empty)
                 return
             }
             
@@ -56,12 +62,17 @@ class RecipeService {
         }
     }
     
-    func getNextPage(nextPage: Next, callback: @escaping ([RecipeInfos]?, Next?, SearchAPICases) -> Void) {
+    func getNextPage(nextPage: Next, callback: @escaping ([RecipeInfos]?, Next?, APICases) -> Void) {
         guard let url = nextPage.href else { return }
         
         manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponse.self) { [self] response in
-            guard let data = response.value, response.error == nil else {
+            guard response.error == nil else {
                 callback(nil, nil, .error)
+                return
+            }
+            
+            guard let data = response.value, !data.hits.isEmpty else {
+                callback(nil, nil, .empty)
                 return
             }
             
