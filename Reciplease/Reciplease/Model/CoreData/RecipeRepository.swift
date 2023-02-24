@@ -10,8 +10,8 @@ import CoreData
 
 class RecipeRepository {
     // MARK: - VARIABLES
-    private let coreDataStack: CoreDataStack
-    let ingredientRepository = IngredientRepository()
+    private let coreDataStackViewContext: NSManagedObjectContext
+    private let ingredientRepository = IngredientRepository()
     
     // MARK: - ENUMS
     enum RecipeError: Error {
@@ -32,13 +32,13 @@ class RecipeRepository {
     }
 
     // MARK: - INIT
-    init(coreDataStack: CoreDataStack = CoreDataStack.sharedInstance) {
-       self.coreDataStack = coreDataStack
+    init(coreDataStackViewContext: NSManagedObjectContext = CoreDataStack.sharedInstance.viewContext) {
+        self.coreDataStackViewContext = coreDataStackViewContext
     }
     
     // MARK: - FUNCTIONS
     func addToRecipe(recipe: RecipeInfos) throws {
-        let recipeToSave = Recipe(context: coreDataStack.viewContext)
+        let recipeToSave = Recipe(context: coreDataStackViewContext)
 
         recipeToSave.label = recipe.label
         recipeToSave.image = recipe.image
@@ -47,12 +47,12 @@ class RecipeRepository {
         recipeToSave.url = recipe.url
     
         // A Recipe can have multiples ingredients, so we need to save them
-        ingredientRepository.addIngredients(ingredients: recipe.ingredients, recipe: recipeToSave, completion: { ingredients in
+        ingredientRepository.addIngredients(ingredients: recipe.ingredients, recipe: recipeToSave, viewContext: coreDataStackViewContext, completion: { ingredients in
             recipeToSave.addToIngredients(ingredients)
         })
         
         do {
-            try coreDataStack.viewContext.save()
+            try coreDataStackViewContext.save()
         } catch {
             throw RecipeError.savingError
         }
@@ -63,7 +63,7 @@ class RecipeRepository {
         request.predicate = NSPredicate(format: "url == %@", url)
 
         do {
-            guard let recipe = try coreDataStack.viewContext.fetch(request).first else {
+            guard let recipe = try coreDataStackViewContext.fetch(request).first else {
                 completion(nil)
                 return
             }
@@ -77,18 +77,18 @@ class RecipeRepository {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         
         do {
-            let recipes = try coreDataStack.viewContext.fetch(request)
+            let recipes = try coreDataStackViewContext.fetch(request)
             completion(recipes)
         } catch {
-            completion([])
+            print("We were unable to get the recipes.")
         }
     }
     
     func deleteRecipe(recipe: Recipe) throws {
-        coreDataStack.viewContext.delete(recipe)
+        coreDataStackViewContext.delete(recipe)
         
         do {
-            try coreDataStack.viewContext.save()
+            try coreDataStackViewContext.save()
         } catch {
             print("We were unable to delete \(recipe)")
             throw RecipeError.deletionError
@@ -100,7 +100,7 @@ class RecipeRepository {
         request.predicate = NSPredicate(format: "url == %@", url)
 
         do {
-            guard let _ = try coreDataStack.viewContext.fetch(request).first else {
+            guard let _ = try coreDataStackViewContext.fetch(request).first else {
                 completion(false)
                 return
             }
@@ -115,7 +115,7 @@ class RecipeRepository {
         request.predicate = NSPredicate(format: "url == %@", recipe.url)
 
         do {            
-            guard let _ = try coreDataStack.viewContext.fetch(request).first else {
+            guard let _ = try coreDataStackViewContext.fetch(request).first else {
                 completion(false)
                 return
             }
