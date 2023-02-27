@@ -9,13 +9,16 @@ import Foundation
 import Alamofire
 
 class APICallCenter {
+    // MARK: - PROPERTIES
     var delegate: APICallCenterDelegate?
     var recipeService: RecipeService
     
+    // MARK: - INIT
     init(manager: Session = Session.default) {
         recipeService = RecipeService(manager: manager)
     }
     
+    // MARK: - FUNCTIONS
     func getRecipes(ingredients: String, nbIngredients: String) {
         recipeService.searchRecipes(with: ingredients, nbIngredients: nbIngredients) { recipes, nextPage, apiCase in
             switch apiCase {
@@ -55,6 +58,7 @@ class APICallCenter {
     }
 }
 
+// MARK: - DELEGATE
 protocol APICallCenterDelegate {
     func getRecipesDidFinish(recipes: [RecipeInfos], nextPage: Next?)
     func getRecipesDidFailWithError()

@@ -392,12 +392,15 @@
                                     <outlet property="delegate" destination="I64-iF-2al" id="qjn-8f-iy0"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no recipe for the ingredients you provided. Please try with other ones." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjQ-oE-ahm">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no recipe for the ingredients you provided. Please try with other ones." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjQ-oE-ahm">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="AMs-wd-Kmi">
+                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vZl-ry-3jd"/>
                         <color key="backgroundColor" name="background"/>
@@ -405,8 +408,12 @@
                             <constraint firstItem="Ijc-Bu-R8I" firstAttribute="top" secondItem="vZl-ry-3jd" secondAttribute="top" id="0Yq-fa-lyW"/>
                             <constraint firstItem="vZl-ry-3jd" firstAttribute="bottom" secondItem="tjQ-oE-ahm" secondAttribute="bottom" id="8mh-FT-0Wb"/>
                             <constraint firstItem="tjQ-oE-ahm" firstAttribute="top" secondItem="vZl-ry-3jd" secondAttribute="top" id="UzB-Sx-TEc"/>
+                            <constraint firstItem="AMs-wd-Kmi" firstAttribute="top" secondItem="vZl-ry-3jd" secondAttribute="top" id="V0i-Yh-f2V"/>
                             <constraint firstItem="Ijc-Bu-R8I" firstAttribute="leading" secondItem="vZl-ry-3jd" secondAttribute="leading" id="Vgs-BL-o8A"/>
+                            <constraint firstItem="vZl-ry-3jd" firstAttribute="trailing" secondItem="AMs-wd-Kmi" secondAttribute="trailing" id="YZC-2o-dXK"/>
+                            <constraint firstItem="AMs-wd-Kmi" firstAttribute="leading" secondItem="vZl-ry-3jd" secondAttribute="leading" id="Zys-W2-TTl"/>
                             <constraint firstItem="tjQ-oE-ahm" firstAttribute="leading" secondItem="vZl-ry-3jd" secondAttribute="leading" id="ciL-4l-syq"/>
+                            <constraint firstItem="vZl-ry-3jd" firstAttribute="bottom" secondItem="AMs-wd-Kmi" secondAttribute="bottom" id="ctg-rR-r9G"/>
                             <constraint firstItem="vZl-ry-3jd" firstAttribute="trailing" secondItem="tjQ-oE-ahm" secondAttribute="trailing" id="m3U-ad-J1E"/>
                             <constraint firstItem="vZl-ry-3jd" firstAttribute="bottom" secondItem="Ijc-Bu-R8I" secondAttribute="bottom" id="qAd-Ch-mzl"/>
                             <constraint firstItem="vZl-ry-3jd" firstAttribute="trailing" secondItem="Ijc-Bu-R8I" secondAttribute="trailing" id="vty-DS-9Cc"/>
@@ -415,6 +422,7 @@
                     <navigationItem key="navigationItem" id="Czr-zI-kYg"/>
                     <connections>
                         <outlet property="backButton" destination="Czr-zI-kYg" id="Z8x-BR-mS2"/>
+                        <outlet property="loadingRecipes" destination="AMs-wd-Kmi" id="kkE-EU-Ra8"/>
                         <outlet property="noRecipesLabel" destination="tjQ-oE-ahm" id="3vS-N9-bPc"/>
                         <outlet property="recipeList" destination="Ijc-Bu-R8I" id="koB-Qv-ETn"/>
                         <segue destination="hJt-gn-yfY" kind="show" identifier="segueToRecipeDetail" id="x8h-dh-5LV"/>
@@ -526,7 +534,6 @@
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="navBarItems"/>
-                        <color key="barTintColor" name="primaryForeground"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="30"/>
                             <color key="textColor" systemColor="labelColor"/>
@@ -910,19 +917,16 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="buttons">
-            <color red="0.027000000700354576" green="0.45100000500679016" blue="0.875" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.035294117647058823" green="0.45098039215686275" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="deleteButtons">
-            <color red="0.9020000696182251" green="0.059000000357627869" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.90600001811981201" green="0.059000000357627869" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="navBarItems">
-            <color red="0.0" green="0.44299998879432678" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.42399999499320984" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="placeHolder">
             <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primaryForeground">
-            <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="tabBarButtonsTint">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

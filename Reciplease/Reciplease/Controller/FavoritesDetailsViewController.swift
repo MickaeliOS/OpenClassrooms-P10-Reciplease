@@ -60,14 +60,7 @@ class FavoritesDetailsViewController: UIViewController {
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatFavoritesInstructionsInSeparateLines(ingredients: ingredients)
         
-        // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
-        recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
-            if cacheType == .none {
-                print("PAS EN CACHE")
-            } else {
-                print("EN CACHE")
-            }
-        })
+        recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
         recipeImage.layer.cornerRadius = 10
         getDirectionsButton.layer.cornerRadius = 10
@@ -77,7 +70,7 @@ class FavoritesDetailsViewController: UIViewController {
         guard let copiedRecipe = copiedRecipe else { return }
         
         do {
-            try recipeRepository.addToRecipe(recipe: copiedRecipe)
+            try recipeRepository.addRecipe(recipe: copiedRecipe)
             reloadRecipe(copiedRecipe: copiedRecipe)
             favoriteButton.image = UIImage(systemName: "star.fill")
         } catch let error as RecipeRepository.RecipeError {
@@ -120,7 +113,7 @@ class FavoritesDetailsViewController: UIViewController {
     private func recipeControl() {
         guard let copiedRecipe = copiedRecipe else { return }
         
-        recipeRepository.isFavorite(url: copiedRecipe.url) { favorite in
+        recipeRepository.isFavorite(recipe: copiedRecipe) { favorite in
             guard let favorite = favorite else {
                 return
             }

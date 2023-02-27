@@ -8,6 +8,10 @@
 import Foundation
 
 final class MockURLProtocol: URLProtocol {
+    //MARK: - HANDLER
+    static var loadingHandler: ((URLRequest) -> (Data?, HTTPURLResponse?, Error?))?
+    
+    //MARK: - OVERRIDE FUNCTIONS
     override class func canInit(with request: URLRequest) -> Bool {
         // We return true in order to allow URLSession to use this protocol for any URL Request
         return true
@@ -17,8 +21,6 @@ final class MockURLProtocol: URLProtocol {
         return request
     }
 
-    static var loadingHandler: ((URLRequest) -> (Data?, HTTPURLResponse?, Error?))?
-    
     override func startLoading() {
         guard let handler = MockURLProtocol.loadingHandler else {
             print("Loading handler is not set.")

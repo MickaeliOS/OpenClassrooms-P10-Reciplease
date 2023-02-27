@@ -9,15 +9,15 @@ import Foundation
 import CoreData
 
 class TestCoreDataStack: NSObject {
+    // MARK: - PROPERTIES
+    let persistentContainerName: String
     var viewContext: NSManagedObjectContext {
-        return TestCoreDataStack().persistentContainer.viewContext
+        return self.persistentContainer.viewContext
     }
     
-    private let persistentContainerName = "Reciplease"
-
     lazy var persistentContainer: NSPersistentContainer = {
         let description = NSPersistentStoreDescription()
-        description.url = URL(fileURLWithPath: "/dev/null")
+        description.url = URL(fileURLWithPath: "/dev/null") // We're not writing to disk, but in memory
         
         let container = NSPersistentContainer(name: persistentContainerName)
         container.persistentStoreDescriptions = [description]
@@ -29,4 +29,9 @@ class TestCoreDataStack: NSObject {
         }
         return container
     }()
+
+    // MARK: - INIT
+    init(persistentContainerName: String = "Reciplease") {
+        self.persistentContainerName = persistentContainerName
+    }
 }

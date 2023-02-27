@@ -10,26 +10,23 @@ import Alamofire
 @testable import Reciplease
 
 final class APITestCases: XCTestCase {
-    // MARK: - VARIABLES
+    // MARK: - PROPERTIES
     private var client: APICallCenter!
-    private var expectation: XCTestExpectation!
     private var expectedResponse: String!
-    private var manager: Session!
+    private var expectation: XCTestExpectation = XCTestExpectation(description: "Performs a request")
+    private var manager: Session! = {
+        let configuration: URLSessionConfiguration = {
+            let configuration = URLSessionConfiguration.default
+            configuration.protocolClasses = [MockURLProtocol.self]
+            return configuration
+        }()
+        return Session(configuration: configuration)
+    }()
     
     // MARK: - OVERRIDE TEST FUNCTIONS
     override func setUp() {
         super.setUp()
-        
-        manager = {
-            let configuration: URLSessionConfiguration = {
-                let configuration = URLSessionConfiguration.default
-                configuration.protocolClasses = [MockURLProtocol.self]
-                return configuration
-            }()
-            return Session(configuration: configuration)
-        }()
             
-        expectation = XCTestExpectation(description: "Performs a request")
         client = APICallCenter(manager: manager)
         client.delegate = self
     }
@@ -149,6 +146,7 @@ final class APITestCases: XCTestCase {
 
 // MARK: - APICALLCENTER DELEGATE
 extension APITestCases: APICallCenterDelegate {
+    
     func getRecipesDidFinish(recipes: [Reciplease.RecipeInfos], nextPage: Reciplease.Next?) {
         // With recipes, but without nextPage
         guard let _ = nextPage else {
@@ -197,8 +195,8 @@ extension APITestCases: APICallCenterDelegate {
     }
 }
 
+//MARK: - EXTENSIONS
 extension APITestCases {
-    //MARK: - PRIVATE FUNCTIONS
     private func controlRecipes(result: [Reciplease.RecipeInfos]) {
         // Control the first recipe
         XCTAssertEqual(result[0].label, "The Ultimate Burger")

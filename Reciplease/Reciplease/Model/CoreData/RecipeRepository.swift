@@ -17,7 +17,6 @@ class RecipeRepository {
     enum RecipeError: Error {
         case savingError
         case deletionError
-        case getError
         
         var localizedDescription: String {
             switch self {
@@ -25,8 +24,6 @@ class RecipeRepository {
                 return "We were unable to save your recipe."
             case .deletionError:
                 return "We were unable to delete your recipe."
-            case .getError:
-                return ""
             }
         }
     }
@@ -37,7 +34,7 @@ class RecipeRepository {
     }
     
     // MARK: - FUNCTIONS
-    func addToRecipe(recipe: RecipeInfos) throws {
+    func addRecipe(recipe: RecipeInfos) throws {
         let recipeToSave = Recipe(context: coreDataStackViewContext)
 
         recipeToSave.label = recipe.label
@@ -92,21 +89,6 @@ class RecipeRepository {
         } catch {
             print("We were unable to delete \(recipe)")
             throw RecipeError.deletionError
-        }
-    }
-    
-    func isFavorite(url: String, completion: (Bool?) -> Void) {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        request.predicate = NSPredicate(format: "url == %@", url)
-
-        do {
-            guard let _ = try coreDataStackViewContext.fetch(request).first else {
-                completion(false)
-                return
-            }
-            completion(true)
-        } catch {
-            print("An error occured.")
         }
     }
     

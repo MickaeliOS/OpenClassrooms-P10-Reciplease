@@ -75,8 +75,4 @@ class SettingsViewController: UIViewController {
                 .overrideUserInterfaceStyle = mode
         }
     }
-    
-    /*override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("mode changed")
-    }*/
 }

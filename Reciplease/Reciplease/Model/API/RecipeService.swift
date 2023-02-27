@@ -10,13 +10,8 @@ import Alamofire
 import CoreData
 
 class RecipeService {
+    // MARK: - PROPERTIES & ENUMS
     private let manager: Session
-    
-    init(manager: Session) {
-        self.manager = manager
-    }
-    
-    // MARK: - VARIABLES
     var recipes = [RecipeInfos]()
     
     enum APICases {
@@ -24,6 +19,11 @@ class RecipeService {
         case incorrectResponse
         case success
         case empty
+    }
+    
+    // MARK: - INIT
+    init(manager: Session) {
+        self.manager = manager
     }
     
     // MARK: - FUNCTIONS
@@ -57,7 +57,6 @@ class RecipeService {
                 recipes.append(recipe)
                 
             }
-            print("MKA - Nombre de recettes : \(data.hits.count)")
             callback(recipes, data.links.next, .success)
         }
     }
@@ -92,7 +91,6 @@ class RecipeService {
                 recipes.append(recipe)
             }
             
-            print("MKA - Nombre de recettes : \(data.hits.count)")
             callback(recipes, data.links.next, .success)
         }
     }

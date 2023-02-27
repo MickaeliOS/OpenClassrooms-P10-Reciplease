@@ -71,14 +71,7 @@ class RecipeDetailViewController: UIViewController {
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatInstructionsInSeparateLines(ingredients: recipe.ingredients)
         
-        // recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
-        recipeImage.sd_setImage(with: URL(string: recipe.image), completed: { (image, error, cacheType, url) in
-            if cacheType == .none {
-                print("PAS EN CACHE")
-            } else {
-                print("EN CACHE")
-            }
-        })
+        recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         
         getDirectionsButton.layer.cornerRadius = 10
         recipeImage.layer.cornerRadius = 10
@@ -88,7 +81,7 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe else { return }
         
         do {
-            try recipeRepository.addToRecipe(recipe: recipe)
+            try recipeRepository.addRecipe(recipe: recipe)
             favoriteButton.image = UIImage(systemName: "star.fill")
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)

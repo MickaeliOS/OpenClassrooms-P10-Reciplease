@@ -10,7 +10,7 @@ import Alamofire
 @testable import Reciplease
 
 final class ModelTestCases: XCTestCase {
-    // MARK: - VARIABLES
+    // MARK: - PROPERTIES
     private var ingredientConfiguration: IngredientConfiguration!
     private var ingredientsOrderedSet: NSOrderedSet!
     private var ingredientsInfos: [IngredientInfos]!

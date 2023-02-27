@@ -19,6 +19,7 @@ class RecipesViewController: UIViewController {
     @IBOutlet weak var recipeList: UITableView!
     @IBOutlet weak var noRecipesLabel: UILabel!
     @IBOutlet weak var backButton: UINavigationItem!
+    @IBOutlet weak var loadingRecipes: UIActivityIndicatorView!
     
     let apiCallCenter = APICallCenter()
     var ingredientConfiguration = IngredientConfiguration()
@@ -61,9 +62,7 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
                        image: recipe.image,
                        preparationTime: recipe.totalTime,
                        score: recipe.yield)
-        
-        print("MKA - Recette n° \(indexPath.row) : \(recipe.label)")
-        
+                
         if indexPath.row == recipes.count - 1 {
             guard let nextPage = nextPage else { return UITableViewCell() }
             getNextPage(nextPage: nextPage)
@@ -93,7 +92,7 @@ extension RecipesViewController {
 
 extension RecipesViewController: APICallCenterDelegate {
     func getRecipesDidFinish(recipes: [RecipeInfos], nextPage: Next?) {
-        noRecipesLabel.isHidden = true
+        loadingRecipes.isHidden = true
 
         if let nextPage = nextPage {
             self.nextPage = nextPage
@@ -101,8 +100,6 @@ extension RecipesViewController: APICallCenterDelegate {
         
         self.recipes = recipes
         recipeList.reloadData()
-                
-        //print("MKA - Next page's link : \(self.nextPage.href)")
     }
         
     func getRecipesDidFailWithError() {
@@ -113,7 +110,10 @@ extension RecipesViewController: APICallCenterDelegate {
         presentAlert(with: "Something went wrong, please try again.")
     }
     
-    func getRecipesDidFailWithEmptyRecipes() {}
+    func getRecipesDidFailWithEmptyRecipes() {
+        loadingRecipes.isHidden = true
+        noRecipesLabel.isHidden = false
+    }
     
     func getNextPageDidFinish(recipes: [RecipeInfos], nextPage: Next?) {
         if let nextPage = nextPage {

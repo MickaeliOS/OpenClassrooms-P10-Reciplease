@@ -9,6 +9,7 @@ import XCTest
 @testable import Reciplease
 
 final class CoreDataTestCases: XCTestCase {
+    // MARK: - PROPERTIES
     let recipe1 = RecipeInfos(label: "label1",
                               image: "image1",
                               ingredients: [IngredientInfos(text: "text1", food: "food1"),
@@ -28,6 +29,7 @@ final class CoreDataTestCases: XCTestCase {
     var testCoreDataStack: TestCoreDataStack!
     var recipeRepository: RecipeRepository!
 
+    // MARK: - OVERRIDE TEST FUNCTIONS
     override func setUp() {
         super.setUp()
         
@@ -35,17 +37,19 @@ final class CoreDataTestCases: XCTestCase {
         recipeRepository = RecipeRepository(coreDataStackViewContext: testCoreDataStack.viewContext)
     }
     
+    // MARK: - PRIVATE FUNCTIONS
     private func addRecipes() {
         do {
-            try recipeRepository.addToRecipe(recipe: recipe1)
-            try recipeRepository.addToRecipe(recipe: recipe2)
+            try recipeRepository.addRecipe(recipe: recipe1)
+            try recipeRepository.addRecipe(recipe: recipe2)
         } catch {
             XCTFail()
         }
     }
     
+    // MARK: - TESTS
     func testAddToRecipeShouldNotThrowIfRecipeAndIngredientsAreThere() {
-        XCTAssertNoThrow(try recipeRepository.addToRecipe(recipe: recipe1))
+        XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
         
         recipeRepository.getRecipes { recipes in
             XCTAssertTrue(recipes.count == 1)
@@ -65,12 +69,8 @@ final class CoreDataTestCases: XCTestCase {
         }
     }
     
-    func testAddRecipeShouldThrowIfSavingError() {
-        //TODO
-    }
-    
     func testGetRecipeReturnsTheRecipeIfItExists() {
-        XCTAssertNoThrow(try recipeRepository.addToRecipe(recipe: recipe1))
+        XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
 
         recipeRepository.getRecipe(url: recipe1.url) { recipe in
             XCTAssertNotNil(recipe)
@@ -98,29 +98,29 @@ final class CoreDataTestCases: XCTestCase {
             let ingredient1 = recipes[0].ingredients?.firstObject as AnyObject
             let ingredient2 = recipes[0].ingredients?.lastObject as AnyObject
             
-            XCTAssertEqual(recipes[0].label, "label1")
-            XCTAssertEqual(recipes[0].image, "image1")
-            XCTAssertEqual(recipes[0].yield, 1.0)
-            XCTAssertEqual(recipes[0].url, "https://www.test1.com")
-            XCTAssertEqual(recipes[0].totalTime, 1.0)
-            XCTAssertEqual(ingredient1.text, "text1")
-            XCTAssertEqual(ingredient1.food, "food1")
-            XCTAssertEqual(ingredient2.text, "text2")
-            XCTAssertEqual(ingredient2.food, "food2")
+            XCTAssertEqual(recipes[0].label, recipe1.label)
+            XCTAssertEqual(recipes[0].image, recipe1.image)
+            XCTAssertEqual(recipes[0].yield, recipe1.yield)
+            XCTAssertEqual(recipes[0].url, recipe1.url)
+            XCTAssertEqual(recipes[0].totalTime, recipe1.totalTime)
+            XCTAssertEqual(ingredient1.text, recipe1.ingredients[0].text)
+            XCTAssertEqual(ingredient1.food, recipe1.ingredients[0].food)
+            XCTAssertEqual(ingredient2.text, recipe1.ingredients[1].text)
+            XCTAssertEqual(ingredient2.food, recipe1.ingredients[1].food)
 
             // Controls for the second recipe
             let ingredient3 = recipes[1].ingredients?.firstObject as AnyObject
             let ingredient4 = recipes[1].ingredients?.lastObject as AnyObject
             
-            XCTAssertEqual(recipes[1].label, "label2")
-            XCTAssertEqual(recipes[1].image, "image2")
-            XCTAssertEqual(recipes[1].yield, 2.0)
-            XCTAssertEqual(recipes[1].url, "https://www.test2.com")
-            XCTAssertEqual(recipes[1].totalTime, 2.0)
-            XCTAssertEqual(ingredient3.text, "text3")
-            XCTAssertEqual(ingredient3.food, "food3")
-            XCTAssertEqual(ingredient4.text, "text4")
-            XCTAssertEqual(ingredient4.food, "food4")
+            XCTAssertEqual(recipes[1].label, recipe2.label)
+            XCTAssertEqual(recipes[1].image, recipe2.image)
+            XCTAssertEqual(recipes[1].yield, recipe2.yield)
+            XCTAssertEqual(recipes[1].url, recipe2.url)
+            XCTAssertEqual(recipes[1].totalTime, recipe2.totalTime)
+            XCTAssertEqual(ingredient3.text, recipe2.ingredients[0].text)
+            XCTAssertEqual(ingredient3.food, recipe2.ingredients[0].food)
+            XCTAssertEqual(ingredient4.text, recipe2.ingredients[1].text)
+            XCTAssertEqual(ingredient4.food, recipe2.ingredients[1].food)
         }
     }
     
@@ -138,7 +138,7 @@ final class CoreDataTestCases: XCTestCase {
         var recipeToTest: Recipe?
         
         // First, we need to add a recipe to delete it later
-        XCTAssertNoThrow(try recipeRepository.addToRecipe(recipe: recipe1))
+        XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
         
         // Then, we fetch the recipe to delete it
         recipeRepository.getRecipe(url: recipe1.url) { recipe in
@@ -162,37 +162,64 @@ final class CoreDataTestCases: XCTestCase {
         //TODO
     }
     
-    // First isFavorite function
-    func testIsFavoriteFromURLReturnsTrueIfRecipeIsInFavorites() {
-        //TODO
+    func testIsFavoriteReturnsTrueIfRecipeIsInFavorites() {
+        XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
+        
+        recipeRepository.isFavorite(recipe: recipe1) { isFavorite in
+            XCTAssertTrue(isFavorite ?? false)
+        }
     }
     
-    func testIsFavoriteFromURLReturnsFalseIfRecipeIsNotInFavorites() {
-        //TODO
+    func testIsFavoriteReturnsFalseIfRecipeIsNotInFavorites() {
+        recipeRepository.isFavorite(recipe: recipe1) { isFavorite in
+            XCTAssertFalse(isFavorite ?? true)
+        }
     }
     
-    func testIsFavoriteFromURLShouldThrowIfFetchError() {
-        //TODO
-    }
-    
-    // Second isFavorite function
-    func testIsFavoriteFromRecipeInfosReturnsTrueIfRecipeIsInFavorites() {
-        //TODO
-    }
-    
-    func testIsFavoriteFromRecipeInfosReturnsFalseIfRecipeIsNotInFavorites() {
-        //TODO
-    }
-    
-    func testIsFavoriteFromRecipeInfosShouldThrowIfFetchError() {
+    func testIsFavoriteShouldThrowIfFetchError() {
         //TODO
     }
     
     func testCopyRecipeShouldSuccess() {
-        //TODO
+        XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
+
+        recipeRepository.getRecipes { recipes in
+            guard let coreDataRecipe1 = recipes.first else {
+                XCTFail()
+                return
+            }
+            
+            guard let copiedRecipe1 = recipeRepository.copyRecipe(recipe: coreDataRecipe1) else {
+                XCTFail()
+                return
+            }
+
+            XCTAssertEqual(recipes.count, 1)
+            XCTAssertEqual(copiedRecipe1.label, recipe1.label)
+            XCTAssertEqual(copiedRecipe1.image, recipe1.image)
+            XCTAssertEqual(copiedRecipe1.yield, recipe1.yield)
+            XCTAssertEqual(copiedRecipe1.url, recipe1.url)
+            XCTAssertEqual(copiedRecipe1.totalTime, recipe1.totalTime)
+            XCTAssertEqual(copiedRecipe1.ingredients[0].text, recipe1.ingredients[0].text)
+            XCTAssertEqual(copiedRecipe1.ingredients[0].food, recipe1.ingredients[0].food)
+            XCTAssertEqual(copiedRecipe1.ingredients[1].text, recipe1.ingredients[1].text)
+            XCTAssertEqual(copiedRecipe1.ingredients[1].food, recipe1.ingredients[1].food)
+        }
     }
     
     func testCopyRecipeShouldReturnNilIfOneOfOptionalParameterForRecipeIsNil() {
-        //TODO
+        XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
+
+        recipeRepository.getRecipes { recipes in
+            guard let coreDataRecipe1 = recipes.first else {
+                XCTFail()
+                return
+            }
+            
+            coreDataRecipe1.label = nil
+            
+            XCTAssertEqual(recipes.count, 1)
+            XCTAssertNil(recipeRepository.copyRecipe(recipe: coreDataRecipe1))
+        }
     }
 }

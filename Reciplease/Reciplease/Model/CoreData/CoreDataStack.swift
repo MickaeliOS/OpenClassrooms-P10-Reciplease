@@ -9,19 +9,19 @@ import Foundation
 import CoreData
 
 class CoreDataStack {
-    // MARK: - Singleton
+    // MARK: - SINGLETON
     static let sharedInstance = CoreDataStack()
     private init() {}
     
-    // MARK: - Properties
+    // MARK: - PROPERTIES
     private let persistentContainerName = "Reciplease"
     
-    // MARK: - Public
+    // MARK: - PUBLIC
     var viewContext: NSManagedObjectContext {
         return CoreDataStack.sharedInstance.persistentContainer.viewContext
     }
 
-    // MARK: - Private
+    // MARK: - PRIVATE
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
         
@@ -34,4 +34,3 @@ class CoreDataStack {
         return container
     }()
 }
-

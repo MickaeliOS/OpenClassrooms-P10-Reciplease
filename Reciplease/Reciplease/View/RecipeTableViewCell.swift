@@ -40,9 +40,10 @@ class RecipeTableViewCell: UITableViewCell {
         recipeScore.text = String(score)
         recipeTime.text = String(preparationTime)
         
-        //recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
+        recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
-        recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
+        // Proof that the images stay in cache
+        /* recipeImage.sd_setImage(with: URL(string: image), completed: { (image, error, cacheType, url) in
             if cacheType == .none {
                 print("PAS EN CACHE")
                 // L'image n'est pas en cache, elle a été téléchargée à partir du réseau
@@ -50,7 +51,8 @@ class RecipeTableViewCell: UITableViewCell {
                 print("EN CACHE")
                 // L'image est en cache
             }
-        })
+        }) */
+        
         recipeImage.layer.cornerRadius = 10
         
         generalVoiceOverSetup(title: title, preparationTime: preparationTime, score: score)
