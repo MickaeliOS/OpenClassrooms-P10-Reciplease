@@ -40,7 +40,6 @@ class RecipeRepository {
         recipeToSave.label = recipe.label
         recipeToSave.image = recipe.image
         recipeToSave.totalTime = recipe.totalTime
-        recipeToSave.yield = recipe.yield
         recipeToSave.url = recipe.url
     
         // A Recipe can have multiples ingredients, so we need to save them
@@ -121,7 +120,7 @@ class RecipeRepository {
             ingredients.append(IngredientInfos(text: (element as AnyObject).text ?? "", food: (element as AnyObject).food ?? ""))
         }
 
-        let recipeInfos = RecipeInfos(label: label, image: image, ingredients: ingredients, yield: recipe.yield, url: url, totalTime: recipe.totalTime)
+        let recipeInfos = RecipeInfos(label: label, image: image, ingredients: ingredients, url: url, totalTime: recipe.totalTime)
         
         return recipeInfos
     }

@@ -18,26 +18,22 @@ class RecipeTableViewCell: UITableViewCell {
         self.isAccessibilityElement = false
         
         // But we enable it for every items in the cell
-        self.accessibilityElements = [recipeImage!, recipeTitle!, recipeFood!, recipeScoreImage!, recipeTimeImage!, recipeScore!, recipeTime!]
+        self.accessibilityElements = [recipeImage!, recipeTitle!, recipeFood!, recipeTimeImage!, recipeTime!]
     }
     
     // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var recipeCellView: UIView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeFood: UILabel!
-    @IBOutlet weak var recipeScoreImage: UIImageView!
     @IBOutlet weak var recipeTimeImage: UIImageView!
-    @IBOutlet weak var recipeScore: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let ingredientConfiguration = IngredientConfiguration()
     
     // MARK: - FUNCTIONS
-    func configure(title: String, ingredients: [IngredientInfos], image: String, preparationTime: Double, score: Double) {
+    func configure(title: String, ingredients: [IngredientInfos], image: String, preparationTime: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: ingredients)
-        recipeScore.text = String(score)
         recipeTime.text = String(preparationTime)
         
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
@@ -55,37 +51,33 @@ class RecipeTableViewCell: UITableViewCell {
         
         recipeImage.layer.cornerRadius = 10
         
-        generalVoiceOverSetup(title: title, preparationTime: preparationTime, score: score)
+        generalVoiceOverSetup(title: title, preparationTime: preparationTime)
         setupVoiceOverIngredientsInfos(ingredients: ingredients)
     }
     
-    func configureFavorite(title: String, ingredients: NSOrderedSet, image: String, preparationTime: Double, score: Double) {
+    func configureFavorite(title: String, ingredients: NSOrderedSet, image: String, preparationTime: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatFavoriteIngredientsInOneLine(ingredients: ingredients)
-        recipeScore.text = String(score)
         recipeTime.text = String(preparationTime)
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
         recipeImage.layer.cornerRadius = 10
         
-        generalVoiceOverSetup(title: title, preparationTime: preparationTime, score: score)
+        generalVoiceOverSetup(title: title, preparationTime: preparationTime)
         setupVoiceOverIngredientsSet(ingredients: ingredients)
     }
     
     // MARK: - PRIVATE FUNCTIONS
-    private func generalVoiceOverSetup(title: String, preparationTime: Double, score: Double) {
+    private func generalVoiceOverSetup(title: String, preparationTime: Double) {
         // accessibilityLabels
         recipeTitle.accessibilityLabel = "Recipe title."
         recipeFood.accessibilityLabel = "Recipe ingredients."
-        recipeScoreImage.accessibilityLabel = "Recipe score"
         recipeTimeImage.accessibilityLabel = "Recipe time"
-        recipeScore.accessibilityLabel = "Recipe's score."
         recipeTime.accessibilityLabel = "Recipe's preparation time."
         recipeImage.accessibilityLabel = "Recipe's picture."
         
         // accessibilityValues
         recipeTitle.accessibilityValue = title
-        recipeScore.accessibilityValue = "\(score) upvotes."
         recipeTime.accessibilityValue = "\(preparationTime) minutes."
 
         // accessibilityHints

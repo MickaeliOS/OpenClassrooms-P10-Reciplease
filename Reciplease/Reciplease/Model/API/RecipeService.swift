@@ -50,7 +50,6 @@ class RecipeService {
                 let recipe = RecipeInfos(label: hit.recipe.label,
                                          image: hit.recipe.image,
                                          ingredients: hit.recipe.ingredients,
-                                         yield: hit.recipe.yield,
                                          url: hit.recipe.url,
                                          totalTime: hit.recipe.totalTime)
                 
@@ -84,7 +83,6 @@ class RecipeService {
                 let recipe = RecipeInfos(label: hit.recipe.label,
                                          image: hit.recipe.image,
                                          ingredients: hit.recipe.ingredients,
-                                         yield: hit.recipe.yield,
                                          url: hit.recipe.url,
                                          totalTime: hit.recipe.totalTime)
                 

@@ -26,9 +26,11 @@ class RecipeDetailViewController: UIViewController {
             }
             
             if favorite {
-                favoriteButton.image = UIImage(systemName: "star.fill")
+                //favoriteButton.image = UIImage(systemName: "star.fill")
+                favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
             } else {
-                favoriteButton.image = UIImage(systemName: "star")
+                //favoriteButton.image = UIImage(systemName: "star")
+                favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             }
         }
     }
@@ -38,14 +40,15 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeDetails: UITextView!
     @IBOutlet weak var getDirectionsButton: UIButton!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteButton: UIButton!
     var recipe: RecipeInfos?
     let recipeRepository = RecipeRepository()
     let ingredientConfiguration = IngredientConfiguration()
 
     // MARK: - ACTIONS
     @IBAction func ManageFavorites(_ sender: Any) {
-        let imageName = favoriteButton.image?.accessibilityIdentifier
+        //let imageName = favoriteButton.image?.accessibilityIdentifier
+        let imageName = favoriteButton.currentImage?.accessibilityIdentifier
         
         if imageName == "star" {
             addRecipe()
@@ -69,7 +72,7 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe else { return }
         
         recipeTitle.text = recipe.label
-        recipeDetails.text = ingredientConfiguration.formatInstructionsInSeparateLines(ingredients: recipe.ingredients)
+        recipeDetails.text = ingredientConfiguration.formatDetailledIngredientsInSeparateLines(ingredients: recipe.ingredients)
         
         recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         
@@ -82,7 +85,8 @@ class RecipeDetailViewController: UIViewController {
         
         do {
             try recipeRepository.addRecipe(recipe: recipe)
-            favoriteButton.image = UIImage(systemName: "star.fill")
+            //favoriteButton.image = UIImage(systemName: "star.fill")
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {
@@ -98,8 +102,8 @@ class RecipeDetailViewController: UIViewController {
             
             do {
                 try recipeRepository.deleteRecipe(recipe: recipe)
-                favoriteButton.image = UIImage(systemName: "star")
-
+                //favoriteButton.image = UIImage(systemName: "star")
+                favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             } catch let error as RecipeRepository.RecipeError {
                 presentAlert(with: error.localizedDescription)
             } catch {
@@ -112,7 +116,7 @@ class RecipeDetailViewController: UIViewController {
         // accessibilityLabel
         recipeTitle.accessibilityLabel = "Recipe's title."
         recipeImage.accessibilityLabel = "Recipe's picture."
-        recipeDetails.accessibilityLabel = "Recipe's instructions."
+        recipeDetails.accessibilityLabel = "Recipe's detailled ingredients."
         favoriteButton.accessibilityLabel = "Favorites."
         
         // accessibilityValue

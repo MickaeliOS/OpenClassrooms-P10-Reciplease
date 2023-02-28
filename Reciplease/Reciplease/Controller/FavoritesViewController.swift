@@ -69,8 +69,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configureFavorite(title: title,
                        ingredients: ingredients,
                        image: image,
-                       preparationTime: recipe.totalTime,
-                       score: recipe.yield)
+                       preparationTime: recipe.totalTime)
         return cell
     }
     

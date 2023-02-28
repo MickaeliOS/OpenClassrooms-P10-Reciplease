@@ -10,7 +10,7 @@ import CoreData
 
 class TestCoreDataStack: NSObject {
     // MARK: - PROPERTIES
-    let persistentContainerName: String
+    let persistentContainerName: String = "Reciplease"
     var viewContext: NSManagedObjectContext {
         return self.persistentContainer.viewContext
     }
@@ -29,9 +29,4 @@ class TestCoreDataStack: NSObject {
         }
         return container
     }()
-
-    // MARK: - INIT
-    init(persistentContainerName: String = "Reciplease") {
-        self.persistentContainerName = persistentContainerName
-    }
 }

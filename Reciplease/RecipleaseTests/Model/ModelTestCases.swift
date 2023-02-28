@@ -23,8 +23,8 @@ final class ModelTestCases: XCTestCase {
         ingredientConfiguration = IngredientConfiguration()
         
         ingredientsOrderedSet = NSOrderedSet()
-        ingredientsInfos = [IngredientInfos(text: "Instruction1", food: "Tomato"),
-                            IngredientInfos(text: "Instruction2", food: "Banana")]
+        ingredientsInfos = [IngredientInfos(text: "DetailledIngredients1", food: "Tomato"),
+                            IngredientInfos(text: "DetailledIngredients2", food: "Banana")]
     }
     
     // MARK: - TESTS FOR RESEARCH
@@ -129,16 +129,16 @@ final class ModelTestCases: XCTestCase {
         XCTAssertEqual(formatedIngredients, "")
     }
     
-    func testFormatInstructionsInSeparateLines() {
-        let formatedInstructions = ingredientConfiguration.formatInstructionsInSeparateLines(ingredients: ingredientsInfos)
-        XCTAssertEqual(formatedInstructions, "- Instruction1\n- Instruction2\n")
+    func testFormatDetailledIngredientsInSeparateLines() {
+        let formatedDetailledIngredients = ingredientConfiguration.formatDetailledIngredientsInSeparateLines(ingredients: ingredientsInfos)
+        XCTAssertEqual(formatedDetailledIngredients, "- DetailledIngredients1\n- DetailledIngredients2\n")
     }
     
-    func testFormatInstructionsInSeparateLinesFromEmptyList() {
+    func testFormatDetailledIngredientsInSeparateLinesFromEmptyList() {
         let emptyIngredientsInfos: [IngredientInfos] = []
 
-        let formatedInstructions = ingredientConfiguration.formatInstructionsInSeparateLines(ingredients: emptyIngredientsInfos)
-        XCTAssertEqual(formatedInstructions, "")
+        let formatedDetailledIngredients = ingredientConfiguration.formatDetailledIngredientsInSeparateLines(ingredients: emptyIngredientsInfos)
+        XCTAssertEqual(formatedDetailledIngredients, "")
     }
     
     // MARK: - TESTS FOR FAVORITES
@@ -158,19 +158,19 @@ final class ModelTestCases: XCTestCase {
         XCTAssertEqual(result, "")
     }
     
-    func testFormatFavoritesInstructionsInSeparateLines() {
-        let instructions = NSOrderedSet(array: [
+    func testFormatFavoritesDetailledIngredientsInSeparateLines() {
+        let detailledIngredients = NSOrderedSet(array: [
             ["text": "Wash the carrots"],
             ["text": "Chop the peppers"],
             ["text": "Slice the onions"]
         ])
         
-        let result = ingredientConfiguration.formatFavoritesInstructionsInSeparateLines(ingredients: instructions)
+        let result = ingredientConfiguration.formatFavoritesDetailledIngredientsInSeparateLines(ingredients: detailledIngredients)
         XCTAssertEqual(result, "- Wash the carrots\n- Chop the peppers\n- Slice the onions\n")
     }
     
-    func testFormatFavoritesInstructionsInSeparateLinesFromEmptyList() {
-        let result = ingredientConfiguration.formatFavoritesInstructionsInSeparateLines(ingredients: ingredientsOrderedSet)
+    func testFormatFavoritesDetailledIngredientsInSeparateLinesFromEmptyList() {
+        let result = ingredientConfiguration.formatFavoritesDetailledIngredientsInSeparateLines(ingredients: ingredientsOrderedSet)
         XCTAssertEqual(result, "")
     }
 }

@@ -24,7 +24,7 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeDetails: UITextView!
     @IBOutlet weak var getDirectionsButton: UIButton!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteButton: UIButton!
     var recipe: Recipe?
     var copiedRecipe: RecipeInfos?
     let ingredientConfiguration = IngredientConfiguration()
@@ -40,8 +40,8 @@ class FavoritesDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func ManageFavorites(_ sender: UIBarButtonItem) {
-        let imageName = favoriteButton.image?.accessibilityIdentifier
+    @IBAction func ManageFavorites(_ sender: UIButton) {
+        let imageName = favoriteButton.currentImage?.accessibilityIdentifier
         
         if imageName == "star" {
             addRecipe()
@@ -58,7 +58,7 @@ class FavoritesDetailsViewController: UIViewController {
         
         copiedRecipe = recipeRepository.copyRecipe(recipe: recipe)
         recipeTitle.text = recipe.label
-        recipeDetails.text = ingredientConfiguration.formatFavoritesInstructionsInSeparateLines(ingredients: ingredients)
+        recipeDetails.text = ingredientConfiguration.formatFavoritesDetailledIngredientsInSeparateLines(ingredients: ingredients)
         
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
@@ -72,7 +72,7 @@ class FavoritesDetailsViewController: UIViewController {
         do {
             try recipeRepository.addRecipe(recipe: copiedRecipe)
             reloadRecipe(copiedRecipe: copiedRecipe)
-            favoriteButton.image = UIImage(systemName: "star.fill")
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {
@@ -85,7 +85,7 @@ class FavoritesDetailsViewController: UIViewController {
 
         do {
             try recipeRepository.deleteRecipe(recipe: recipe)
-            favoriteButton.image = UIImage(systemName: "star")
+            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             self.recipe = nil
             
         } catch let error as RecipeRepository.RecipeError {
@@ -99,7 +99,7 @@ class FavoritesDetailsViewController: UIViewController {
         // accessibilityLabel
         recipeTitle.accessibilityLabel = "Recipe's title."
         recipeImage.accessibilityLabel = "Recipe's picture."
-        recipeDetails.accessibilityLabel = "Recipe's instructions."
+        recipeDetails.accessibilityLabel = "Recipe's detailled ingredients."
         favoriteButton.accessibilityLabel = "Favorites."
         
         // accessibilityValue
@@ -119,14 +119,14 @@ class FavoritesDetailsViewController: UIViewController {
             }
             
             if favorite {
-                favoriteButton.image = UIImage(systemName: "star.fill")
+                favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
                 
                 // If recipe is nil but exists in favorites, it means the recipe has been deleted previously but re-added after
                 // So we reload it
                 reloadRecipe(copiedRecipe: copiedRecipe)
                 
             } else {
-                favoriteButton.image = UIImage(systemName: "star")
+                favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             }
         }
     }

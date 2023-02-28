@@ -205,7 +205,6 @@ extension APITestCases {
         XCTAssertEqual(result[0].ingredients[0].food, "flap steak")
         XCTAssertEqual(result[0].ingredients[1].text, "Accompaniments: homemade burger buns ; homemade ketchup ; homemade mustard ; homemade pickle relish ; lettuce and tomato")
         XCTAssertEqual(result[0].ingredients[1].food, "ketchup")
-        XCTAssertEqual(result[0].yield, 6.0)
         XCTAssertEqual(result[0].url, "https://www.epicurious.com/recipes/food/views/the-ultimate-burger-353654")
         XCTAssertEqual(result[0].totalTime, 0.0)
 
@@ -216,7 +215,6 @@ extension APITestCases {
         XCTAssertEqual(result[1].ingredients[0].food, "Boneless, Skinless Chicken Breasts")
         XCTAssertEqual(result[1].ingredients[1].text, "10 ounces cans of Red Enchilada Sauce")
         XCTAssertEqual(result[1].ingredients[1].food, "Enchilada Sauce")
-        XCTAssertEqual(result[1].yield, 6.0)
         XCTAssertEqual(result[1].url, "http://www.foodista.com/recipe/WM652VQB/stephs-shredded-chicken-tacos")
         XCTAssertEqual(result[1].totalTime, 0.0)
     }

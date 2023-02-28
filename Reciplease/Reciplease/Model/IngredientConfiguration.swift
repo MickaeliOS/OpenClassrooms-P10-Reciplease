@@ -58,12 +58,12 @@ class IngredientConfiguration {
         return ingredientsFood.map { $0.food }.joined(separator: ", ")
     }
     
-    func formatInstructionsInSeparateLines(ingredients: [IngredientInfos]) -> String {
+    func formatDetailledIngredientsInSeparateLines(ingredients: [IngredientInfos]) -> String {
         guard !ingredients.isEmpty else {
             return ""
         }
         
-        // We want to display the instructions in separate lines
+        // We want to display the detailled ingredients in separate lines
         let formattedIngredients = ingredients.map { "- \($0.text)\n" }
         return formattedIngredients.joined()
     }
@@ -78,15 +78,15 @@ class IngredientConfiguration {
         return ingredients.joined(separator: ", ")
     }
     
-    func formatFavoritesInstructionsInSeparateLines(ingredients: NSOrderedSet) -> String {
+    func formatFavoritesDetailledIngredientsInSeparateLines(ingredients: NSOrderedSet) -> String {
         guard ingredients.count > 0 else {
             return ""
         }
         
-        let instructions = ingredients.map { ($0 as AnyObject).value(forKey: "text") as? String }.compactMap { $0 }
+        let detailledIngredients = ingredients.map { ($0 as AnyObject).value(forKey: "text") as? String }.compactMap { $0 }
         var formattedIngredients = ""
         
-        for instruction in instructions {
+        for instruction in detailledIngredients {
             formattedIngredients += "- \(instruction)\n"
         }
         return formattedIngredients

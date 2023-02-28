@@ -60,8 +60,7 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(title: recipe.label,
                        ingredients: recipe.ingredients,
                        image: recipe.image,
-                       preparationTime: recipe.totalTime,
-                       score: recipe.yield)
+                       preparationTime: recipe.totalTime)
                 
         if indexPath.row == recipes.count - 1 {
             guard let nextPage = nextPage else { return UITableViewCell() }

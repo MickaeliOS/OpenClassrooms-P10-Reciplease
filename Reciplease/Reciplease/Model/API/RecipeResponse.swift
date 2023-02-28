@@ -26,7 +26,6 @@ struct RecipeInfos: Decodable {
     let label: String
     let image: String
     let ingredients: [IngredientInfos]
-    let yield: Double
     let url: String
     let totalTime: Double
 }

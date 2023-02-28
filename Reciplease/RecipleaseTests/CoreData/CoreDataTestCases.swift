@@ -14,7 +14,6 @@ final class CoreDataTestCases: XCTestCase {
                               image: "image1",
                               ingredients: [IngredientInfos(text: "text1", food: "food1"),
                                             IngredientInfos(text: "text2", food: "food2")],
-                              yield: 1.0,
                               url: "https://www.test1.com",
                               totalTime: 1.0)
     
@@ -22,7 +21,6 @@ final class CoreDataTestCases: XCTestCase {
                               image: "image2",
                               ingredients: [IngredientInfos(text: "text3", food: "food3"),
                                             IngredientInfos(text: "text4", food: "food4")],
-                              yield: 2.0,
                               url: "https://www.test2.com",
                               totalTime: 2.0)
     
@@ -59,7 +57,6 @@ final class CoreDataTestCases: XCTestCase {
             
             XCTAssertEqual(recipes[0].label, recipe1.label)
             XCTAssertEqual(recipes[0].image, recipe1.image)
-            XCTAssertEqual(recipes[0].yield, recipe1.yield)
             XCTAssertEqual(recipes[0].url, recipe1.url)
             XCTAssertEqual(recipes[0].totalTime, recipe1.totalTime)
             XCTAssertEqual(ingredient1.text, recipe1.ingredients[0].text)
@@ -82,10 +79,6 @@ final class CoreDataTestCases: XCTestCase {
             XCTAssertNil(recipe)
         }
     }
-    
-    func testGetRecipeShouldThrowIfFetchError() {
-        //TODO
-    }
         
     func testGetRecipesShouldSuccess() {
         // I'm adding 2 recipes for the test
@@ -100,7 +93,6 @@ final class CoreDataTestCases: XCTestCase {
             
             XCTAssertEqual(recipes[0].label, recipe1.label)
             XCTAssertEqual(recipes[0].image, recipe1.image)
-            XCTAssertEqual(recipes[0].yield, recipe1.yield)
             XCTAssertEqual(recipes[0].url, recipe1.url)
             XCTAssertEqual(recipes[0].totalTime, recipe1.totalTime)
             XCTAssertEqual(ingredient1.text, recipe1.ingredients[0].text)
@@ -114,7 +106,6 @@ final class CoreDataTestCases: XCTestCase {
             
             XCTAssertEqual(recipes[1].label, recipe2.label)
             XCTAssertEqual(recipes[1].image, recipe2.image)
-            XCTAssertEqual(recipes[1].yield, recipe2.yield)
             XCTAssertEqual(recipes[1].url, recipe2.url)
             XCTAssertEqual(recipes[1].totalTime, recipe2.totalTime)
             XCTAssertEqual(ingredient3.text, recipe2.ingredients[0].text)
@@ -128,10 +119,6 @@ final class CoreDataTestCases: XCTestCase {
         recipeRepository.getRecipes { recipes in
             XCTAssertEqual(recipes, [])
         }
-    }
-    
-    func testGetRecipesShouldThrowIfFetchError() {
-        //TODO
     }
     
     func testDeleteRecipeShouldNotThrowIfWeDeleteAnExistingRecipe() {
@@ -158,10 +145,6 @@ final class CoreDataTestCases: XCTestCase {
         XCTAssertNoThrow(try recipeRepository.deleteRecipe(recipe: Recipe()))
     }
     
-    func testDeleteRecipeShouldThrowIfSavingError() {
-        //TODO
-    }
-    
     func testIsFavoriteReturnsTrueIfRecipeIsInFavorites() {
         XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
         
@@ -174,10 +157,6 @@ final class CoreDataTestCases: XCTestCase {
         recipeRepository.isFavorite(recipe: recipe1) { isFavorite in
             XCTAssertFalse(isFavorite ?? true)
         }
-    }
-    
-    func testIsFavoriteShouldThrowIfFetchError() {
-        //TODO
     }
     
     func testCopyRecipeShouldSuccess() {
@@ -197,7 +176,6 @@ final class CoreDataTestCases: XCTestCase {
             XCTAssertEqual(recipes.count, 1)
             XCTAssertEqual(copiedRecipe1.label, recipe1.label)
             XCTAssertEqual(copiedRecipe1.image, recipe1.image)
-            XCTAssertEqual(copiedRecipe1.yield, recipe1.yield)
             XCTAssertEqual(copiedRecipe1.url, recipe1.url)
             XCTAssertEqual(copiedRecipe1.totalTime, recipe1.totalTime)
             XCTAssertEqual(copiedRecipe1.ingredients[0].text, recipe1.ingredients[0].text)
