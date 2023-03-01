@@ -292,49 +292,40 @@
                                                             <rect key="frame" x="160" y="0.0" width="210" height="150"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvA-mF-TqJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="49.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dmr-rh-HLB">
-                                                                    <rect key="frame" x="0.0" y="43" width="210" height="47"/>
+                                                                    <rect key="frame" x="0.0" y="49.333333333333336" width="210" height="70.666666666666657"/>
                                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bAB-Xf-tnK">
-                                                                    <rect key="frame" x="0.0" y="90" width="210" height="60"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WlD-93-ND7">
+                                                                    <rect key="frame" x="0.0" y="120" width="210" height="30"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bKY-us-6Sk">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="210" height="30"/>
-                                                                            <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="f94-Vc-b7h">
-                                                                                    <rect key="frame" x="0.0" y="0.99999999999999822" width="210" height="28.666666666666664"/>
-                                                                                    <color key="tintColor" name="buttons"/>
-                                                                                    <accessibility key="accessibilityConfiguration">
-                                                                                        <bool key="isElement" value="YES"/>
-                                                                                    </accessibility>
-                                                                                </imageView>
-                                                                            </subviews>
-                                                                        </stackView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pIa-eG-k33">
-                                                                            <rect key="frame" x="0.0" y="30" width="210" height="30"/>
-                                                                            <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yom-El-Bn8">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="30"/>
-                                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
-                                                                                    <nil key="textColor"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                </label>
-                                                                            </subviews>
-                                                                        </stackView>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="f94-Vc-b7h">
+                                                                            <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
+                                                                            <color key="tintColor" name="buttons"/>
+                                                                            <accessibility key="accessibilityConfiguration">
+                                                                                <bool key="isElement" value="YES"/>
+                                                                            </accessibility>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="Uhq-ge-EEI"/>
+                                                                                <constraint firstAttribute="height" constant="30" id="ybx-Ph-PF1"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yom-El-Bn8">
+                                                                            <rect key="frame" x="40" y="0.0" width="170" height="30"/>
+                                                                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="bAB-Xf-tnK" firstAttribute="height" secondItem="2R8-EM-E1f" secondAttribute="height" multiplier="0.4" id="AM2-4q-mdg"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" name="background"/>
@@ -451,8 +442,29 @@
                                             <constraint firstItem="Qei-6f-Ze7" firstAttribute="height" secondItem="Z3e-1f-aAc" secondAttribute="height" id="g1j-jN-fmy"/>
                                         </constraints>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="H1X-oN-u4X">
+                                        <rect key="frame" x="0.0" y="351" width="340" height="53.333333333333314"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zhj-TQ-OKH">
+                                                <rect key="frame" x="0.0" y="0.99999999999999822" width="340" height="28.666666666666664"/>
+                                                <color key="tintColor" name="buttons"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="KCW-yN-2Fn"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jL-vz-Aoh">
+                                                <rect key="frame" x="0.0" y="30" width="340" height="23.333333333333329"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-pf-lUR">
-                                        <rect key="frame" x="0.0" y="351" width="340" height="222"/>
+                                        <rect key="frame" x="0.0" y="414.33333333333337" width="340" height="158.66666666666663"/>
                                         <color key="backgroundColor" name="background"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
@@ -502,7 +514,7 @@
                                         </state>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Save">
                                             <imageReference key="image" image="star" catalog="system" symbolScale="large"/>
-                                            <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="16"/>
+                                            <fontDescription key="titleFontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                             <color key="baseForegroundColor" name="navBarItems"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -524,6 +536,8 @@
                         <outlet property="getDirectionsButton" destination="GoJ-S3-4kP" id="obP-EU-4XH"/>
                         <outlet property="recipeDetails" destination="bRX-pf-lUR" id="Idu-cY-cxn"/>
                         <outlet property="recipeImage" destination="Qei-6f-Ze7" id="HU0-Y3-8YK"/>
+                        <outlet property="recipeTime" destination="0jL-vz-Aoh" id="y1y-XZ-1y9"/>
+                        <outlet property="recipeTimeImage" destination="Zhj-TQ-OKH" id="lcs-xm-9e5"/>
                         <outlet property="recipeTitle" destination="oVH-kQ-hrC" id="NcS-OS-p2G"/>
                     </connections>
                 </viewController>
@@ -663,49 +677,40 @@
                                                             <rect key="frame" x="160" y="0.0" width="210" height="150"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIA-Kf-pke">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="49.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuo-IX-6xJ">
-                                                                    <rect key="frame" x="0.0" y="43" width="210" height="47"/>
+                                                                    <rect key="frame" x="0.0" y="49.333333333333336" width="210" height="70.666666666666657"/>
                                                                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Eip-Lp-piK">
-                                                                    <rect key="frame" x="0.0" y="90" width="210" height="60"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-E4-5xv">
+                                                                    <rect key="frame" x="0.0" y="120" width="210" height="30"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-84-4Vh">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="210" height="30"/>
-                                                                            <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="p6y-cx-IZw">
-                                                                                    <rect key="frame" x="0.0" y="0.99999999999999822" width="210" height="28.666666666666664"/>
-                                                                                    <color key="tintColor" name="buttons"/>
-                                                                                    <accessibility key="accessibilityConfiguration">
-                                                                                        <bool key="isElement" value="YES"/>
-                                                                                    </accessibility>
-                                                                                </imageView>
-                                                                            </subviews>
-                                                                        </stackView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AyP-IG-RSu">
-                                                                            <rect key="frame" x="0.0" y="30" width="210" height="30"/>
-                                                                            <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLb-Ti-wEs">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="30"/>
-                                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
-                                                                                    <nil key="textColor"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                </label>
-                                                                            </subviews>
-                                                                        </stackView>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="p6y-cx-IZw">
+                                                                            <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
+                                                                            <color key="tintColor" name="buttons"/>
+                                                                            <accessibility key="accessibilityConfiguration">
+                                                                                <bool key="isElement" value="YES"/>
+                                                                            </accessibility>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="MQD-YM-Kwr"/>
+                                                                                <constraint firstAttribute="height" constant="30" id="pko-df-AYH"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLb-Ti-wEs">
+                                                                            <rect key="frame" x="40" y="0.0" width="170" height="30"/>
+                                                                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="Eip-Lp-piK" firstAttribute="height" secondItem="hYh-pK-jes" secondAttribute="height" multiplier="0.4" id="v8j-6b-njS"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" name="background"/>
@@ -813,8 +818,29 @@
                                             <constraint firstItem="tTa-xT-toE" firstAttribute="height" secondItem="8Rg-TS-DcT" secondAttribute="height" id="kIE-4q-Gjb"/>
                                         </constraints>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bWk-LU-YOE">
+                                        <rect key="frame" x="0.0" y="351" width="340" height="47.666666666666686"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="11z-bU-bnh">
+                                                <rect key="frame" x="0.0" y="0.99999999999999822" width="340" height="28.666666666666664"/>
+                                                <color key="tintColor" name="buttons"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="XuQ-9d-2vJ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLb-Ge-jpl">
+                                                <rect key="frame" x="0.0" y="30" width="340" height="17.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rbx-s6-wep">
-                                        <rect key="frame" x="0.0" y="351" width="340" height="222"/>
+                                        <rect key="frame" x="0.0" y="408.66666666666669" width="340" height="164.33333333333331"/>
                                         <color key="backgroundColor" name="background"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
@@ -886,6 +912,8 @@
                         <outlet property="getDirectionsButton" destination="VDV-nE-XVr" id="Zh5-5h-5su"/>
                         <outlet property="recipeDetails" destination="Rbx-s6-wep" id="vsL-M5-nda"/>
                         <outlet property="recipeImage" destination="tTa-xT-toE" id="6Vm-Wb-31N"/>
+                        <outlet property="recipeTime" destination="uLb-Ge-jpl" id="dXf-Yq-JmD"/>
+                        <outlet property="recipeTimeImage" destination="11z-bU-bnh" id="1vp-S4-uvT"/>
                         <outlet property="recipeTitle" destination="eZi-Li-btw" id="NsL-Cl-bgT"/>
                     </connections>
                 </viewController>

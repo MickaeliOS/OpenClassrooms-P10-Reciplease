@@ -25,6 +25,8 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var recipeDetails: UITextView!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var recipeTime: UILabel!
+    @IBOutlet weak var recipeTimeImage: UIImageView!
     var recipe: Recipe?
     var copiedRecipe: RecipeInfos?
     let ingredientConfiguration = IngredientConfiguration()
@@ -59,6 +61,7 @@ class FavoritesDetailsViewController: UIViewController {
         copiedRecipe = recipeRepository.copyRecipe(recipe: recipe)
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatFavoritesDetailledIngredientsInSeparateLines(ingredients: ingredients)
+        recipeTime.text = "Time: \(String(recipe.totalTime))"
         
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
@@ -73,6 +76,7 @@ class FavoritesDetailsViewController: UIViewController {
             try recipeRepository.addRecipe(recipe: copiedRecipe)
             reloadRecipe(copiedRecipe: copiedRecipe)
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            favoriteButton.accessibilityValue = "In favorite"
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {
@@ -87,7 +91,7 @@ class FavoritesDetailsViewController: UIViewController {
             try recipeRepository.deleteRecipe(recipe: recipe)
             favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             self.recipe = nil
-            
+            favoriteButton.accessibilityValue = "Not in favorite"
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {
@@ -99,15 +103,16 @@ class FavoritesDetailsViewController: UIViewController {
         // accessibilityLabel
         recipeTitle.accessibilityLabel = "Recipe's title."
         recipeImage.accessibilityLabel = "Recipe's picture."
+        recipeTimeImage.accessibilityLabel = "Recipe time"
         recipeDetails.accessibilityLabel = "Recipe's detailled ingredients."
-        favoriteButton.accessibilityLabel = "Favorites."
+        favoriteButton.accessibilityLabel = "Save your recipe."
         
         // accessibilityValue
         recipeTitle.accessibilityValue = recipeTitle.text ?? ""
         
         // accessibilityHint
         getDirectionsButton.accessibilityHint = "Recipe's instructions web page."
-        favoriteButton.accessibilityHint = "Add the recipe to your favorites."
+        favoriteButton.accessibilityHint = "Add or remove the recipe from your favorites."
     }
     
     private func recipeControl() {
@@ -120,6 +125,7 @@ class FavoritesDetailsViewController: UIViewController {
             
             if favorite {
                 favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                favoriteButton.accessibilityValue = "In favorite"
                 
                 // If recipe is nil but exists in favorites, it means the recipe has been deleted previously but re-added after
                 // So we reload it
@@ -127,6 +133,7 @@ class FavoritesDetailsViewController: UIViewController {
                 
             } else {
                 favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+                favoriteButton.accessibilityValue = "Not in favorite"
             }
         }
     }

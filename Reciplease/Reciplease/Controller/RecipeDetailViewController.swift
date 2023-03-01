@@ -28,9 +28,11 @@ class RecipeDetailViewController: UIViewController {
             if favorite {
                 //favoriteButton.image = UIImage(systemName: "star.fill")
                 favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                favoriteButton.accessibilityValue = "In favorite"
             } else {
                 //favoriteButton.image = UIImage(systemName: "star")
                 favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+                favoriteButton.accessibilityValue = "Not in favorite"
             }
         }
     }
@@ -41,6 +43,8 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var recipeDetails: UITextView!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var recipeTimeImage: UIImageView!
+    @IBOutlet weak var recipeTime: UILabel!
     var recipe: RecipeInfos?
     let recipeRepository = RecipeRepository()
     let ingredientConfiguration = IngredientConfiguration()
@@ -73,6 +77,7 @@ class RecipeDetailViewController: UIViewController {
         
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatDetailledIngredientsInSeparateLines(ingredients: recipe.ingredients)
+        recipeTime.text = "Time: \(String(recipe.totalTime))"
         
         recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         
@@ -85,8 +90,8 @@ class RecipeDetailViewController: UIViewController {
         
         do {
             try recipeRepository.addRecipe(recipe: recipe)
-            //favoriteButton.image = UIImage(systemName: "star.fill")
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            favoriteButton.accessibilityValue = "In favorite"
         } catch let error as RecipeRepository.RecipeError {
             presentAlert(with: error.localizedDescription)
         } catch {
@@ -102,8 +107,8 @@ class RecipeDetailViewController: UIViewController {
             
             do {
                 try recipeRepository.deleteRecipe(recipe: recipe)
-                //favoriteButton.image = UIImage(systemName: "star")
                 favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+                favoriteButton.accessibilityValue = "Not in favorite"
             } catch let error as RecipeRepository.RecipeError {
                 presentAlert(with: error.localizedDescription)
             } catch {
@@ -116,6 +121,7 @@ class RecipeDetailViewController: UIViewController {
         // accessibilityLabel
         recipeTitle.accessibilityLabel = "Recipe's title."
         recipeImage.accessibilityLabel = "Recipe's picture."
+        recipeTimeImage.accessibilityLabel = "Recipe time"
         recipeDetails.accessibilityLabel = "Recipe's detailled ingredients."
         favoriteButton.accessibilityLabel = "Favorites."
         
@@ -124,7 +130,7 @@ class RecipeDetailViewController: UIViewController {
         
         // accessibilityHint
         getDirectionsButton.accessibilityHint = "Recipe's instructions web page."
-        favoriteButton.accessibilityHint = "Add the recipe to your favorites."
+        favoriteButton.accessibilityHint = "Add or remove the recipe from your favorites."
     }
     
     /*private func removeRecipe() {

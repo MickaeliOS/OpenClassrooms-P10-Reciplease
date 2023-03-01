@@ -34,7 +34,7 @@ class RecipeTableViewCell: UITableViewCell {
     func configure(title: String, ingredients: [IngredientInfos], image: String, preparationTime: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: ingredients)
-        recipeTime.text = String(preparationTime)
+        recipeTime.text = "Time: \(String(preparationTime))"
         
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
@@ -58,7 +58,7 @@ class RecipeTableViewCell: UITableViewCell {
     func configureFavorite(title: String, ingredients: NSOrderedSet, image: String, preparationTime: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatFavoriteIngredientsInOneLine(ingredients: ingredients)
-        recipeTime.text = String(preparationTime)
+        recipeTime.text = "Time: \(String(preparationTime))"
         recipeImage.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: "photo"))
         
         recipeImage.layer.cornerRadius = 10
