@@ -17,24 +17,7 @@ class RecipeDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        guard let recipe = recipe else { return }
-
-        recipeRepository.isFavorite(recipe: recipe) { favorite in
-            guard let favorite = favorite else {
-                return
-            }
-            
-            if favorite {
-                //favoriteButton.image = UIImage(systemName: "star.fill")
-                favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-                favoriteButton.accessibilityValue = "In favorite"
-            } else {
-                //favoriteButton.image = UIImage(systemName: "star")
-                favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-                favoriteButton.accessibilityValue = "Not in favorite"
-            }
-        }
+        controlFavorites()
     }
 
     // MARK: - OUTLETS & VARIABLES
@@ -45,30 +28,18 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var recipeTimeImage: UIImageView!
     @IBOutlet weak var recipeTime: UILabel!
+    
     var recipe: RecipeInfos?
     let recipeRepository = RecipeRepository()
     let ingredientConfiguration = IngredientConfiguration()
 
     // MARK: - ACTIONS
     @IBAction func ManageFavorites(_ sender: Any) {
-        //let imageName = favoriteButton.image?.accessibilityIdentifier
-        let imageName = favoriteButton.currentImage?.accessibilityIdentifier
-        
-        if imageName == "star" {
-            addRecipe()
-        } else if imageName == "star.fill" {
-            removeFromRecipes()
-        }
+        addOrDeleteRecipe()
     }
     
     @IBAction func getDirections(_ sender: Any) {
-        guard let recipe = recipe else {
-            return
-        }
-        
-        if let url = URL(string: recipe.url) {
-            UIApplication.shared.open(url)
-        }
+        recipeWebPage()
     }
     
     // MARK: - PRIVATE FUNCTIONS
@@ -78,11 +49,28 @@ class RecipeDetailViewController: UIViewController {
         recipeTitle.text = recipe.label
         recipeDetails.text = ingredientConfiguration.formatDetailledIngredientsInSeparateLines(ingredients: recipe.ingredients)
         recipeTime.text = "Time: \(String(recipe.totalTime))"
-        
         recipeImage.sd_setImage(with: URL(string: recipe.image), placeholderImage: UIImage(systemName: "photo"))
         
         getDirectionsButton.layer.cornerRadius = 10
         recipeImage.layer.cornerRadius = 10
+    }
+    
+    private func controlFavorites() {
+        guard let recipe = recipe else { return }
+
+        recipeRepository.isFavorite(recipe: recipe) { favorite in
+            guard let favorite = favorite else {
+                return
+            }
+            
+            if favorite {
+                favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                favoriteButton.accessibilityValue = "In favorite"
+            } else {
+                favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+                favoriteButton.accessibilityValue = "Not in favorite"
+            }
+        }
     }
     
     private func addRecipe() {
@@ -117,6 +105,26 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
+    private func addOrDeleteRecipe() {
+        let imageName = favoriteButton.currentImage?.accessibilityIdentifier
+        
+        if imageName == "star" {
+            addRecipe()
+        } else if imageName == "star.fill" {
+            removeFromRecipes()
+        }
+    }
+    
+    private func recipeWebPage() {
+        guard let recipe = recipe else {
+            return
+        }
+        
+        if let url = URL(string: recipe.url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     private func setupVoiceOver() {
         // accessibilityLabel
         recipeTitle.accessibilityLabel = "Recipe's title."
@@ -132,18 +140,4 @@ class RecipeDetailViewController: UIViewController {
         getDirectionsButton.accessibilityHint = "Recipe's instructions web page."
         favoriteButton.accessibilityHint = "Add or remove the recipe from your favorites."
     }
-    
-    /*private func removeRecipe() {
-        guard let recipe = recipe else { return }
-
-        do {
-            try recipeRepository.deleteRecipe(recipeInfos: recipe)
-            favoriteButton.image = UIImage(systemName: "star")
-
-        } catch let error as RecipeRepository.RecipeError {
-            presentAlert(with: error.localizedDescription)
-        } catch {
-            presentAlert(with: "An error occurred.")
-        }
-    }*/
 }

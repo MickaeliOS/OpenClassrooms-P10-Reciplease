@@ -22,6 +22,8 @@ class IngredientsViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        
+        // If we change the theme, we need to reload the ingredientTextField's border color
         ingredientTextField.addBottomBorder()
     }
 
@@ -162,8 +164,8 @@ extension IngredientsViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Always remove the data first
             do {
+                // Always remove the data first
                 try ingredientConfiguration.removeIngredients(at: indexPath.row)
                 
                 // Then, the cell

@@ -8,7 +8,7 @@
 import UIKit
 
 class FavoritesDetailsViewController: UIViewController {
-
+    // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
@@ -20,6 +20,7 @@ class FavoritesDetailsViewController: UIViewController {
         recipeControl()
     }
 
+    // MARK: - OUTLETS & VARIABLES
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeDetails: UITextView!
@@ -27,31 +28,22 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var recipeTime: UILabel!
     @IBOutlet weak var recipeTimeImage: UIImageView!
+    
     var recipe: Recipe?
     var copiedRecipe: RecipeInfos?
     let ingredientConfiguration = IngredientConfiguration()
     let recipeRepository = RecipeRepository()
     
+    // MARK: - ACTIONS
     @IBAction func getDirections(_ sender: UIButton) {
-        guard let recipe = recipe, let url = recipe.url else {
-            return
-        }
-        
-        if let url = URL(string: url) {
-            UIApplication.shared.open(url)
-        }
+        recipeWebPage()
     }
     
     @IBAction func ManageFavorites(_ sender: UIButton) {
-        let imageName = favoriteButton.currentImage?.accessibilityIdentifier
-        
-        if imageName == "star" {
-            addRecipe()
-        } else if imageName == "star.fill" {
-            removeFromFavorite()
-        }
+        addOrDeleteRecipe()
     }
     
+    // MARK: - PRIVATE FUNCTIONS
     private func setupInterface() {
         guard let recipe = recipe,
               let ingredients = recipe.ingredients,
@@ -96,6 +88,26 @@ class FavoritesDetailsViewController: UIViewController {
             presentAlert(with: error.localizedDescription)
         } catch {
             presentAlert(with: "An error occurred.")
+        }
+    }
+    
+    private func addOrDeleteRecipe() {
+        let imageName = favoriteButton.currentImage?.accessibilityIdentifier
+        
+        if imageName == "star" {
+            addRecipe()
+        } else if imageName == "star.fill" {
+            removeFromFavorite()
+        }
+    }
+    
+    private func recipeWebPage() {
+        guard let recipe = recipe, let url = recipe.url else {
+            return
+        }
+        
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url)
         }
     }
     
