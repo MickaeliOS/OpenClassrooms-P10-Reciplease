@@ -112,15 +112,19 @@ class FavoritesDetailsViewController: UIViewController {
     }
     
     private func setupVoiceOver() {
+        guard let recipe = recipe else { return }
+        
         // accessibilityLabel
         recipeTitle.accessibilityLabel = "Recipe's title."
         recipeImage.accessibilityLabel = "Recipe's picture."
         recipeTimeImage.accessibilityLabel = "Recipe time"
+        recipeTime.accessibilityLabel = "Recipe's preparation time."
         recipeDetails.accessibilityLabel = "Recipe's detailled ingredients."
         favoriteButton.accessibilityLabel = "Save your recipe."
         
         // accessibilityValue
         recipeTitle.accessibilityValue = recipeTitle.text ?? ""
+        recipeTime.accessibilityValue = "\(recipe.totalTime) minutes."
         
         // accessibilityHint
         getDirectionsButton.accessibilityHint = "Recipe's instructions web page."
