@@ -192,8 +192,8 @@
 		8322CF0E298923BE00937BBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8362763A298BF3E800C8B13F /* CoreData */,
 				83627629298A92B200C8B13F /* API */,
+				8362763A298BF3E800C8B13F /* CoreData */,
 				8362762E298A953300C8B13F /* IngredientConfiguration.swift */,
 			);
 			path = Model;
@@ -227,9 +227,9 @@
 		8327109F29A4CBF1009F7825 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				83CBFAA729A89E58007DFC05 /* CoreData */,
-				83CBFAA629A89E4B007DFC05 /* Model */,
 				83CBFAA529A89E31007DFC05 /* API */,
+				83CBFAA629A89E4B007DFC05 /* Model */,
+				83CBFAA729A89E58007DFC05 /* CoreData */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";

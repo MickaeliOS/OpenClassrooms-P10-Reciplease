@@ -819,7 +819,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bWk-LU-YOE">
-                                        <rect key="frame" x="0.0" y="351" width="340" height="47.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="351" width="340" height="53.333333333333314"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="11z-bU-bnh">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="340" height="28.666666666666664"/>
@@ -832,15 +832,15 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLb-Ge-jpl">
-                                                <rect key="frame" x="0.0" y="30" width="340" height="17.666666666666671"/>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                                <rect key="frame" x="0.0" y="30" width="340" height="23.333333333333329"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rbx-s6-wep">
-                                        <rect key="frame" x="0.0" y="408.66666666666669" width="340" height="164.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="414.33333333333337" width="340" height="158.66666666666663"/>
                                         <color key="backgroundColor" name="background"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
