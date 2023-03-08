@@ -12,6 +12,7 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getRecipes()
+        setupCell()
         setupVoiceOver()
     }
     
@@ -23,7 +24,7 @@ class RecipesViewController: UIViewController {
     
     let apiCallCenter = APICallCenter()
     var ingredientConfiguration = IngredientConfiguration()
-    var recipes = [RecipeInfos]()
+    var recipes = [RecipeAPI]()
     var nextPage: Next?
     
     // MARK: - PRIVATE FUNCTIONS
@@ -41,6 +42,10 @@ class RecipesViewController: UIViewController {
     
     private func setupVoiceOver() {
         recipeList.accessibilityLabel = "Recipe's list."
+    }
+    
+    private func setupCell() {
+        self.recipeList.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
     }
 }
 
@@ -64,6 +69,7 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
                 
         if indexPath.row == recipes.count - 1 {
             guard let nextPage = nextPage else { return UITableViewCell() }
+            loadingRecipes.isHidden = false
             getNextPage(nextPage: nextPage)
         }
         
@@ -83,14 +89,14 @@ extension RecipesViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToRecipeDetail" {
             let recipesVC = segue.destination as? RecipeDetailViewController
-            let recipe = sender as? RecipeInfos
+            let recipe = sender as? RecipeAPI
             recipesVC?.recipe = recipe
         }
     }
 }
 
 extension RecipesViewController: APICallCenterDelegate {
-    func getRecipesDidFinish(recipes: [RecipeInfos], nextPage: Next?) {
+    func getRecipesDidFinish(recipes: [RecipeAPI], nextPage: Next?) {
         loadingRecipes.isHidden = true
 
         if let nextPage = nextPage {
@@ -114,22 +120,26 @@ extension RecipesViewController: APICallCenterDelegate {
         noRecipesLabel.isHidden = false
     }
     
-    func getNextPageDidFinish(recipes: [RecipeInfos], nextPage: Next?) {
+    func getNextPageDidFinish(recipes: [RecipeAPI], nextPage: Next?) {
         if let nextPage = nextPage {
             self.nextPage = nextPage
         }
-        
+        loadingRecipes.isHidden = true
         self.recipes = recipes
         recipeList.reloadData()
     }
     
     func getNextPageDidFailWithError() {
         presentAlert(with: "Something went wrong, please try again.")
+        loadingRecipes.isHidden = true
     }
     
     func getNextPageDidFailWithIncorrectResponse() {
         presentAlert(with: "Something went wrong, please try again.")
+        loadingRecipes.isHidden = true
     }
     
-    func getNextPageDidFailWithEmptyRecipes() {}
+    func getNextPageDidFailWithEmptyRecipes() {
+        loadingRecipes.isHidden = true
+    }
 }

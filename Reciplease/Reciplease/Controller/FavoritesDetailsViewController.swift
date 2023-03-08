@@ -29,8 +29,8 @@ class FavoritesDetailsViewController: UIViewController {
     @IBOutlet weak var recipeTime: UILabel!
     @IBOutlet weak var recipeTimeImage: UIImageView!
     
-    var recipe: Recipe?
-    var copiedRecipe: RecipeInfos?
+    var recipe: RecipeCD?
+    var copiedRecipe: RecipeAPI?
     let ingredientConfiguration = IngredientConfiguration()
     let recipeRepository = RecipeRepository()
     
@@ -154,7 +154,7 @@ class FavoritesDetailsViewController: UIViewController {
         }
     }
     
-    private func reloadRecipe(copiedRecipe: RecipeInfos) {
+    private func reloadRecipe(copiedRecipe: RecipeAPI) {
         guard let _ = recipe else {
             recipeRepository.getRecipe(url: copiedRecipe.url, completion: { recipe in
                 guard let recipe = recipe else { return }

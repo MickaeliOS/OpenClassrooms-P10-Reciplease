@@ -10,17 +10,17 @@ import XCTest
 
 final class CoreDataTestCases: XCTestCase {
     // MARK: - PROPERTIES
-    let recipe1 = RecipeInfos(label: "label1",
+    let recipe1 = RecipeAPI(label: "label1",
                               image: "image1",
-                              ingredients: [IngredientInfos(text: "text1", food: "food1"),
-                                            IngredientInfos(text: "text2", food: "food2")],
+                              ingredients: [IngredientAPI(text: "text1", food: "food1"),
+                                            IngredientAPI(text: "text2", food: "food2")],
                               url: "https://www.test1.com",
                               totalTime: 1.0)
     
-    let recipe2 = RecipeInfos(label: "label2",
+    let recipe2 = RecipeAPI(label: "label2",
                               image: "image2",
-                              ingredients: [IngredientInfos(text: "text3", food: "food3"),
-                                            IngredientInfos(text: "text4", food: "food4")],
+                              ingredients: [IngredientAPI(text: "text3", food: "food3"),
+                                            IngredientAPI(text: "text4", food: "food4")],
                               url: "https://www.test2.com",
                               totalTime: 2.0)
     
@@ -122,7 +122,7 @@ final class CoreDataTestCases: XCTestCase {
     }
     
     func testDeleteRecipeShouldNotThrowIfWeDeleteAnExistingRecipe() {
-        var recipeToTest: Recipe?
+        var recipeToTest: RecipeCD?
         
         // First, we need to add a recipe to delete it later
         XCTAssertNoThrow(try recipeRepository.addRecipe(recipe: recipe1))
@@ -142,7 +142,7 @@ final class CoreDataTestCases: XCTestCase {
     }
     
     func testDeleteRecipeShouldNotThrowIfWeDeleteANonExistingRecipe() {
-        XCTAssertNoThrow(try recipeRepository.deleteRecipe(recipe: Recipe()))
+        XCTAssertNoThrow(try recipeRepository.deleteRecipe(recipe: RecipeCD()))
     }
     
     func testIsFavoriteReturnsTrueIfRecipeIsInFavorites() {

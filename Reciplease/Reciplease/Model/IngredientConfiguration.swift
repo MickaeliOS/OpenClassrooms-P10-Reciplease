@@ -49,7 +49,7 @@ class IngredientConfiguration {
         NotificationCenter.default.post(name: .ingredientsListModified, object: nil)
     }
     
-    func formatIngredientsInOneLine(ingredientsFood: [IngredientInfos]) -> String {
+    func formatIngredientsInOneLine(ingredientsFood: [IngredientAPI]) -> String {
         guard !ingredientsFood.isEmpty else {
             return ""
         }
@@ -58,7 +58,7 @@ class IngredientConfiguration {
         return ingredientsFood.map { $0.food }.joined(separator: ", ")
     }
     
-    func formatDetailledIngredientsInSeparateLines(ingredients: [IngredientInfos]) -> String {
+    func formatDetailledIngredientsInSeparateLines(ingredients: [IngredientAPI]) -> String {
         guard !ingredients.isEmpty else {
             return ""
         }

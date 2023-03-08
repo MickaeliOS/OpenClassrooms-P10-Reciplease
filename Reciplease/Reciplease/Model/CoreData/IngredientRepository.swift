@@ -10,11 +10,11 @@ import CoreData
 
 class IngredientRepository {
     // MARK: - FUNCTIONS
-    func addIngredients(ingredients: [IngredientInfos], recipe: Recipe, viewContext: NSManagedObjectContext, completion: (NSOrderedSet) -> Void) {
+    func addIngredients(ingredients: [IngredientAPI], recipe: RecipeCD, viewContext: NSManagedObjectContext, completion: (NSOrderedSet) -> Void) {
         let ingredientsSet = NSMutableOrderedSet()
         
         ingredients.forEach { ingredient in
-            let ingredientToSave = Ingredient(context: viewContext)
+            let ingredientToSave = IngredientCD(context: viewContext)
             
             ingredientToSave.food = ingredient.food
             ingredientToSave.text = ingredient.text

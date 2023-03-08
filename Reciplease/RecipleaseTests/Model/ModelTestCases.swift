@@ -13,7 +13,7 @@ final class ModelTestCases: XCTestCase {
     // MARK: - PROPERTIES
     private var ingredientConfiguration: IngredientConfiguration!
     private var ingredientsOrderedSet: NSOrderedSet!
-    private var ingredientsInfos: [IngredientInfos]!
+    private var ingredientsInfos: [IngredientAPI]!
 
     
     // MARK: - OVERRIDE TEST FUNCTIONS
@@ -23,8 +23,8 @@ final class ModelTestCases: XCTestCase {
         ingredientConfiguration = IngredientConfiguration()
         
         ingredientsOrderedSet = NSOrderedSet()
-        ingredientsInfos = [IngredientInfos(text: "DetailledIngredients1", food: "Tomato"),
-                            IngredientInfos(text: "DetailledIngredients2", food: "Banana")]
+        ingredientsInfos = [IngredientAPI(text: "DetailledIngredients1", food: "Tomato"),
+                            IngredientAPI(text: "DetailledIngredients2", food: "Banana")]
     }
     
     // MARK: - TESTS FOR RESEARCH
@@ -123,7 +123,7 @@ final class ModelTestCases: XCTestCase {
     }
     
     func testFormatIngredientsInOneLineFromEmptyList() {
-        let emptyIngredientsInfos: [IngredientInfos] = []
+        let emptyIngredientsInfos: [IngredientAPI] = []
         
         let formatedIngredients = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: emptyIngredientsInfos)
         XCTAssertEqual(formatedIngredients, "")
@@ -135,7 +135,7 @@ final class ModelTestCases: XCTestCase {
     }
     
     func testFormatDetailledIngredientsInSeparateLinesFromEmptyList() {
-        let emptyIngredientsInfos: [IngredientInfos] = []
+        let emptyIngredientsInfos: [IngredientAPI] = []
 
         let formatedDetailledIngredients = ingredientConfiguration.formatDetailledIngredientsInSeparateLines(ingredients: emptyIngredientsInfos)
         XCTAssertEqual(formatedDetailledIngredients, "")

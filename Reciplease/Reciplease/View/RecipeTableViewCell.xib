@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="160" id="bIP-Ny-UMu" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bIP-Ny-UMu" id="2jE-nk-naC">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-qk-BlA">
+                        <rect key="frame" x="10" y="0.0" width="373" height="110"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KHq-Aw-fTt">
+                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KHq-Aw-fTt" secondAttribute="height" multiplier="1:1" id="ikL-Nf-Xfl"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GhH-oy-w9F">
+                                <rect key="frame" x="120" y="0.0" width="253" height="110"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw5-Nt-GEE">
+                                        <rect key="frame" x="0.0" y="0.0" width="253" height="36"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqg-Z9-CjU">
+                                        <rect key="frame" x="0.0" y="36" width="253" height="44"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQV-jo-0AB">
+                                        <rect key="frame" x="0.0" y="80" width="253" height="30"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HTi-Oh-8Xx">
+                                                <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="CQh-TN-ZSb"/>
+                                                    <constraint firstAttribute="height" constant="30" id="RJ8-1t-Ap9"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RecipeTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf1-6k-scN">
+                                                <rect key="frame" x="30" y="0.0" width="223" height="30"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="KHq-Aw-fTt" firstAttribute="leading" secondItem="Xl7-qk-BlA" secondAttribute="leading" id="0yL-fI-9uk"/>
+                            <constraint firstItem="GhH-oy-w9F" firstAttribute="top" secondItem="Xl7-qk-BlA" secondAttribute="top" id="S1h-sx-JGf"/>
+                            <constraint firstItem="KHq-Aw-fTt" firstAttribute="height" secondItem="Xl7-qk-BlA" secondAttribute="height" id="WFY-gs-KF2"/>
+                            <constraint firstAttribute="bottom" secondItem="GhH-oy-w9F" secondAttribute="bottom" id="Z8S-Q5-kiH"/>
+                            <constraint firstItem="GhH-oy-w9F" firstAttribute="leading" secondItem="KHq-Aw-fTt" secondAttribute="trailing" constant="10" id="ffW-ZX-Gky"/>
+                            <constraint firstItem="KHq-Aw-fTt" firstAttribute="top" secondItem="Xl7-qk-BlA" secondAttribute="top" id="mJ4-c7-HWn"/>
+                            <constraint firstAttribute="trailing" secondItem="GhH-oy-w9F" secondAttribute="trailing" id="qAR-pa-2fm"/>
+                            <constraint firstAttribute="bottom" secondItem="KHq-Aw-fTt" secondAttribute="bottom" id="wn3-TK-yI9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="background"/>
+                <constraints>
+                    <constraint firstItem="Xl7-qk-BlA" firstAttribute="top" secondItem="2jE-nk-naC" secondAttribute="top" id="Euc-TG-Blo"/>
+                    <constraint firstAttribute="trailing" secondItem="Xl7-qk-BlA" secondAttribute="trailing" constant="10" id="ZFK-I1-C5e"/>
+                    <constraint firstItem="Xl7-qk-BlA" firstAttribute="leading" secondItem="2jE-nk-naC" secondAttribute="leading" constant="10" id="m1P-BD-wmp"/>
+                    <constraint firstAttribute="bottom" secondItem="Xl7-qk-BlA" secondAttribute="bottom" constant="10" id="wx3-dv-ozb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="recipeCellView" destination="Xl7-qk-BlA" id="h0y-4Q-ggb"/>
+                <outlet property="recipeFood" destination="gqg-Z9-CjU" id="CVU-EL-ghc"/>
+                <outlet property="recipeImage" destination="KHq-Aw-fTt" id="aAX-Gv-xlX"/>
+                <outlet property="recipeTime" destination="xf1-6k-scN" id="0zk-ad-hY3"/>
+                <outlet property="recipeTimeImage" destination="HTi-Oh-8Xx" id="pc5-wM-Kzg"/>
+                <outlet property="recipeTitle" destination="Gw5-Nt-GEE" id="6HG-m3-TWY"/>
+            </connections>
+            <point key="canvasLocation" x="125.95419847328243" y="-14.788732394366198"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="clock.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

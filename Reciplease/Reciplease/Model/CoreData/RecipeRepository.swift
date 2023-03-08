@@ -34,9 +34,9 @@ class RecipeRepository {
     }
     
     // MARK: - FUNCTIONS
-    func addRecipe(recipe: RecipeInfos) throws {
-        let recipeToSave = Recipe(context: coreDataStackViewContext)
-
+    func addRecipe(recipe: RecipeAPI) throws {
+        let recipeToSave = RecipeCD(context: coreDataStackViewContext)
+        
         recipeToSave.label = recipe.label
         recipeToSave.image = recipe.image
         recipeToSave.totalTime = recipe.totalTime
@@ -54,74 +54,81 @@ class RecipeRepository {
         }
     }
     
-    func getRecipe(url: String, completion: (Recipe?) -> Void) {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+    func getRecipe(url: String, completion: (RecipeCD?) -> Void) {
+        let request: NSFetchRequest<RecipeCD> = RecipeCD.fetchRequest()
         request.predicate = NSPredicate(format: "url == %@", url)
 
-        do {
-            guard let recipe = try coreDataStackViewContext.fetch(request).first else {
-                completion(nil)
-                return
+        coreDataStackViewContext.performAndWait {
+            do {
+                guard let recipe = try coreDataStackViewContext.fetch(request).first else {
+                    completion(nil)
+                    return
+                }
+                completion(recipe)
+            } catch {
+                print("An error occured.")
             }
-            completion(recipe)
-        } catch {
-            print("An error occured.")
         }
     }
     
-    func getRecipes(completion: ([Recipe]) -> Void) {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        
-        do {
-            let recipes = try coreDataStackViewContext.fetch(request)
-            completion(recipes)
-        } catch {
-            print("We were unable to get the recipes.")
-        }
-    }
-    
-    func deleteRecipe(recipe: Recipe) throws {
-        coreDataStackViewContext.delete(recipe)
-        
-        do {
-            try coreDataStackViewContext.save()
-        } catch {
-            print("We were unable to delete \(recipe)")
-            throw RecipeError.deletionError
-        }
-    }
-    
-    func isFavorite(recipe: RecipeInfos, completion : (Bool?) -> Void) {
-        let request : NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        request.predicate = NSPredicate(format: "url == %@", recipe.url)
+    func getRecipes(completion: ([RecipeCD]) -> Void) {
+        let request: NSFetchRequest<RecipeCD> = RecipeCD.fetchRequest()
 
-        do {            
-            guard let _ = try coreDataStackViewContext.fetch(request).first else {
-                completion(false)
-                return
+        coreDataStackViewContext.performAndWait {
+            do {
+                let recipes = try coreDataStackViewContext.fetch(request)
+                completion(recipes)
+            } catch {
+                print("We were unable to get the recipes.")
             }
-            completion(true)
-        } catch {
-            print("An error occured.")
         }
     }
     
-    func copyRecipe(recipe: Recipe) -> RecipeInfos? {
-        guard let label = recipe.label,
-              let image = recipe.image,
-              let url = recipe.url,
-              let ingredientsOrderedSet = recipe.ingredients else {
-            return nil
+    func deleteRecipe(recipe: RecipeCD) throws {
+        try coreDataStackViewContext.performAndWait {
+            do {
+                coreDataStackViewContext.delete(recipe)
+                try coreDataStackViewContext.save()
+            } catch {
+                print("We were unable to delete \(recipe)")
+                throw RecipeError.deletionError
+            }
         }
-
-        var ingredients = [IngredientInfos]()
-        
-        ingredientsOrderedSet.forEach { element in
-            ingredients.append(IngredientInfos(text: (element as AnyObject).text ?? "", food: (element as AnyObject).food ?? ""))
-        }
-
-        let recipeInfos = RecipeInfos(label: label, image: image, ingredients: ingredients, url: url, totalTime: recipe.totalTime)
-        
-        return recipeInfos
     }
+    
+    func isFavorite(recipe: RecipeAPI, completion : (Bool?) -> Void) {
+        coreDataStackViewContext.performAndWait {
+            let request : NSFetchRequest<RecipeCD> = RecipeCD.fetchRequest()
+            request.predicate = NSPredicate(format: "url == %@", recipe.url)
+
+            do {
+                guard let _ = try coreDataStackViewContext.fetch(request).first else {
+                    completion(false)
+                    return
+                }
+                completion(true)
+            } catch {
+                print("An error occured.")
+            }
+        }
+    }
+    
+    func copyRecipe(recipe: RecipeCD) -> RecipeAPI? {
+            guard let label = recipe.label,
+                  let image = recipe.image,
+                  let url = recipe.url,
+                  let ingredientsOrderedSet = recipe.ingredients else {
+                return nil
+            }
+
+            var ingredients = [IngredientAPI]()
+            
+            ingredientsOrderedSet.forEach { element in
+                ingredients.append(IngredientAPI(text: (element as AnyObject).text ?? "", food: (element as AnyObject).food ?? ""))
+            }
+
+            let recipeInfos = RecipeAPI(label: label, image: image, ingredients: ingredients, url: url, totalTime: recipe.totalTime)
+            
+            return recipeInfos
+        }
 }

@@ -268,99 +268,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ijc-Bu-R8I">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" name="background"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="160" id="nxD-mS-LfR" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="160"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nxD-mS-LfR" id="NVz-Wn-f4R">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="160"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="isu-HG-Kll">
-                                                    <rect key="frame" x="10" y="0.0" width="370" height="150"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VMQ-Rl-l5I">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <bool key="isElement" value="YES"/>
-                                                            </accessibility>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="VMQ-Rl-l5I" secondAttribute="height" multiplier="1:1" id="5Pa-A6-hRm"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="2R8-EM-E1f">
-                                                            <rect key="frame" x="160" y="0.0" width="210" height="150"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvA-mF-TqJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="49.333333333333336"/>
-                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dmr-rh-HLB">
-                                                                    <rect key="frame" x="0.0" y="49.333333333333336" width="210" height="70.666666666666657"/>
-                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WlD-93-ND7">
-                                                                    <rect key="frame" x="0.0" y="120" width="210" height="30"/>
-                                                                    <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="f94-Vc-b7h">
-                                                                            <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
-                                                                            <color key="tintColor" name="buttons"/>
-                                                                            <accessibility key="accessibilityConfiguration">
-                                                                                <bool key="isElement" value="YES"/>
-                                                                            </accessibility>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="30" id="Uhq-ge-EEI"/>
-                                                                                <constraint firstAttribute="height" constant="30" id="ybx-Ph-PF1"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yom-El-Bn8">
-                                                                            <rect key="frame" x="40" y="0.0" width="170" height="30"/>
-                                                                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" name="background"/>
-                                                    <constraints>
-                                                        <constraint firstItem="VMQ-Rl-l5I" firstAttribute="leading" secondItem="isu-HG-Kll" secondAttribute="leading" id="9tK-vJ-CV5"/>
-                                                        <constraint firstItem="2R8-EM-E1f" firstAttribute="leading" secondItem="VMQ-Rl-l5I" secondAttribute="trailing" constant="10" id="Qu0-39-UMd"/>
-                                                        <constraint firstItem="VMQ-Rl-l5I" firstAttribute="top" secondItem="isu-HG-Kll" secondAttribute="top" id="hS8-cs-LYG"/>
-                                                        <constraint firstItem="2R8-EM-E1f" firstAttribute="top" secondItem="isu-HG-Kll" secondAttribute="top" id="mFd-rc-Fyf"/>
-                                                        <constraint firstAttribute="bottom" secondItem="VMQ-Rl-l5I" secondAttribute="bottom" id="rKU-Ab-sSK"/>
-                                                        <constraint firstAttribute="trailing" secondItem="2R8-EM-E1f" secondAttribute="trailing" id="vtr-cE-04T"/>
-                                                        <constraint firstAttribute="bottom" secondItem="2R8-EM-E1f" secondAttribute="bottom" id="wFb-oJ-5Z3"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" name="background"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="isu-HG-Kll" secondAttribute="trailing" constant="10" id="R5c-l0-QJO"/>
-                                                <constraint firstItem="isu-HG-Kll" firstAttribute="top" secondItem="NVz-Wn-f4R" secondAttribute="top" id="VPD-nd-Jd7"/>
-                                                <constraint firstAttribute="bottom" secondItem="isu-HG-Kll" secondAttribute="bottom" constant="10" id="XWl-xf-CmJ"/>
-                                                <constraint firstItem="isu-HG-Kll" firstAttribute="leading" secondItem="NVz-Wn-f4R" secondAttribute="leading" constant="10" id="c6T-DE-sOZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="VMQ-Rl-l5I" firstAttribute="height" secondItem="isu-HG-Kll" secondAttribute="height" id="Ahf-sQ-vBH"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="recipeCellView" destination="isu-HG-Kll" id="WIv-Vw-VbB"/>
-                                            <outlet property="recipeFood" destination="Dmr-rh-HLB" id="GF0-hY-IjD"/>
-                                            <outlet property="recipeImage" destination="VMQ-Rl-l5I" id="GU6-RX-mwG"/>
-                                            <outlet property="recipeTime" destination="yom-El-Bn8" id="V6m-tu-X9P"/>
-                                            <outlet property="recipeTimeImage" destination="f94-Vc-b7h" id="G34-tt-dMV"/>
-                                            <outlet property="recipeTitle" destination="QvA-mF-TqJ" id="t3c-cA-cSp"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="I64-iF-2al" id="hbY-nR-YbU"/>
                                     <outlet property="delegate" destination="I64-iF-2al" id="qjn-8f-iy0"/>
@@ -374,6 +281,7 @@
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="AMs-wd-Kmi">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <color key="color" systemColor="labelColor"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vZl-ry-3jd"/>
@@ -653,99 +561,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="E7y-mQ-YTw">
                                 <rect key="frame" x="0.0" y="121" width="390" height="723"/>
                                 <color key="backgroundColor" name="background"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="160" id="RG7-jJ-guL" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="160"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RG7-jJ-guL" id="z09-Ln-CwK">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="160"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPb-T6-9TG">
-                                                    <rect key="frame" x="10" y="0.0" width="370" height="150"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M84-qK-9hJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <bool key="isElement" value="YES"/>
-                                                            </accessibility>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="M84-qK-9hJ" secondAttribute="height" multiplier="1:1" id="Rz4-e8-nKn"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hYh-pK-jes">
-                                                            <rect key="frame" x="160" y="0.0" width="210" height="150"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIA-Kf-pke">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="49.333333333333336"/>
-                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuo-IX-6xJ">
-                                                                    <rect key="frame" x="0.0" y="49.333333333333336" width="210" height="70.666666666666657"/>
-                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-E4-5xv">
-                                                                    <rect key="frame" x="0.0" y="120" width="210" height="30"/>
-                                                                    <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="p6y-cx-IZw">
-                                                                            <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
-                                                                            <color key="tintColor" name="buttons"/>
-                                                                            <accessibility key="accessibilityConfiguration">
-                                                                                <bool key="isElement" value="YES"/>
-                                                                            </accessibility>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="30" id="MQD-YM-Kwr"/>
-                                                                                <constraint firstAttribute="height" constant="30" id="pko-df-AYH"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLb-Ti-wEs">
-                                                                            <rect key="frame" x="40" y="0.0" width="170" height="30"/>
-                                                                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="15"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" name="background"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="hYh-pK-jes" secondAttribute="trailing" id="8cb-fh-PjI"/>
-                                                        <constraint firstItem="M84-qK-9hJ" firstAttribute="leading" secondItem="PPb-T6-9TG" secondAttribute="leading" id="8mm-o8-LdO"/>
-                                                        <constraint firstItem="hYh-pK-jes" firstAttribute="top" secondItem="PPb-T6-9TG" secondAttribute="top" id="9ho-JJ-ofe"/>
-                                                        <constraint firstItem="M84-qK-9hJ" firstAttribute="top" secondItem="PPb-T6-9TG" secondAttribute="top" id="Bue-A7-6n6"/>
-                                                        <constraint firstAttribute="bottom" secondItem="M84-qK-9hJ" secondAttribute="bottom" id="CdH-jP-dRn"/>
-                                                        <constraint firstAttribute="bottom" secondItem="hYh-pK-jes" secondAttribute="bottom" id="DRZ-gn-KkZ"/>
-                                                        <constraint firstItem="hYh-pK-jes" firstAttribute="leading" secondItem="M84-qK-9hJ" secondAttribute="trailing" constant="10" id="xSI-4b-0l5"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" name="background"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="PPb-T6-9TG" secondAttribute="trailing" constant="10" id="7JM-Iy-API"/>
-                                                <constraint firstAttribute="bottom" secondItem="PPb-T6-9TG" secondAttribute="bottom" constant="10" id="89D-jg-t0E"/>
-                                                <constraint firstItem="PPb-T6-9TG" firstAttribute="leading" secondItem="z09-Ln-CwK" secondAttribute="leading" constant="10" id="KM4-dX-HwY"/>
-                                                <constraint firstItem="PPb-T6-9TG" firstAttribute="top" secondItem="z09-Ln-CwK" secondAttribute="top" id="aHt-wp-QOc"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="M84-qK-9hJ" firstAttribute="height" secondItem="PPb-T6-9TG" secondAttribute="height" id="b6F-1y-A8h"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="recipeCellView" destination="PPb-T6-9TG" id="1dX-HF-0Gf"/>
-                                            <outlet property="recipeFood" destination="cuo-IX-6xJ" id="fAs-FJ-Oba"/>
-                                            <outlet property="recipeImage" destination="M84-qK-9hJ" id="Rop-PF-tZd"/>
-                                            <outlet property="recipeTime" destination="XLb-Ti-wEs" id="ewE-tC-Ngt"/>
-                                            <outlet property="recipeTimeImage" destination="p6y-cx-IZw" id="tTe-E4-l23"/>
-                                            <outlet property="recipeTitle" destination="NIA-Kf-pke" id="zn4-bb-M3N"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="AVR-ma-Vo8" id="62v-ZT-gad"/>
                                     <outlet property="delegate" destination="AVR-ma-Vo8" id="tXl-qQ-rUC"/>

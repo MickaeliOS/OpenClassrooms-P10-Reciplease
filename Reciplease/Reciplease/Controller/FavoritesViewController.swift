@@ -11,6 +11,7 @@ class FavoritesViewController: UIViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCell()
         setupVoiceOver()
     }
     
@@ -24,7 +25,7 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var noFavoritesLabel: UILabel!
     
     let recipeRepository = RecipeRepository()
-    var recipes = [Recipe]()
+    var recipes = [RecipeCD]()
 
     // MARK: - PRIVATE FUNCTIONS
     private func getRecipes() {
@@ -46,6 +47,10 @@ class FavoritesViewController: UIViewController {
             return
         }
         noFavoritesLabel.isHidden = true
+    }
+    
+    private func setupCell() {
+        self.favoritesList.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
     }
 }
 
@@ -104,7 +109,7 @@ extension FavoritesViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToFavoritesDetails" {
             let favoritesDetails = segue.destination as? FavoritesDetailsViewController
-            let recipe = sender as? Recipe
+            let recipe = sender as? RecipeCD
             favoritesDetails?.recipe = recipe
         }
     }

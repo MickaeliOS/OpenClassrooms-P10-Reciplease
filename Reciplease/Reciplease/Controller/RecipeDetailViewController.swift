@@ -29,7 +29,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var recipeTimeImage: UIImageView!
     @IBOutlet weak var recipeTime: UILabel!
     
-    var recipe: RecipeInfos?
+    var recipe: RecipeAPI?
     let recipeRepository = RecipeRepository()
     let ingredientConfiguration = IngredientConfiguration()
 

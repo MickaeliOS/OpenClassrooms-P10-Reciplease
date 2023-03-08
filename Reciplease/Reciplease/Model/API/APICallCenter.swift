@@ -10,7 +10,7 @@ import Alamofire
 
 class APICallCenter {
     // MARK: - PROPERTIES
-    var delegate: APICallCenterDelegate?
+    weak var delegate: APICallCenterDelegate?
     var recipeService: RecipeService
     
     // MARK: - INIT
@@ -20,38 +20,38 @@ class APICallCenter {
     
     // MARK: - FUNCTIONS
     func getRecipes(ingredients: String, nbIngredients: String) {
-        recipeService.searchRecipes(with: ingredients, nbIngredients: nbIngredients) { recipes, nextPage, apiCase in
+        recipeService.searchRecipes(with: ingredients, nbIngredients: nbIngredients) { [weak self] recipes, nextPage, apiCase in
             switch apiCase {
             case .success:
                 guard let recipes = recipes else { return }
-                self.delegate?.getRecipesDidFinish(recipes: recipes, nextPage: nextPage)
+                self?.delegate?.getRecipesDidFinish(recipes: recipes, nextPage: nextPage)
             case .error:
-                self.delegate?.getRecipesDidFailWithError()
+                self?.delegate?.getRecipesDidFailWithError()
                 return
             case .incorrectResponse:
-                self.delegate?.getRecipesDidFailWithIncorrectResponse()
+                self?.delegate?.getRecipesDidFailWithIncorrectResponse()
                 return
             case .empty:
-                self.delegate?.getRecipesDidFailWithEmptyRecipes()
+                self?.delegate?.getRecipesDidFailWithEmptyRecipes()
                 return
             }
         }
     }
     
     func getNextPage(nextPage: Next) {
-        recipeService.getNextPage(nextPage: nextPage) { recipes, nextPage, apiCase in
+        recipeService.getNextPage(nextPage: nextPage) { [weak self] recipes, nextPage, apiCase in
             switch apiCase {
             case .success:
                 guard let recipes = recipes else { return }
-                self.delegate?.getNextPageDidFinish(recipes: recipes, nextPage: nextPage)
+                self?.delegate?.getNextPageDidFinish(recipes: recipes, nextPage: nextPage)
             case .error:
-                self.delegate?.getNextPageDidFailWithError()
+                self?.delegate?.getNextPageDidFailWithError()
                 return
             case .incorrectResponse:
-                self.delegate?.getNextPageDidFailWithIncorrectResponse()
+                self?.delegate?.getNextPageDidFailWithIncorrectResponse()
                 return
             case .empty:
-                self.delegate?.getNextPageDidFailWithEmptyRecipes()
+                self?.delegate?.getNextPageDidFailWithEmptyRecipes()
                 return
             }
         }
@@ -59,13 +59,13 @@ class APICallCenter {
 }
 
 // MARK: - DELEGATE
-protocol APICallCenterDelegate {
-    func getRecipesDidFinish(recipes: [RecipeInfos], nextPage: Next?)
+protocol APICallCenterDelegate: AnyObject {
+    func getRecipesDidFinish(recipes: [RecipeAPI], nextPage: Next?)
     func getRecipesDidFailWithError()
     func getRecipesDidFailWithIncorrectResponse()
     func getRecipesDidFailWithEmptyRecipes()
     
-    func getNextPageDidFinish(recipes: [RecipeInfos], nextPage: Next?)
+    func getNextPageDidFinish(recipes: [RecipeAPI], nextPage: Next?)
     func getNextPageDidFailWithError()
     func getNextPageDidFailWithIncorrectResponse()
     func getNextPageDidFailWithEmptyRecipes()

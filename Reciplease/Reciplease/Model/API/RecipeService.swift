@@ -12,7 +12,7 @@ import CoreData
 class RecipeService {
     // MARK: - PROPERTIES & ENUMS
     private let manager: Session
-    var recipes = [RecipeInfos]()
+    var recipes = [RecipeAPI]()
     
     enum APICases {
         case error
@@ -27,10 +27,10 @@ class RecipeService {
     }
     
     // MARK: - FUNCTIONS
-    func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeInfos]?, Next?, APICases) -> Void) {
+    func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeAPI]?, Next?, APICases) -> Void) {
         let parameters = ["q": ingredients, "ingr": nbIngredients, "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
         
-        manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponse.self) { [self] response in
+        manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponseAPI.self) { [self] response in
             guard response.error == nil else {
                 callback(nil, nil, .error)
                 return
@@ -47,7 +47,7 @@ class RecipeService {
             }
             
             data.hits.forEach { hit in
-                let recipe = RecipeInfos(label: hit.recipe.label,
+                let recipe = RecipeAPI(label: hit.recipe.label,
                                          image: hit.recipe.image,
                                          ingredients: hit.recipe.ingredients,
                                          url: hit.recipe.url,
@@ -60,10 +60,10 @@ class RecipeService {
         }
     }
     
-    func getNextPage(nextPage: Next, callback: @escaping ([RecipeInfos]?, Next?, APICases) -> Void) {
+    func getNextPage(nextPage: Next, callback: @escaping ([RecipeAPI]?, Next?, APICases) -> Void) {
         guard let url = nextPage.href else { return }
         
-        manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponse.self) { [self] response in
+        manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponseAPI.self) { [self] response in
             guard response.error == nil else {
                 callback(nil, nil, .error)
                 return
@@ -80,7 +80,7 @@ class RecipeService {
             }
             
             data.hits.forEach { hit in
-                let recipe = RecipeInfos(label: hit.recipe.label,
+                let recipe = RecipeAPI(label: hit.recipe.label,
                                          image: hit.recipe.image,
                                          ingredients: hit.recipe.ingredients,
                                          url: hit.recipe.url,

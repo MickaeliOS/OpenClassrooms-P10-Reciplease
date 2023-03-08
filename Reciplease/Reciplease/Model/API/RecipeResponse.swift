@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RecipeResponse: Decodable {
+struct RecipeResponseAPI: Decodable {
     let hits: [Hit]
     let links: Links
     
@@ -19,18 +19,18 @@ struct RecipeResponse: Decodable {
 }
 
 struct Hit: Decodable {
-    let recipe: RecipeInfos
+    let recipe: RecipeAPI
 }
 
-struct RecipeInfos: Decodable {
+struct RecipeAPI: Decodable {
     let label: String
     let image: String
-    let ingredients: [IngredientInfos]
+    let ingredients: [IngredientAPI]
     let url: String
     let totalTime: Double
 }
 
-struct IngredientInfos: Decodable {
+struct IngredientAPI: Decodable {
     let text: String
     let food: String
 }

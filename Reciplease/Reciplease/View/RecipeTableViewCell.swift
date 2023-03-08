@@ -31,7 +31,7 @@ class RecipeTableViewCell: UITableViewCell {
     let ingredientConfiguration = IngredientConfiguration()
     
     // MARK: - FUNCTIONS
-    func configure(title: String, ingredients: [IngredientInfos], image: String, preparationTime: Double) {
+    func configure(title: String, ingredients: [IngredientAPI], image: String, preparationTime: Double) {
         recipeTitle.text = title
         recipeFood.text = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: ingredients)
         recipeTime.text = "Time: \(String(preparationTime))"
@@ -84,7 +84,7 @@ class RecipeTableViewCell: UITableViewCell {
         recipeImage.accessibilityHint = "Show recipe's details."
     }
     
-    private func setupVoiceOverIngredientsInfos(ingredients: [IngredientInfos]) {
+    private func setupVoiceOverIngredientsInfos(ingredients: [IngredientAPI]) {
         recipeFood.accessibilityValue = ingredientConfiguration.formatIngredientsInOneLine(ingredientsFood: ingredients)
     }
     
