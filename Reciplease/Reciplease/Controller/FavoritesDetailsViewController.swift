@@ -102,11 +102,11 @@ class FavoritesDetailsViewController: UIViewController {
     }
     
     private func recipeWebPage() {
-        guard let recipe = recipe, let url = recipe.url else {
+        guard let copiedRecipe = copiedRecipe else {
             return
         }
         
-        if let url = URL(string: url) {
+        if let url = URL(string: copiedRecipe.url) {
             UIApplication.shared.open(url)
         }
     }

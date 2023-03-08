@@ -192,9 +192,9 @@
 		8322CF0E298923BE00937BBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8362762E298A953300C8B13F /* IngredientConfiguration.swift */,
 				83627629298A92B200C8B13F /* API */,
 				8362763A298BF3E800C8B13F /* CoreData */,
-				8362762E298A953300C8B13F /* IngredientConfiguration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,9 +237,9 @@
 		83627629298A92B200C8B13F /* API */ = {
 			isa = PBXGroup;
 			children = (
+				83627621298A5BE900C8B13F /* RecipeService.swift */,
 				8389F6D5299134B900539C51 /* APICallCenter.swift */,
 				8322CF112989419800937BBF /* APIConfiguration.swift */,
-				83627621298A5BE900C8B13F /* RecipeService.swift */,
 				83627623298A5E7A00C8B13F /* RecipeResponse.swift */,
 			);
 			path = API;
@@ -250,10 +250,10 @@
 			children = (
 				83B3511E299651AC00157DCB /* Reciplease.xcdatamodeld */,
 				8362763E298BF3FC00C8B13F /* CoreDataStack.swift */,
-				83627650298D346800C8B13F /* RecipeRepository.swift */,
-				8362764E298D345E00C8B13F /* IngredientRepository.swift */,
 				83B351212996533500157DCB /* Recipe.swift */,
 				83B351232996534700157DCB /* Ingredient.swift */,
+				83627650298D346800C8B13F /* RecipeRepository.swift */,
+				8362764E298D345E00C8B13F /* IngredientRepository.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
