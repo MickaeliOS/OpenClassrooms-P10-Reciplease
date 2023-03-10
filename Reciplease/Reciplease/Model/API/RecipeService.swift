@@ -30,7 +30,7 @@ class RecipeService {
     func searchRecipes(with ingredients: String, nbIngredients: String, callback: @escaping ([RecipeAPI]?, Next?, APICases) -> Void) {
         let parameters = ["q": ingredients, "ingr": nbIngredients, "app_id": APIConfiguration.shared.appID, "app_key": APIConfiguration.shared.apiKey]
         
-        manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponseAPI.self) { [self] response in
+        manager.request(APIConfiguration.shared.baseURL, method: .get, parameters: parameters).responseDecodable(of: RecipeResponseAPI.self) { [weak self] response in
             guard response.error == nil else {
                 callback(nil, nil, .error)
                 return
@@ -53,17 +53,17 @@ class RecipeService {
                                          url: hit.recipe.url,
                                          totalTime: hit.recipe.totalTime)
                 
-                recipes.append(recipe)
+                self?.recipes.append(recipe)
                 
             }
-            callback(recipes, data.links.next, .success)
+            callback(self?.recipes, data.links.next, .success)
         }
     }
     
     func getNextPage(nextPage: Next, callback: @escaping ([RecipeAPI]?, Next?, APICases) -> Void) {
         guard let url = nextPage.href else { return }
         
-        manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponseAPI.self) { [self] response in
+        manager.request(URL(string: url)!, method: .get).responseDecodable(of: RecipeResponseAPI.self) { [weak self] response in
             guard response.error == nil else {
                 callback(nil, nil, .error)
                 return
@@ -86,10 +86,10 @@ class RecipeService {
                                          url: hit.recipe.url,
                                          totalTime: hit.recipe.totalTime)
                 
-                recipes.append(recipe)
+                self?.recipes.append(recipe)
             }
             
-            callback(recipes, data.links.next, .success)
+            callback(self?.recipes, data.links.next, .success)
         }
     }
 }
