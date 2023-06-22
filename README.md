@@ -22,7 +22,7 @@ Join us on a culinary journey with Reciplease and discover delicious recipes at 
 
 <div align="center">
     <h2> Recipe Detail </h2>
-  <img src="https://github.com/MickaeliOS/OpenClassrooms-P10-Reciplease/blob/master/Divers/Images/RecipeDetail.png" width="200">
+  <img src="https://github.com/MickaeliOS/OpenClassrooms-P10-Reciplease/blob/master/Divers/Images/RecipeDetails.png" width="200">
 </div>
 
 <div align="center">
