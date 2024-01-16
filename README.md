@@ -1,5 +1,31 @@
 # OpenClassrooms-P10-Reciplease
 
+## Important
+
+If you want to try this project, you will have to provide the API key and the app ID that are necessary for the app to work.
+
+ - [Edamam](https://www.edamam.com)
+
+Once you did that, you should create a Struct named APIConfiguration containing the API key and the app ID : 
+
+```swift
+  struct APIConfiguration {
+    // MARK: - SINGELTON
+    static let shared = APIConfiguration()
+    private init() {}
+
+    // MARK: - EDAMAM API CONFIGURATION
+    let baseURL = "https://api.edamam.com/api/recipes/v2?type=public"
+    let apiKey = "YOUR_API_KEY"
+    let appID = "YOUR_APP_ID"
+    
+    // Emergency URL
+    // let baseURL = "https://api.edamam.com/search"
+}
+```
+
+## Welcome !
+
 Welcome to Reciplease, where you can discover a variety of recipes to satisfy your hunger!
 
 Our app offers a convenient way to create an ingredients list and search for recipes based on your selection.  
