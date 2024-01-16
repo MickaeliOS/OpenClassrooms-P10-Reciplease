@@ -14,6 +14,7 @@ class IngredientsViewController: UIViewController {
     // MARK: - VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("VDL Triggered")
         setupInterface()
         setupVoiceOver()
         
